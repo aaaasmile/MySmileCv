@@ -1,0 +1,3 @@
+*.log
+*.pdf
+rails/curr_rails/tmp

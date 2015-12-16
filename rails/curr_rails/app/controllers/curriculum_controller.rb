@@ -308,9 +308,10 @@ class CurriculumController < ApplicationController
       pdf.move_pointer(up_y)
       pdf.text("<i>Mobil</i>: #{info_identity.mobile}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
-      pdf.text('Fax',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
-      pdf.move_pointer(up_y)
-      pdf.text("#{info_identity.fax}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      # FAX ??? pretty old stuff
+      #pdf.text('Fax',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      #pdf.move_pointer(up_y)
+      #pdf.text("#{info_identity.fax}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
       pdf.text('E-mail/Web',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)

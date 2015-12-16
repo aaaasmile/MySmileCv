@@ -29,24 +29,24 @@ menu_selected = ""
   <div id="logout">
   <%= link_to 'Logout', :controller=> 'login', :action => 'logout'%>
   </div>
+  <div id="header">
+    <h1>Web Curriculum </h1>
+  </div>
   <div class="menu">
     <ul>
     <% menu_items_view.each do |item| 
       class_active_inval = "inactive"
       if controller.kind_of?(item[:type]) 
-        class_active_inval = "active" 
-        menu_selected = item[:title]
-      end
-    %>
-      <li><a class="<%= class_active_inval%>" href="/<%= item[:link] %>"><%= item[:title] %></a></li>
-    <%  end %>
+        menu_selected = item[:title] %> 
+        <li><a class="active"><%= item[:title] %></a></li>
+      <% else %>
+      	<li><a class="inactive" href="/<%= item[:link] %>"><%= item[:title] %></a></li>
+      <%end
+      end %>
 
     </ul>
   </div>
-  <div id="header">
-    <h1>Web Curriculum </h1>
-    <h2><%= menu_selected %></h2>
-  </div>
+  <h2><%= menu_selected %></h2>
   <div class="content">
 <p style="color: green"><%= flash[:notice] %></p>
 

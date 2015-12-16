@@ -17,7 +17,7 @@
       h4 { font-size: 21px; }
 
       #page {
-          width: 640px;
+          width: 900px;
           margin: 0 auto;
           padding: 3px 20px;
           border: solid 1px #d5d8c1;
@@ -37,6 +37,7 @@
       .menu {
           float: right;
           font-size: 11px;
+          margin: 8px;
       }
 
       .menu ul {
