@@ -1,10 +1,23 @@
+﻿== Far partire
+Occore ruby 1.8.6 con rails 1.2.3 installato.
+Poi in questa directory si lancia il comando:
+ruby script/server
+Nel browser si va al link: http://localhost:3000/
+Come user si usa 'bambino56' con la sua password.
+
+
+== Info
 Il progetto usa rail 1.2.3 con il database sqlite
 db/development.sqlite3
 In gems_required ho messo i gems extra che sono richiesti da questa applicazione
 Lo user di default è bambino56. 
 Una vota caricato un curriculum, si può generare il file pdf che è messo in public\pdf.
-I curriculumn vengono salvati in files yaml public\curriculum
+I curriculumn invece vengono salvati in files yaml public\curriculum
+
+Non so perché ci sia bisogno di un login, probabilmente per bloccare dei curiosi.
+In ogni modo le info dello user all login non vengono usate per redarre il curriculum.
+
 
 == storia
-Prima sono partito con una applicazione in camping (vedi svn repository curr)
-poi sono pasato a questa creata in rails.
+Prima sono partito con una applicazione in camping (vedi svn repository curr)  nel lontano 2007,
+poi sono pasato a questa creata in rails. 
