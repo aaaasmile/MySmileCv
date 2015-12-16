@@ -5,7 +5,8 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Web Curriculum: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag  'currstyle' %>
+  <%= stylesheet_link_tag  'myappboot' %>
+  <%= stylesheet_link_tag  'bootstrap' %>
 </head>
 <body>
 
@@ -46,7 +47,6 @@ menu_selected = ""
 
     </ul>
   </div>
-  <h2><%= menu_selected %></h2>
   <div class="content">
 <p style="color: green"><%= flash[:notice] %></p>
 
@@ -55,5 +55,7 @@ menu_selected = ""
 
 </div>
 
+<%= javascript_include_tag 'jquery-1.11.3.min.js' %>
+<%= javascript_include_tag 'bootstrap.min.js' %>
 </body>
 </html>
