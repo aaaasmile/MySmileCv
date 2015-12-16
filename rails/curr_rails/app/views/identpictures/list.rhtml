@@ -1,0 +1,32 @@
+<h1>Listing identpictures</h1>
+
+<table>
+  <tr>
+  <% for column in Identpicture.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for identpicture in @identpictures %>
+  <tr>
+  <% for column in Identpicture.content_columns 
+        if column.name == 'foto' %>
+    <td><img src="<%= url_for(:action => 'picture', :id => identpicture) %>" /></td>
+        <% else %>
+    <td><%=h identpicture.send(column.name) %></td>
+       <% end #endif %>
+  <% end #endfor%>
+    <td><%= link_to 'Show', :action => 'show', :id => identpicture %>
+    <%= link_to 'Edit', :action => 'edit', :id => identpicture %>
+    <%= link_to 'Destroy', { :action => 'destroy', :id => identpicture }, :confirm => 'Are you sure?', :method => :post %>
+    <%= button_to 'Curriculum', :action => 'curr_add_picture', :controller => 'Curriculum',  :id => identpicture %></td>
+  </tr>
+<% end #endfor%>
+</table>
+
+<%= link_to 'Previous page', { :page => @identpicture_pages.current.previous } if @identpicture_pages.current.previous %>
+<%= link_to 'Next page', { :page => @identpicture_pages.current.next } if @identpicture_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New identpicture', :action => 'new' %>

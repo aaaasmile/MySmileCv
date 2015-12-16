@@ -1,0 +1,47 @@
+<%= error_messages_for 'destcurr' %>
+
+<!--[form:destcurr]-->
+<p><label for="destcurr_inserat">Job description</label><br/>
+<%= text_area 'destcurr', 'inserat'  %></p>
+
+<p><label for="destcurr_inserat_filename">Descr Filename ( dir: public/inserat )</label><br/>
+<%= text_field 'destcurr', 'inserat_filename'  %></p>
+
+<p><label for="destcurr_contact_email">Contact email</label><br/>
+<%= text_field 'destcurr', 'contact_email'  %></p>
+
+<p><label for="destcurr_contact_web">Contact web</label><br/>
+<%= text_field 'destcurr', 'contact_web'  %></p>
+
+<p><label for="destcurr_contact_person">Contact person</label><br/>
+<%= text_field 'destcurr', 'contact_person'  %></p>
+
+<p><label for="destcurr_contact_company">Contact company</label><br/>
+<%= text_field 'destcurr', 'contact_company'  %></p>
+
+<p><label for="destcurr_contact_note">Contact note</label><br/>
+<%= text_area 'destcurr', 'contact_note'  %></p>
+
+<p><label for="destcurr_contact_ams">Contact from AMS ?</label><br/>
+<select id="destcurr_contact_ams" name="destcurr[contact_ams]"><option value="false">False</option><option value="true">True</option></select></p>
+
+<p><label for="destcurr_curr_sent_at">Curriculum sent at</label><br/>
+<%= date_select 'destcurr', 'curr_sent_at'  %></p>
+
+<p><label for="destcurr_colloquio_at">Meeting</label><br/>
+<%= date_select 'destcurr', 'colloquio_at'  %></p>
+
+<p><label for="destcurr_email_motivaz">Email motivation</label><br/>
+<%= text_area 'destcurr', 'email_motivaz'  %></p>
+
+<p><label for="destcurr_note">Note</label><br/>
+<%= text_area 'destcurr', 'note'  %></p>
+
+<p><label for="destcurr_risultato">Result</label><br/>
+<%= text_field 'destcurr', 'risultato'  %></p>
+
+<p><label for="destcurr_kcurr_saved">Curriculum</label><br/>
+<%= collection_select(:destcurr, :kcurr_saved, @filecurrsaveds, :id, :curr_title)%>
+</p>
+<!--[eoform:destcurr]-->
+

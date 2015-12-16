@@ -1,0 +1,14 @@
+<%= error_messages_for 'miscstuff' %>
+
+<!--[form:miscstuff]-->
+<p><label for="miscstuff_misc">Misc</label><br/>
+<%= text_area 'miscstuff', 'misc'  %></p>
+
+<p><label for="miscstuff_mstype">Type</label><br/>
+<%= text_field 'miscstuff', 'mstype'  %></p>
+
+
+<p><label for="miscstuff_klang">Klang</label><br/>
+<%= collection_select(:miscstuff, :klang, @languages, :id, :isoname)%>
+<!--[eoform:miscstuff]-->
+

@@ -1,0 +1,10 @@
+Il progetto usa rail 1.2.3 con il database sqlite
+db/development.sqlite3
+In gems_required ho messo i gems extra che sono richiesti da questa applicazione
+Lo user di default è bambino56. 
+Una vota caricato un curriculum, si può generare il file pdf che è messo in public\pdf.
+I curriculumn vengono salvati in files yaml public\curriculum
+
+== storia
+Prima sono partito con una applicazione in camping (vedi svn repository curr)
+poi sono pasato a questa creata in rails.

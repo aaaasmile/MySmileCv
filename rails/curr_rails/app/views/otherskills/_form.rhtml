@@ -1,0 +1,13 @@
+<%= error_messages_for 'otherskill' %>
+
+<!--[form:otherskill]-->
+<p><label for="otherskill_skill">Skill</label><br/>
+<%= text_area 'otherskill', 'skill'  %></p>
+
+<p><label for="otherskill_skill">Type</label><br/>
+<%= text_field 'otherskill', 'sktype'  %></p>
+
+<p><label for="otherskill_klang">Klang</label><br/>
+<%= collection_select(:otherskill, :klang, @languages, :id, :isoname)%>
+<!--[eoform:otherskill]-->
+

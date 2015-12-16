@@ -1,0 +1,20 @@
+<%= error_messages_for 'computerskill' %>
+
+<!--[form:computerskill]-->
+<p><label for="computerskill_name">Name</label><br/>
+<%= text_field 'computerskill', 'name'  %></p>
+
+<p><label for="computerskill_level">Level</label><br/>
+<%= text_field 'computerskill', 'level'  %></p>
+
+<p><label for="computerskill_experience">Experience</label><br/>
+<%= text_field 'computerskill', 'experience'  %></p>
+
+<p><label for="computerskill_cstype">Type</label><br/>
+<%= text_field 'computerskill', 'cstype'  %></p>
+
+
+<p><label for="computerskill_klang">Klang</label><br/>
+<%= collection_select(:computerskill, :klang, @languages, :id, :isoname)%>
+<!--[eoform:computerskill]-->
+

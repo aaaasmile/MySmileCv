@@ -1,0 +1,16 @@
+<% for column in Education.content_columns 
+      contenuto_campo = "" 
+      if column.name == 'klang'
+        contenuto_campo = h @education.language.isoname 
+      else
+        contenuto_campo = h @education.send(column.name)
+      end 
+%>
+
+<p>
+  <b><%= column.human_name %>:</b> <%= contenuto_campo%>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @education %> |
+<%= link_to 'Back', :action => 'list' %>

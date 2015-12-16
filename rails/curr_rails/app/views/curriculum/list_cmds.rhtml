@@ -1,0 +1,103 @@
+
+<p/>
+<p><%= button_to 'Load Curriculum', :action => 'load_curr', :controller => 'Loadcurr' %></p>
+<p><%= button_to 'Delete Curriculum', :action => 'delete_curr', :controller => 'Loadcurr' %></p>
+<% if @curriculum.is_empty? %>
+<h4>No items in Curriculum</h4>
+<% else %>
+<br/>
+<hr/>
+<% if @curriculum.curr_title.length == 0 %>
+<h4>Current Curriculum [New*]</h4><br/>
+<% else %>
+<h4>Current Curriculum [<%= @curriculum.curr_title%>] </h4><br/>
+<p><%= button_to 'Save Curriculum', :action => 'update_curr', :controller => 'Savecurr' %></p>
+<% end %>
+<p><%= button_to 'Reload Curriculum', :action => 'reload_curr', :controller => 'Loadcurr' %></p>
+<p><%= button_to 'Create PDF', :action => 'create_pdf' %></p>
+<p><%= button_to 'Clear this Curriculum', {:action => 'clear_curriculum'}, :confirm => 'Are you sure?', :method => :post  %></p>
+<p><%= button_to 'Save as new Curriculum', :action => 'save_curr', :controller => 'Savecurr' %></p>
+
+<% form_tag :action => 'create_scope' do %>
+  <p><%= text_field 'curriculum', 'cur_scope'  %>
+  <%= submit_tag "Change Scope" %></p>
+  
+<% end %>
+
+<br/>
+<hr/>
+
+
+<%# Scope %>
+<% if @curriculum.cur_scope %>
+  <h4>Scope</h4> 
+  <p><%=@curriculum.cur_scope %> |<%= link_to 'X', :action => 'remove_scope' %>| </p>
+<% end %>
+ 
+<%# identity %>
+<% if @curriculum.cur_identity %>
+  <h4>Identity</h4> 
+  <p><%=@curriculum.cur_identity.info_compact %> |<%= link_to 'X', :action => 'remove_identity' %>| </p>
+<% end %>
+
+<%# picture %>
+<% if @curriculum.curr_picture %>
+  <h4>Foto</h4>
+  <p><img src="<%= url_for(:controller => 'Identpictures',:action => "picture", :id => @curriculum.curr_picture.id) %>"/> 
+   |<%= link_to 'X', :action => 'remove_picture' %>| </p>
+<% end %>
+
+<%# work experience %>
+<% if @curriculum.cur_workexperience_list.size > 0 %>
+  <h4>Work experience</h4>
+  <%# debug(@curriculum.cur_workexperience_list) %>
+  <% @curriculum.cur_workexperience_list.each do |item| %> 
+    <%# debug(item) %>
+    <p><%= item.info_compact %> |<%= link_to 'X', :action => 'remove_workexperince', :id => item.id  %>| </p>
+  <% end %>
+<% end %>
+
+<%# education %>
+<% if @curriculum.cur_education_list.size > 0 %>
+  <h4>Education</h4>
+  <% @curriculum.cur_education_list.each do |item| %> 
+    <p><%= item.info_compact %> |<%= link_to 'X', :action => 'remove_education', :id => item.id  %>|</p>
+  <% end %>
+<% end %>
+
+<%# language skill %>
+<% if @curriculum.cur_lang_skills.size > 0 %>
+  <h4>Languages</h4>
+  <% @curriculum.cur_lang_skills.each do |item| %> 
+    <p><%= item.info_compact %> |<%= link_to 'X', :action => 'remove_languageskill', :id => item.id  %>|</p>
+  <% end %>
+<% end %>
+
+<%# computer skill %>
+<% if @curriculum.cur_computer_skills.size > 0 %>
+  <h4>Technology</h4>
+  <% @curriculum.cur_computer_skills.each do |item| %> 
+    <p><%= item.info_compact %> |<%= link_to 'X', :action => 'remove_computerskill', :id => item.id  %>|</p>
+  <% end %>
+<% end %>
+
+<%# other skill %>
+<% if @curriculum.cur_other_skills.size > 0 %>
+  <h4>Other</h4>
+  <% @curriculum.cur_other_skills.each do |item| %> 
+  <%# debug(item) %>
+    <p><%= item.info_compact %> |<%= link_to 'X', :action => 'remove_otherskill', :id => item.id  %>|</p>
+  <% end %>
+<% end %>
+
+<%# misc stuff %>
+<% if @curriculum.cur_miscstuff_list.size > 0 %>
+  <h4>Misc Stuff</h4>
+  <% @curriculum.cur_miscstuff_list.each do |item| %> 
+  <%# debug(item) %>
+    <p><%= item.info_compact %> |<%= link_to 'X', :action => 'remove_miscstuff', :id => item.id  %>|</p>
+  <% end %>
+<% end %>
+
+
+<% end %>

@@ -1,0 +1,39 @@
+<h1>Listing languageskills</h1>
+
+<%= button_to 'Add All to Curriculum', :action => 'curr_add_all_languages', :controller => 'Curriculum' %><br/>
+<table>
+  <tr>
+  <% for column in Languageskill.content_columns
+  colonna_nome =  column.human_name
+  colonna_nome = 'Lang' if column.human_name == 'Klang' 
+%>
+    <th><%= colonna_nome %></th>
+  <% end %>
+  </tr>
+  
+<% for languageskill in @languageskills %>
+  <tr>
+  <% for column in Languageskill.content_columns 
+      contenuto_campo = "" 
+      if column.name == 'klang'
+        contenuto_campo = h languageskill.language.isoname 
+      else
+        contenuto_campo = h languageskill.send(column.name)
+      end
+  %>
+    <td><%=contenuto_campo %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => languageskill %>
+    <%= link_to 'Edit', :action => 'edit', :id => languageskill %>
+    <%= link_to 'Destroy', { :action => 'destroy', :id => languageskill }, :confirm => 'Are you sure?', :method => :post %>
+    <%= button_to 'Curriculum', :action => 'curr_add_lang_skill', :controller => 'Curriculum',  :id => languageskill %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @languageskill_pages.current.previous } if @languageskill_pages.current.previous %>
+<%= link_to 'Next page', { :page => @languageskill_pages.current.next } if @languageskill_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New languageskill', :action => 'new' %>

@@ -1,0 +1,9 @@
+<h1>Editing identity</h1>
+
+<% form_tag :action => 'update', :id => @identity do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @identity %> |
+<%= link_to 'Back', :action => 'list' %>

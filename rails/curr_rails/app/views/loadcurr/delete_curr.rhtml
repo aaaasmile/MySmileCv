@@ -1,0 +1,7 @@
+<h1>Delete Curriculum</h1>
+
+<% form_tag :action => 'delete_title' do %>
+<p><label for="filecurrsaved_curr_title">Title</label><br/>
+<%= select( 'filecurrsaved', 'id', Filecurrsaved.find(:all).collect{|p| [ p.curr_title, p.id ] }  )%>
+  <%= submit_tag "Delete" %>
+<% end %>

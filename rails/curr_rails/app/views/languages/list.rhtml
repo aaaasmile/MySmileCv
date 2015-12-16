@@ -1,0 +1,37 @@
+<h1>Commands</h1>
+<p><%= button_to 'Clear Curriculum', {:controller =>'curriculum', :action => 'clear_curriculum'}, :confirm => 'Are you sure?', :method => :post  %></p>
+<h1>Other Options</h1>
+
+<% form_tag :controller =>'curriculum', :action => 'save_extra_options' do %>
+  <p><%= text_field 'curriculum', 'cur_we_only1empl'  %>
+  <%= submit_tag "Save" %></p>
+  
+<% end %>
+
+<h1>Listing languages</h1>
+
+<table>
+  <tr>
+  <% for column in Language.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for language in @languages %>
+  <tr>
+  <% for column in Language.content_columns %>
+    <td><%=h language.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => language %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => language %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => language }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @language_pages.current.previous } if @language_pages.current.previous %>
+<%= link_to 'Next page', { :page => @language_pages.current.next } if @language_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New language', :action => 'new' %>
