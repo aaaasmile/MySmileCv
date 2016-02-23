@@ -23,7 +23,10 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "curr_rails", "..\..\rails\c
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "49728"
+		SlnRelativePath = "..\..\rails\curr_rails\"
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubyAppStarterLib", "RubyAppStarterLib\RubyAppStarterLib.csproj", "{2AEC5623-21E9-443C-A2B0-A6979B737059}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +42,10 @@ Global
 		{F173EF70-61E1-4062-B859-95B0B8CA7DE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F173EF70-61E1-4062-B859-95B0B8CA7DE8}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{F173EF70-61E1-4062-B859-95B0B8CA7DE8}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{2AEC5623-21E9-443C-A2B0-A6979B737059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AEC5623-21E9-443C-A2B0-A6979B737059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AEC5623-21E9-443C-A2B0-A6979B737059}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AEC5623-21E9-443C-A2B0-A6979B737059}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

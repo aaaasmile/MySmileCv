@@ -5,3 +5,5 @@ rails/curr_rails/tmp
 /deploy/RailsStarter/RailsStarter/obj/Debug
 /deploy/RailsStarter/.vs/RailsStarter/v14/.suo
 /deploy/RailsStarter/.vs/config/applicationhost.config
+/deploy/RailsStarter/RubyAppStarterLib/bin/Debug
+/deploy/RailsStarter/RubyAppStarterLib/obj/Debug
