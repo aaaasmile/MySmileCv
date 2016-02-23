@@ -1,3 +1,7 @@
 *.log
 *.pdf
 rails/curr_rails/tmp
+/deploy/RailsStarter/RailsStarter/bin/Debug
+/deploy/RailsStarter/RailsStarter/obj/Debug
+/deploy/RailsStarter/.vs/RailsStarter/v14/.suo
+/deploy/RailsStarter/.vs/config/applicationhost.config
