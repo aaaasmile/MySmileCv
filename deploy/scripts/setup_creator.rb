@@ -94,22 +94,11 @@ class SetupCreator
     # merge with app file list
     file_to_be_installed = list_app_files
     
-    # get info about installed games
-    #str_giochi_avail = "Briscola in 2, Mariazza"
-    # parse yaml file with game information
-    map_game_info = InfoAvailableGames.info_supported_games(nil)
-    arr_giochi_avail = []
-    map_game_info.each_value do |game_info|
-      if game_info[:enabled] == true
-        p game_info[:name]
-        arr_giochi_avail << game_info[:name]
-      end
-    end
-    str_giochi_avail = arr_giochi_avail.join(", ")
+    
     
     # generate nsi using template
     template_name = 'nsi_install/setup_muster.nsi_tm'
-    nsi_out_name = File.join(target_dir, 'cuperativa_gen.nsi')
+    nsi_out_name = File.join(target_dir, 'rails_gen.nsi')
     
     aString = ""
     # use template and eruby
@@ -190,7 +179,7 @@ private
   
   def copy_app_subdir(sub_dir, target_dir)
     fscd = FileScanDir.new
-    fscd.add_extension_filter([".yaml", ".yml", ".log"])
+    fscd.add_extension_filter([".log"])
     fscd.is_silent = true
     start_dir = File.join( File.dirname(__FILE__), "../../#{sub_dir}")
     start_dir = File.expand_path(start_dir)
