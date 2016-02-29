@@ -7,7 +7,6 @@ require 'rubygems'
 require 'yaml'
 require 'erubis'
 require 'fileutils'
-require 'src/core/info_available_games'
 require 'filescandir'
 
 class SetupCreator
@@ -42,8 +41,7 @@ class SetupCreator
   def prepare_src_in_deploy(target_dir)
     FileUtils.rm_rf(target_dir)
     FileUtils.mkdir_p(target_dir) unless File.directory?(target_dir)
-    copy_app_subdir("res", target_dir)
-    copy_app_subdir("src", target_dir)
+    copy_app_subdir("rails", target_dir)
   end
   
   def create_nsi_installer_script(target_dir, app_data_fullpath, rubypackage_fullpath, startscript)
@@ -219,5 +217,5 @@ end
 
 if $0 == __FILE__
   dep = SetupCreator.new
-  dep.read_sw_version()
+  dep.read_sw_version('../../rails/config/environment.rb')
 end

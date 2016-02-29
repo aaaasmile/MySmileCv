@@ -22,11 +22,11 @@ if $0 == __FILE__
     puts "Target file not recognized"
     exit
   end
-  dep.read_sw_version("../../rails/curr_rails/config/environment.rb")
+  dep.read_sw_version("../../rails/config/environment.rb")
   ver_suffix = dep.get_version_suffix
   prefix = opt[:project_prefix]
   root_version_dir = File.join(opt[:root_deploy], "#{prefix}_" + ver_suffix)
-
+  
   puts "-------- Delete current deploy dir"
   if File.directory?(root_version_dir)
     FileUtils.rm_rf(root_version_dir)
