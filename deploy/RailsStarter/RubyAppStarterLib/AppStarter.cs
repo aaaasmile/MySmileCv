@@ -49,13 +49,17 @@ namespace RubyAppStarterLib
                    new ArgumentException(string.Format("Ruby.exe  {0} not found", rubyExePath)));
             _log.InfoFormat("Ruby cmd {0}", rubyExePath);
 
-            string startScriptFullPath = GetStartScript(appPackageSettings.AppVersion, appPackageSettings.AppStartScript);
+            string scriptWorkingDir  = GetWorkingDirectory(appPackageSettings.AppVersion, appPackageSettings.WorkingDir);
+            if (!Directory.Exists(scriptWorkingDir)) throw (
+                   new ArgumentException(string.Format("Working directory {0} not found", scriptWorkingDir)));
+
+            string startScriptFullPath = Path.Combine(scriptWorkingDir, appPackageSettings.AppStartScript);
             if (!File.Exists(startScriptFullPath)) throw (
                    new ArgumentException(string.Format("Start script  {0} not found", startScriptFullPath)));
 
             _processStarter = new ProcessStarter();
             ApplicationStarting(this, null);
-            _processStarter.ExecuteCmd(rubyExePath, startScriptFullPath);
+            _processStarter.ExecuteCmd(rubyExePath, appPackageSettings.AppStartScript, scriptWorkingDir);
         }
 
         public void Stop()
@@ -91,11 +95,11 @@ namespace RubyAppStarterLib
                      dataDir);
         }
 
-        private string GetStartScript(string appVersion, string appStartScript)
+        private string GetWorkingDirectory(string appVersion, string workingDir)
         {
             return Path.Combine(
                 GetAppDestinationDir(appVersion),
-                string.Format(@"app/{0}", appStartScript));
+                string.Format(@"app/{0}", workingDir));
         }
 
         private string GetAppDestinationDir(string appVersion)

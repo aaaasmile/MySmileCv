@@ -13,6 +13,7 @@ class SetupCreator
   
   def initialize
     @ver_sw = [0,0,0]
+    @working_dir = "rails"
   end
   
   def read_sw_version(script_fname)

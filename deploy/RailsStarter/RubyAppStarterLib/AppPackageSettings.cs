@@ -11,6 +11,7 @@ namespace RubyAppStarterLib
        
         public AppPackageSettings(RegistryRootWrapper appSettings)
         {
+            WorkingDir = appSettings.GetValue<string>("WorkingDir", null);
             MajorVer = appSettings.GetValue<int>("Ver0", 0);
             MedVer = appSettings.GetValue<int>("Ver1", 0);
             SmallVer = appSettings.GetValue<int>("Ver2", 0);
@@ -39,5 +40,6 @@ namespace RubyAppStarterLib
         public string AppVersion { get; internal set; }
         public string AppZipName { get; internal set; }
         public string AppStartScript { get; internal set; }
+        public string WorkingDir { get; internal set; }
     }
 }

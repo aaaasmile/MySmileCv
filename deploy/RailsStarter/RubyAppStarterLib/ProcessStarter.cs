@@ -12,7 +12,7 @@ namespace RubyAppStarterLib
         private static log4net.ILog _log = log4net.LogManager.GetLogger(typeof(ProcessStarter));
         private Process _processRun;
 
-        internal void ExecuteCmd(string rubyExe, string startScript)
+        internal void ExecuteCmd(string rubyExe, string startScript, string workingDir)
         {
             if (_processRun != null)
                 throw new ArgumentException("Process already started");
@@ -27,6 +27,7 @@ namespace RubyAppStarterLib
             _processRun.StartInfo.RedirectStandardError = true;
             _processRun.StartInfo.CreateNoWindow = true;
             _processRun.StartInfo.FileName = rubyExe;
+            _processRun.StartInfo.WorkingDirectory = workingDir;
             _processRun.StartInfo.Arguments = cmdoptionComplete;
             _processRun.OutputDataReceived += new DataReceivedEventHandler(_processRun_OutputDataReceived);
             _processRun.ErrorDataReceived += new DataReceivedEventHandler(_processRun_ErrorDataReceived);

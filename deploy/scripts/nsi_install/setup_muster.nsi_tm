@@ -136,6 +136,7 @@ Section "MySmileCV" SecMySmileCV
   WriteRegStr HKEY_LOCAL_MACHINE "Software\invido_it\${MUI_PRODUCT}" "Ver2" <%= @ver_sw[2]%>
   WriteRegStr HKEY_LOCAL_MACHINE "Software\invido_it\${MUI_PRODUCT}" "RubyPackage" <%= @ruby_package%>
   WriteRegStr HKEY_LOCAL_MACHINE "Software\invido_it\${MUI_PRODUCT}" "StartScript"  <%= @start_script%>
+  WriteRegStr HKEY_LOCAL_MACHINE "Software\invido_it\${MUI_PRODUCT}" "WorkingDir"  <%= @working_dir%>
   
   ;Create uninstaller
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MUI_PRODUCT}" "DisplayName" "${MUI_PRODUCT} (remove only)"
