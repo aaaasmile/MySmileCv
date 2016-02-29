@@ -16,14 +16,13 @@ namespace RailsStarter
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(typeof(Program));
 
         static string _consoleTitle = "Starter";
-        private enum WindowShowType
-        {
-            Hide = 0,
-            Show = 5
-        }
+        static AppStarter _appStarter;
 
         static void Main(string[] args)
         {
+            consoleEventHandler = new ConsoleEventDelegate(ConsoleEventHandler);
+            SetConsoleCtrlHandler(consoleEventHandler, add: true);
+
             Console.Title = _consoleTitle;
             string filename = Log4NetConfigFileName();
             XmlConfigurator.ConfigureAndWatch(new FileInfo(filename));
@@ -32,12 +31,14 @@ namespace RailsStarter
             Console.WriteLine("Preparing the source...");
             try
             {
-                AppStarter starter = new AppStarter("MySmileCv");
-                starter.ApplicationStarting += Starter_ApplicationStarting;
-                starter.Run();
+                _appStarter = new AppStarter("MySmileCv");
+                _appStarter.ApplicationStarting += Starter_ApplicationStarting;
+                _appStarter.Run();
+                _log.Debug("Program terminated.");
             }
             catch (Exception ex)
             {
+                _appStarter = null;
                 _log.ErrorFormat("Fatal error, please try reinstall the application or contact the support. {0}", ex);
                 HideOrShowWindow(WindowShowType.Show);
                 Console.ReadKey();
@@ -45,11 +46,50 @@ namespace RailsStarter
 
         }
 
-        private static void Starter_ApplicationStarting(object sender, EventArgs e)
+        private static bool ConsoleEventHandler(ConsoleEventType eventType)
         {
-            //HideOrShowWindow(WindowShowType.Hide);
+            if (_appStarter == null) { return true; }
+
+            _log.DebugFormat("Console event {0}", eventType);
+
+            switch (eventType)
+            {
+                case ConsoleEventType.CTRL_C_EVENT:
+                case ConsoleEventType.CTRL_BREAK_EVENT:
+                case ConsoleEventType.CTRL_CLOSE_EVENT:
+                    _appStarter.Stop();
+                    break;
+                case ConsoleEventType.CTRL_LOGOFF_EVENT:
+                case ConsoleEventType.CTRL_SHUTDOWN_EVENT:
+                default:
+                    _log.WarnFormat("Ignore console event {0}", eventType);
+                    break;
+            }
+            return true;
         }
 
+        private static void Starter_ApplicationStarting(object sender, EventArgs e)
+        {
+        }
+
+        #region Hooks
+
+        private enum WindowShowType
+        {
+            Hide = 0,
+            Show = 5
+        }
+
+        private enum ConsoleEventType
+        {
+            CTRL_C_EVENT = 0,
+            CTRL_BREAK_EVENT,
+            CTRL_CLOSE_EVENT,
+            CTRL_LOGOFF_EVENT = 5,
+            CTRL_SHUTDOWN_EVENT
+        }
+
+        // Show/Hide window
         [DllImport("user32.dll")]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
         [DllImport("user32.dll")]
@@ -64,6 +104,15 @@ namespace RailsStarter
             }
 
         }
+
+        // Console events
+        static ConsoleEventDelegate consoleEventHandler;   // Keeps it from getting garbage collected
+        private delegate bool ConsoleEventDelegate(ConsoleEventType eventType);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern bool SetConsoleCtrlHandler(ConsoleEventDelegate callback, bool add);
+
+
+        #endregion
 
         private static string Log4NetConfigFileName()
         {

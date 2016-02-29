@@ -10,40 +10,50 @@ namespace RubyAppStarterLib
     class ProcessStarter
     {
         private static log4net.ILog _log = log4net.LogManager.GetLogger(typeof(ProcessStarter));
+        private Process _processRun;
 
         internal void ExecuteCmd(string rubyExe, string startScript)
         {
+            if (_processRun != null)
+                throw new ArgumentException("Process already started");
+
             string cmdoptionComplete = string.Format("'{0}'", startScript);
 
             _log.InfoFormat("Using comand: {0} {1}", rubyExe, cmdoptionComplete);
 
-            Process myProcess = new Process();
-            myProcess.StartInfo.UseShellExecute = false;
-            myProcess.StartInfo.RedirectStandardOutput = true;
-            myProcess.StartInfo.RedirectStandardError = true;
-            myProcess.StartInfo.CreateNoWindow = true;
-            myProcess.StartInfo.FileName = rubyExe;
-            myProcess.StartInfo.Arguments = cmdoptionComplete;
-            myProcess.OutputDataReceived += new DataReceivedEventHandler(myProcess_OutputDataReceived);
-            myProcess.ErrorDataReceived += new DataReceivedEventHandler(myProcess_ErrorDataReceived);
-            myProcess.Start();
+            _processRun = new Process();
+            _processRun.StartInfo.UseShellExecute = false;
+            _processRun.StartInfo.RedirectStandardOutput = true;
+            _processRun.StartInfo.RedirectStandardError = true;
+            _processRun.StartInfo.CreateNoWindow = true;
+            _processRun.StartInfo.FileName = rubyExe;
+            _processRun.StartInfo.Arguments = cmdoptionComplete;
+            _processRun.OutputDataReceived += new DataReceivedEventHandler(_processRun_OutputDataReceived);
+            _processRun.ErrorDataReceived += new DataReceivedEventHandler(_processRun_ErrorDataReceived);
+            _processRun.Start();
             _log.InfoFormat("Ruby process is started");
-            myProcess.BeginOutputReadLine();
+            _processRun.BeginOutputReadLine();
 
             do
             {
 
-            } while (!myProcess.WaitForExit(1000));
+            } while (!_processRun.WaitForExit(1000));
 
 
-            myProcess.OutputDataReceived -= myProcess_OutputDataReceived;
-            myProcess.ErrorDataReceived -= myProcess_ErrorDataReceived;
+            _processRun.OutputDataReceived -= _processRun_OutputDataReceived;
+            _processRun.ErrorDataReceived -= _processRun_ErrorDataReceived;
 
-            _log.DebugFormat("Application exit code {0}", myProcess.ExitCode);
+            _log.DebugFormat("Application exit code {0}", _processRun.ExitCode);
 
         }
 
-        void myProcess_ErrorDataReceived(object sender, DataReceivedEventArgs e)
+        internal void StopProcess()
+        {
+            _log.DebugFormat("Kill the process");
+            _processRun.Kill();
+        }
+
+        void _processRun_ErrorDataReceived(object sender, DataReceivedEventArgs e)
         {
             if (!String.IsNullOrEmpty(e.Data))
             {
@@ -51,7 +61,7 @@ namespace RubyAppStarterLib
             }
         }
 
-        void myProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
+        void _processRun_OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
             if (!String.IsNullOrEmpty(e.Data))
             {

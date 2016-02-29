@@ -16,7 +16,7 @@ namespace RubyAppStarterLib
         public event EventHandler<EventArgs> ApplicationStarting = delegate { };
         private string _keyRootName = @"Software\invido_it\";
         private readonly string _projectName;
-
+        private ProcessStarter _processStarter;
 
         public AppStarter(string projectName)
         {
@@ -53,9 +53,14 @@ namespace RubyAppStarterLib
             if (!File.Exists(startScriptFullPath)) throw (
                    new ArgumentException(string.Format("Start script  {0} not found", startScriptFullPath)));
 
-            ProcessStarter processStarter = new ProcessStarter();
+            _processStarter = new ProcessStarter();
             ApplicationStarting(this, null);
-            processStarter.ExecuteCmd(rubyExePath, startScriptFullPath);
+            _processStarter.ExecuteCmd(rubyExePath, startScriptFullPath);
+        }
+
+        public void Stop()
+        {
+            _processStarter.StopProcess();
         }
 
         private void ExtractAppPackage(string installDir, string appZip, string appVersion)
