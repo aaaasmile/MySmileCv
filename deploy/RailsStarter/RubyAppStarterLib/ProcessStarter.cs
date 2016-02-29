@@ -12,7 +12,8 @@ namespace RubyAppStarterLib
         private static log4net.ILog _log = log4net.LogManager.GetLogger(typeof(ProcessStarter));
         private Process _processRun;
 
-        internal void ExecuteCmd(string rubyExe, string startScript, string workingDir)
+        // NOTE: avoid to redirect stdout in rails applications 
+        internal void ExecuteCmd(string rubyExe, string startScript, string workingDir, bool redirectStdout = false)
         {
             if (_processRun != null)
                 throw new ArgumentException("Process already started");
@@ -23,17 +24,22 @@ namespace RubyAppStarterLib
 
             _processRun = new Process();
             _processRun.StartInfo.UseShellExecute = false;
-            _processRun.StartInfo.RedirectStandardOutput = true;
-            _processRun.StartInfo.RedirectStandardError = true;
+            _processRun.StartInfo.RedirectStandardOutput = redirectStdout;
+            _processRun.StartInfo.RedirectStandardError = redirectStdout;
             _processRun.StartInfo.CreateNoWindow = true;
             _processRun.StartInfo.FileName = rubyExe;
             _processRun.StartInfo.WorkingDirectory = workingDir;
             _processRun.StartInfo.Arguments = cmdoptionComplete;
-            _processRun.OutputDataReceived += new DataReceivedEventHandler(_processRun_OutputDataReceived);
-            _processRun.ErrorDataReceived += new DataReceivedEventHandler(_processRun_ErrorDataReceived);
             _processRun.Start();
-            _log.InfoFormat("Ruby process is started");
-            _processRun.BeginOutputReadLine();
+            _log.InfoFormat("Ruby process is started, redirect stdout {0}", redirectStdout);
+            if (redirectStdout)
+            {
+                _processRun.OutputDataReceived += new DataReceivedEventHandler(_processRun_OutputDataReceived);
+                _processRun.ErrorDataReceived += new DataReceivedEventHandler(_processRun_ErrorDataReceived);
+
+                _processRun.BeginOutputReadLine();
+            }
+
 
             do
             {
@@ -41,8 +47,11 @@ namespace RubyAppStarterLib
             } while (!_processRun.WaitForExit(1000));
 
 
-            _processRun.OutputDataReceived -= _processRun_OutputDataReceived;
-            _processRun.ErrorDataReceived -= _processRun_ErrorDataReceived;
+            if (redirectStdout)
+            {
+                _processRun.OutputDataReceived -= _processRun_OutputDataReceived;
+                _processRun.ErrorDataReceived -= _processRun_ErrorDataReceived;
+            }
 
             _log.DebugFormat("Application exit code {0}", _processRun.ExitCode);
 
