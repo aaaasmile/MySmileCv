@@ -16,15 +16,16 @@ if $0 == __FILE__
   # Write those full paths into the target_deploy_info.yaml
   
   dep = SetupCreator.new
-  options_filename = 'jim_target.yaml'
+  options_filename = 'target_deploy_info.yaml'
   opt = YAML::load_file( options_filename )
   if opt == nil or opt.class != Hash
     puts "Target file not recognized"
     exit
   end
-  dep.read_sw_version()
+  dep.read_sw_version("../../rails/curr_rails/config/environment.rb")
   ver_suffix = dep.get_version_suffix
-  root_version_dir = File.join(opt[:root_deploy], "cuperativa_" + ver_suffix)
+  prefix = opt[:project_prefix]
+  root_version_dir = File.join(opt[:root_deploy], "#{prefix}_" + ver_suffix)
 
   puts "-------- Delete current deploy dir"
   if File.directory?(root_version_dir)
@@ -46,7 +47,7 @@ if $0 == __FILE__
 
   puts "--------- Prepare installer files and compile it"
   installer_dir = File.join(root_version_dir, 'Installer')
-  nsi_out_name = dep.create_nsi_installer_script(installer_dir, out_zip, opt[:ruby_package], 'src/start_cuperativa.rb')
+  nsi_out_name = dep.create_nsi_installer_script(installer_dir, out_zip, opt[:ruby_package], opt[:start_script])
   nsi_cmd = "#{opt[:nsi_exe]}  #{nsi_out_name}"
   dep.exec_mycmd(nsi_cmd)
   puts "Setup #{nsi_out_name} successfully created"

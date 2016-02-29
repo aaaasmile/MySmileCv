@@ -16,8 +16,7 @@ class SetupCreator
     @ver_sw = [0,0,0]
   end
   
-  def read_sw_version()
-    script_fname = File.expand_path('../../src/cuperativa_gui.rb')
+  def read_sw_version(script_fname)
     File.open(script_fname, "r").each_line do |line|
       #p line
       # search line with VER_PRG_STR it is something like:
