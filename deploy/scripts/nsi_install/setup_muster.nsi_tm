@@ -147,7 +147,7 @@ Section "MySmileCV" SecMySmileCV
   ; crea un shortcut
   CreateDirectory "$SMPROGRAMS\${MUI_PRODUCT}<%="#{@ver_sw[0]}_#{@ver_sw[1]}_#{@ver_sw[2]}"%>"
   CreateShortCut "$SMPROGRAMS\${MUI_PRODUCT}<%="#{@ver_sw[0]}_#{@ver_sw[1]}_#{@ver_sw[2]}"%>\MySmileCv.lnk" \
-    "$INSTDIR\CupStarterConsoleSharp.exe"
+    "$INSTDIR\RailsStarter.exe"
   CreateShortCut "$SMPROGRAMS\${MUI_PRODUCT}<%="#{@ver_sw[0]}_#{@ver_sw[1]}_#{@ver_sw[2]}"%>\Uninstall.lnk" \
     "$INSTDIR\Uninstall.exe"
 

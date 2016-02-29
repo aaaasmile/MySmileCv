@@ -11,3 +11,8 @@ rails/curr_rails/tmp
 /deploy/RailsStarter/RailsStarter/obj/Release
 /deploy/RailsStarter/RubyAppStarterLib/bin/Release
 /deploy/RailsStarter/RubyAppStarterLib/obj/Release
+/rails/tmp/sessions
+/deploy/RailsStarter/RubyAppStarterLib/bin/x86
+/deploy/RailsStarter/RailsStarter/bin/x86
+/deploy/RailsStarter/RailsStarter/obj/x86
+/deploy/RailsStarter/RubyAppStarterLib/obj/x86

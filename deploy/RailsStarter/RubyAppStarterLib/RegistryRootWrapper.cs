@@ -18,6 +18,9 @@ namespace RubyAppStarterLib
 
         public RegistryRootWrapper(RegistryKey rootkey, bool isReadOnly)
         {
+            if (rootkey == null)
+                throw new ArgumentNullException("Root key could not be null");
+
             _isReadOnly = isReadOnly;
             _rootKey = rootkey;
         }
