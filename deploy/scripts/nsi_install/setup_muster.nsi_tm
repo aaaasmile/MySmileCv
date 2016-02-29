@@ -3,7 +3,7 @@
 ;Written by Joost Verburg
 ;File template per creare un file nsi
 
-!define MUI_PRODUCT "Cuperativa"
+!define MUI_PRODUCT "MySmileCV"
 
 ;--------------------------------
 ;Include Modern UI
@@ -17,8 +17,8 @@
 ; relativi alla versione in questa sezione. In altre parti non 
 ; vi sono riferimenti alla versione
   ;Name and file
-  Name "Cuperativa_<%="#{@ver_sw[0]}.#{@ver_sw[1]}.#{@ver_sw[2]}"%>"
-  OutFile "..\cuperativa_<%="#{@ver_sw[0]}#{@ver_sw[1]}#{@ver_sw[2]}"%>_setup.exe"
+  Name "MySmileCV_<%="#{@ver_sw[0]}.#{@ver_sw[1]}.#{@ver_sw[2]}"%>"
+  OutFile "..\MySmileCV_<%="#{@ver_sw[0]}#{@ver_sw[1]}#{@ver_sw[2]}"%>_setup.exe"
 
   ;Default installation folder
   InstallDir "$PROGRAMFILES\invido_it\${MUI_PRODUCT}\ver_<%="#{@ver_sw[0]}_#{@ver_sw[1]}_#{@ver_sw[2]}"%>"
@@ -46,7 +46,7 @@
 ;--------------------------------
 ;Languages
  
-  !insertmacro MUI_LANGUAGE "Italian"
+  !insertmacro MUI_LANGUAGE "English"
 
 ;--------------------------------
 ;Installer Sections
@@ -67,8 +67,8 @@ Function .onInit
   StrCmp $R0 "" done
  
   MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION \
-  "${MUI_PRODUCT} è già installato. $\n$\nClicca `OK` per rimuovere \
-  la versione precedente `Cancel` per interrompere questo aggiornamento." \
+  "${MUI_PRODUCT} is already installed on your computer. $\n$\n`OK` to overwrite \
+  the previous version `Cancel` to exit." \
   IDOK uninst
   Abort
  
@@ -94,8 +94,8 @@ FunctionEnd
 
 ; al termine dell'installazione si lancia il programma
 Function .onInstSuccess
-    MessageBox MB_YESNO "Installazione effettuata con successo. Vuoi lanciare il programma Cuperativa?" IDNO NoReadme
-    Exec "$INSTDIR\CupStarterConsoleSharp.exe"
+    MessageBox MB_YESNO "Congrats, it worked. Start the software?" IDNO NoReadme
+    Exec "$INSTDIR\RailsStarter.exe"
     NoReadme:
 FunctionEnd
 
@@ -113,14 +113,13 @@ Function IsDotNETInstalled
  FunctionEnd
 
 
-Section "Cuperativa" SecCuperativa
+Section "MySmileCV" SecMySmileCV
 
   SetOutPath "$INSTDIR"
   
   ;ADD YOUR OWN FILES HERE...
   <% file_to_be_installed.each do |item| %>
-  <%# item is an hash where path could be also set. To use a particular output dir we 
-      need to set SetOutPath. i.e SetOutPath $INSTDIR\app\src\network  %>
+  <%# item is an hash where path could be also set. To use a particular output dir we need to set SetOutPath. i.e SetOutPath $INSTDIR\app\src\network  %>
   <% if item[:out_path] %>
   <%= "SetOutPath \"$INSTDIR#{item[:out_path]}\""%>
   <% end %> 
@@ -147,10 +146,8 @@ Section "Cuperativa" SecCuperativa
 
   ; crea un shortcut
   CreateDirectory "$SMPROGRAMS\${MUI_PRODUCT}<%="#{@ver_sw[0]}_#{@ver_sw[1]}_#{@ver_sw[2]}"%>"
-  CreateShortCut "$SMPROGRAMS\${MUI_PRODUCT}<%="#{@ver_sw[0]}_#{@ver_sw[1]}_#{@ver_sw[2]}"%>\Cuperativa.lnk" \
+  CreateShortCut "$SMPROGRAMS\${MUI_PRODUCT}<%="#{@ver_sw[0]}_#{@ver_sw[1]}_#{@ver_sw[2]}"%>\MySmileCv.lnk" \
     "$INSTDIR\CupStarterConsoleSharp.exe"
-  CreateShortCut "$SMPROGRAMS\${MUI_PRODUCT}<%="#{@ver_sw[0]}_#{@ver_sw[1]}_#{@ver_sw[2]}"%>\Manuale.lnk" \
-    "$INSTDIR\cuperativa.chm"
   CreateShortCut "$SMPROGRAMS\${MUI_PRODUCT}<%="#{@ver_sw[0]}_#{@ver_sw[1]}_#{@ver_sw[2]}"%>\Uninstall.lnk" \
     "$INSTDIR\Uninstall.exe"
 
@@ -161,7 +158,7 @@ SectionEnd
 ;Descriptions
 
   ;Language strings
-  LangString DESC_SecCuperativa ${LANG_ITALIAN} "Il programma Cuperativa <%="#{@ver_sw[0]}.#{@ver_sw[1]}.#{@ver_sw[2]}"%> è una suite per giocare a carte. I giochi disponibili sono: <%=str_giochi_avail%> "
+  LangString DESC_SecCuperativa ${LANG_ITALIAN} "Il programma MySmileCv <%="#{@ver_sw[0]}.#{@ver_sw[1]}.#{@ver_sw[2]}"%> crea un curriculum in formato pdf."
 
  
 ;--------------------------------
@@ -171,13 +168,12 @@ Section "Uninstall"
 
   ;Delete Files 
   RMDir /r "$INSTDIR\*.*"
-  RMDir /r "$LOCALAPPDATA\invido_it\Cuperativa\*.*"
+  RMDir /r "$LOCALAPPDATA\invido_it\MySmileCv\*.*"
  
   ;Remove the installation directory
   RMDir "$INSTDIR"
   ; remove shortcuts
-  Delete "$SMPROGRAMS\${MUI_PRODUCT}<%="#{@ver_sw[0]}_#{@ver_sw[1]}_#{@ver_sw[2]}"%>\Cuperativa.lnk"
-  Delete "$SMPROGRAMS\${MUI_PRODUCT}<%="#{@ver_sw[0]}_#{@ver_sw[1]}_#{@ver_sw[2]}"%>\Manuale.lnk"
+  Delete "$SMPROGRAMS\${MUI_PRODUCT}<%="#{@ver_sw[0]}_#{@ver_sw[1]}_#{@ver_sw[2]}"%>\MySmileCv.lnk"
   Delete "$SMPROGRAMS\${MUI_PRODUCT}<%="#{@ver_sw[0]}_#{@ver_sw[1]}_#{@ver_sw[2]}"%>\Uninstall.lnk"
   RMDir /r  "$SMPROGRAMS\${MUI_PRODUCT}<%="#{@ver_sw[0]}_#{@ver_sw[1]}_#{@ver_sw[2]}"%>"
 

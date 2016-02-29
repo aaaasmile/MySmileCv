@@ -50,7 +50,6 @@ class SetupCreator
     @start_script = startscript
     # copy some extra file
     license_name = "License.txt"
-    manual_filename = "cuperativa.chm"
     readme_filename = "Readme.txt"
     ruby_dirname = 'Ruby'
     app_dirname = 'App'
@@ -58,11 +57,6 @@ class SetupCreator
     log "Copy license"
     file_src = File.join(File.dirname(__FILE__), "../artifacts/#{license_name}")
     dest_full = File.join(target_dir, license_name)
-    FileUtils.cp(file_src, dest_full)
-    # copy manual file
-    log "Copy manual"
-    file_src = File.join(File.dirname(__FILE__), "../../res/help/#{manual_filename}")
-    dest_full = File.join(target_dir, manual_filename)
     FileUtils.cp(file_src, dest_full)
     # copy readme file
     log "Copy Readme"
@@ -93,8 +87,6 @@ class SetupCreator
     list_app_files = list_of_app_deployed_files(target_dir, target_dir + '/')
     # merge with app file list
     file_to_be_installed = list_app_files
-    
-    
     
     # generate nsi using template
     template_name = 'nsi_install/setup_muster.nsi_tm'
