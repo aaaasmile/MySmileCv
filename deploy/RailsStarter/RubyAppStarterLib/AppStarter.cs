@@ -14,7 +14,15 @@ namespace RubyAppStarterLib
         private static log4net.ILog _log = log4net.LogManager.GetLogger(typeof(AppStarter));
 
         public event EventHandler<EventArgs> ApplicationStarting = delegate { };
-        private string _keyRootName = @"Software\invido_it\Cuperativa";
+        private string _keyRootName = @"Software\invido_it\";
+        private readonly string _projectName;
+
+
+        public AppStarter(string projectName)
+        {
+            _projectName = projectName;
+            _keyRootName += projectName;
+        }
 
         public void Run()
         {
@@ -72,9 +80,10 @@ namespace RubyAppStarterLib
 
         private string GetRootUnpackedData()
         {
+            string dataDir = @"invido_it\" + _projectName;
             return Path.Combine(
                      Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                     @"invido_it\Cuperativa");
+                     dataDir);
         }
 
         private string GetStartScript(string appVersion, string appStartScript)

@@ -32,13 +32,13 @@ namespace RailsStarter
             Console.WriteLine("Preparing the source...");
             try
             {
-                AppStarter starter = new AppStarter();
+                AppStarter starter = new AppStarter("MySmileCv");
                 starter.ApplicationStarting += Starter_ApplicationStarting;
                 starter.Run();
             }
             catch (Exception ex)
             {
-                _log.ErrorFormat("Fatal error, please try reinstall the application or contact the cuperativa support. {0}", ex);
+                _log.ErrorFormat("Fatal error, please try reinstall the application or contact the support. {0}", ex);
                 HideOrShowWindow(WindowShowType.Show);
                 Console.ReadKey();
             }
@@ -47,7 +47,7 @@ namespace RailsStarter
 
         private static void Starter_ApplicationStarting(object sender, EventArgs e)
         {
-            HideOrShowWindow(WindowShowType.Hide);
+            //HideOrShowWindow(WindowShowType.Hide);
         }
 
         [DllImport("user32.dll")]

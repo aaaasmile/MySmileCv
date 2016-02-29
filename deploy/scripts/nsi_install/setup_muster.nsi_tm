@@ -87,7 +87,7 @@ uninst:
 done:
 
   Messagebox MB_YESNO|MB_ICONQUESTION \
-  "Questo setup sta per installare il programma ${MUI_PRODUCT} <%="#{@ver_sw[0]}.#{@ver_sw[1]}.#{@ver_sw[2]}"%>, una suite per giocare a carte. Vuoi continuare?" IDYES NoAbort
+  "Installing ${MUI_PRODUCT} <%="#{@ver_sw[0]}.#{@ver_sw[1]}.#{@ver_sw[2]}"%>, a tool for writing CV. Do you want to continue?" IDYES NoAbort
      Abort ; causes installer to quit.
    NoAbort:
 FunctionEnd
