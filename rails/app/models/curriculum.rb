@@ -58,11 +58,11 @@ class Curriculum
   
   ##
   # Load curriculum from yaml file
-  def load_from_yaml(yamlfilename)
+  def load_from_yaml(curr_all_info)
     reset_info
     begin
       @curr_all_info = {}
-      @curr_all_info = YAML::load_file(yamlfilename) if File.exist?(yamlfilename)
+      @curr_all_info = YAML::load(curr_all_info)  #YAML::load_file(yamlfilename) if File.exist?(yamlfilename)
       
       id = @curr_all_info[:identity]
       @cur_identity = Identity.find(id) if id
@@ -85,9 +85,12 @@ class Curriculum
       fill_arr_withmodel(@curr_all_info[:miscstuff_list], :add_miscstuff, Miscstuff)
       fill_arr_withmodel(@curr_all_info[:other_skills], :add_otherskill, Otherskill )
       fill_arr_withmodel(@curr_all_info[:workexperience_list], :add_workexperience, Workexperience)
-      @curr_file_name = yamlfilename
+      #@curr_file_name = yamlfilename #TODO curr_file_name shold be the current Filecurrsaved
       return !is_empty?
-    rescue
+    rescue => detail
+	  str = "Error load_from_yaml \n"
+	  str += detail.backtrace.join("\n")
+	  puts str
       reset_info
       return false
     end 
