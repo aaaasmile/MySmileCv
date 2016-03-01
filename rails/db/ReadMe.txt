@@ -6,3 +6,6 @@ set PATH=C:\Program Files (x86)\Git\bin;%PATH%
 git clone -n https://github.com/aaaasmile/MySmileCv
 git fetch
 git checkout origin/master rails/curr_rails/db/development.sqlite3
+
+In database.yml change to:
+database: db/MySmileCv/rails/curr_rails/db/development.sqlite3
