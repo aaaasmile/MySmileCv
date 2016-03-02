@@ -14,6 +14,8 @@ namespace RubyAppStarterLib
         private static log4net.ILog _log = log4net.LogManager.GetLogger(typeof(AppStarter));
 
         public event EventHandler<EventArgs> ApplicationStarting = delegate { };
+        public event EventHandler<EventArgs> ApplicationStarted = delegate { };
+
         private string _keyRootName = @"Software\invido_it\";
         private readonly string _projectName;
         private ProcessStarter _processStarter;
@@ -51,7 +53,7 @@ namespace RubyAppStarterLib
 
             string scriptWorkingDir  = GetWorkingDirectory(appPackageSettings.AppVersion, appPackageSettings.WorkingDir);
             if (!Directory.Exists(scriptWorkingDir)) throw (
-                   new ArgumentException(string.Format("Working directory {0} not found", scriptWorkingDir)));
+                   new ArgumentException(string.Format("Working directory {0} not found. Do you have setup the application with git?", scriptWorkingDir)));
 
             string startScriptFullPath = Path.Combine(scriptWorkingDir, appPackageSettings.AppStartScript);
             if (!File.Exists(startScriptFullPath)) throw (
@@ -59,7 +61,7 @@ namespace RubyAppStarterLib
 
             _processStarter = new ProcessStarter();
             ApplicationStarting(this, null);
-            _processStarter.ExecuteCmd(rubyExePath, appPackageSettings.AppStartScript, scriptWorkingDir);
+            _processStarter.ExecuteCmd(rubyExePath, appPackageSettings.AppStartScript, scriptWorkingDir, (s, e) => ApplicationStarted(this, e));
         }
 
         public void Stop()

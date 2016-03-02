@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RailsStarter
@@ -32,7 +33,7 @@ namespace RailsStarter
             try
             {
                 _appStarter = new AppStarter("MySmileCv");
-                _appStarter.ApplicationStarting += Starter_ApplicationStarting;
+                _appStarter.ApplicationStarted += Starter_ApplicationStarted;
                 _appStarter.Run();
                 _log.Debug("Program terminated.");
             }
@@ -68,8 +69,11 @@ namespace RailsStarter
             return true;
         }
 
-        private static void Starter_ApplicationStarting(object sender, EventArgs e)
+        private static void Starter_ApplicationStarted(object sender, EventArgs e)
         {
+            //Thread.Sleep(5000);
+            //System.Diagnostics.Process.Start("http://localhost:3000");
+            _log.Info("Please, open the browser to http://localhost:3000");
         }
 
         #region Hooks

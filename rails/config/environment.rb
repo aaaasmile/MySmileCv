@@ -8,7 +8,7 @@
 RAILS_GEM_VERSION = '1.2.3' unless defined? RAILS_GEM_VERSION
 
 # My version string
-VER_PRG_STR = "Ver 0.2.1 29022016"
+VER_PRG_STR = "Ver 0.2.2 02032016"
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')

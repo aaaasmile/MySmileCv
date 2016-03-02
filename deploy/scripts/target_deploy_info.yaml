@@ -7,3 +7,5 @@
 :p7zip_exe: C:\Program Files\7-Zip\7z.exe
 :project_prefix: smile_cv
 :start_script: script\server
+:working_dir: MySmileCv\rails
+:appsrc_sub_dir: rails\doc

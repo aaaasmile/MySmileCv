@@ -1,2 +1,15 @@
 Use this README file to introduce your application and point to useful places in the API for learning more.
 Run "rake appdoc" to generate API documentation for your models and controllers.
+
+
+= Application setup
+The rails application is always changing, so it is better to use git to be synchronized.
+Git should be installed.
+
+After the first run, goto to %localappdata%\invido_it\MySmileCv\<latest_version>\app
+and open a  prompt command.
+set PATH=C:\Program Files (x86)\Git\bin;%PATH%
+git clone -n https://github.com/aaaasmile/MySmileCv
+cd MySmileCv
+git fetch
+git checkout origin/master rails

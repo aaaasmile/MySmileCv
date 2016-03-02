@@ -15,13 +15,14 @@ if $0 == __FILE__
   #             Ruby package: a zip with an essential ruby distribution that can execute the cuperativa application
   # Write those full paths into the target_deploy_info.yaml
   
-  dep = SetupCreator.new
+  
   options_filename = 'target_deploy_info.yaml'
   opt = YAML::load_file( options_filename )
   if opt == nil or opt.class != Hash
     puts "Target file not recognized"
     exit
   end
+  dep = SetupCreator.new(opt[:working_dir])
   dep.read_sw_version("../../rails/config/environment.rb")
   ver_suffix = dep.get_version_suffix
   prefix = opt[:project_prefix]
@@ -35,10 +36,10 @@ if $0 == __FILE__
   puts "-------- Create deploy directory #{root_version_dir}"
   FileUtils.mkdir_p(root_version_dir)
 
-  puts "------- Copy src/res stuff "
+  puts "------- Copy app source stuff "
   app_dir = "app"
   dst_dir = File.join(root_version_dir, "src_stuff/#{app_dir}")
-  dep.prepare_src_in_deploy(dst_dir)
+  dep.prepare_src_in_deploy(opt[:appsrc_sub_dir], dst_dir)
 
   puts "--------- Create a zip"
   out_zip =  File.join(root_version_dir, app_dir + "_#{ver_suffix}.zip")

@@ -11,9 +11,9 @@ require 'filescandir'
 
 class SetupCreator
   
-  def initialize
+  def initialize(working_dir)
     @ver_sw = [0,0,0]
-    @working_dir = "rails"
+    @working_dir = working_dir
   end
   
   def read_sw_version(script_fname)
@@ -39,10 +39,10 @@ class SetupCreator
     log("Error VER_PRG_STR not found")
   end
   
-  def prepare_src_in_deploy(target_dir)
+  def prepare_src_in_deploy(app_src_subdir, target_dir)
     FileUtils.rm_rf(target_dir)
     FileUtils.mkdir_p(target_dir) unless File.directory?(target_dir)
-    copy_app_subdir("rails", target_dir)
+    copy_app_subdir(app_src_subdir, target_dir)
   end
   
   def create_nsi_installer_script(target_dir, app_data_fullpath, rubypackage_fullpath, startscript)
@@ -172,7 +172,7 @@ private
   
   def copy_app_subdir(sub_dir, target_dir)
     fscd = FileScanDir.new
-    fscd.add_extension_filter([".log"])
+    fscd.add_extension_filter([".log", ".pdf"])
     fscd.is_silent = true
     start_dir = File.join( File.dirname(__FILE__), "../../#{sub_dir}")
     start_dir = File.expand_path(start_dir)
@@ -198,6 +198,6 @@ private
 end
 
 if $0 == __FILE__
-  dep = SetupCreator.new
+  dep = SetupCreator.new('rails')
   dep.read_sw_version('../../rails/config/environment.rb')
 end

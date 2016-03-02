@@ -13,7 +13,7 @@ namespace RubyAppStarterLib
         private Process _processRun;
 
         // NOTE: avoid to redirect stdout in rails applications 
-        internal void ExecuteCmd(string rubyExe, string startScript, string workingDir, bool redirectStdout = false)
+        internal void ExecuteCmd(string rubyExe, string startScript, string workingDir, EventHandler<EventArgs> started, bool redirectStdout = false)
         {
             if (_processRun != null)
                 throw new ArgumentException("Process already started");
@@ -43,6 +43,11 @@ namespace RubyAppStarterLib
 
             do
             {
+                if (started != null)
+                {
+                    started(this, null);
+                    started = null;
+                }
 
             } while (!_processRun.WaitForExit(1000));
 
