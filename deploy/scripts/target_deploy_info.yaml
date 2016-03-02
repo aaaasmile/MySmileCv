@@ -8,4 +8,5 @@
 :project_prefix: smile_cv
 :start_script: script\server
 :working_dir: MySmileCv\rails
-:appsrc_sub_dir: rails\doc
+#if appsrc_sub_dir = empty dir, the application should be setup with git, otherwise use 'rails' 
+:appsrc_sub_dir: '' 

@@ -39,9 +39,12 @@ namespace RailsStarter
             }
             catch (Exception ex)
             {
+                string msg = ex is AppNotSetupException ?
+                    "You need to manual setup the application and restart"
+                    : "Fatal error, please try reinstall the application or contact the support";
+                _log.ErrorFormat("{1}. {0}", ex, msg);
                 _appStarter = null;
-                _log.ErrorFormat("Fatal error, please try reinstall the application or contact the support. {0}", ex);
-                HideOrShowWindow(WindowShowType.Show);
+                
                 Console.ReadKey();
             }
 
@@ -71,6 +74,7 @@ namespace RailsStarter
 
         private static void Starter_ApplicationStarted(object sender, EventArgs e)
         {
+            //HideOrShowWindow(WindowShowType.Hide);
             //Thread.Sleep(5000);
             //System.Diagnostics.Process.Start("http://localhost:3000");
             _log.Info("Please, open the browser to http://localhost:3000");

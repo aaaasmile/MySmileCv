@@ -9,6 +9,25 @@ using System.Security.AccessControl;
 
 namespace RubyAppStarterLib
 {
+    #region Exception 
+    public class AppNotSetupException : Exception
+    {
+        public AppNotSetupException()
+        {
+        }
+
+        public AppNotSetupException(string message)
+            : base(message)
+        {
+        }
+
+        public AppNotSetupException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+    #endregion
+
     public class AppStarter
     {
         private static log4net.ILog _log = log4net.LogManager.GetLogger(typeof(AppStarter));
@@ -20,6 +39,7 @@ namespace RubyAppStarterLib
         private readonly string _projectName;
         private ProcessStarter _processStarter;
 
+      
         public AppStarter(string projectName)
         {
             _projectName = projectName;
@@ -52,8 +72,11 @@ namespace RubyAppStarterLib
             _log.InfoFormat("Ruby cmd {0}", rubyExePath);
 
             string scriptWorkingDir  = GetWorkingDirectory(appPackageSettings.AppVersion, appPackageSettings.WorkingDir);
-            if (!Directory.Exists(scriptWorkingDir)) throw (
-                   new ArgumentException(string.Format("Working directory {0} not found. Do you have setup the application with git?", scriptWorkingDir)));
+            if (!Directory.Exists(scriptWorkingDir))
+            {
+                throw (
+                   new AppNotSetupException(string.Format("Working directory {0} not found. Do you have setup the application with git?", scriptWorkingDir)));
+            }
 
             string startScriptFullPath = Path.Combine(scriptWorkingDir, appPackageSettings.AppStartScript);
             if (!File.Exists(startScriptFullPath)) throw (

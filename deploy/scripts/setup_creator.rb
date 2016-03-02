@@ -42,7 +42,15 @@ class SetupCreator
   def prepare_src_in_deploy(app_src_subdir, target_dir)
     FileUtils.rm_rf(target_dir)
     FileUtils.mkdir_p(target_dir) unless File.directory?(target_dir)
-    copy_app_subdir(app_src_subdir, target_dir)
+    if app_src_subdir.size > 0
+      copy_app_subdir(app_src_subdir, target_dir)
+    else
+      readme_filename = "Readme.txt"
+      log "Copy only the #{readme_filename} into the app"
+      file_src = File.join(File.dirname(__FILE__), "../artifacts/#{readme_filename}")
+      dest_full = File.join(target_dir, readme_filename)
+      FileUtils.cp(file_src, dest_full)
+    end
   end
   
   def create_nsi_installer_script(target_dir, app_data_fullpath, rubypackage_fullpath, startscript)
