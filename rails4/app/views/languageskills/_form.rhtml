@@ -1,0 +1,17 @@
+<%= error_messages_for 'languageskill' %>
+
+<!--[form:languageskill]-->
+<p><label for="languageskill_name">Name</label><br/>
+<%= text_field 'languageskill', 'name'  %></p>
+
+<p><label for="languageskill_level">Level</label><br/>
+<%= text_field 'languageskill', 'level'  %></p>
+
+<p><label for="languageskill_lang">Lang</label><br/>
+<%= text_field 'languageskill', 'lang'  %></p>
+
+<p><label for="languageskill_klang">Klang</label><br/>
+<%= collection_select(:languageskill, :klang, @languages, :id, :isoname)%>
+</p>
+<!--[eoform:languageskill]-->
+

@@ -16,3 +16,5 @@ rails/curr_rails/tmp
 /deploy/RailsStarter/RailsStarter/bin/x86
 /deploy/RailsStarter/RailsStarter/obj/x86
 /deploy/RailsStarter/RubyAppStarterLib/obj/x86
+/rails/vendor/cache
+/rails/.bundle

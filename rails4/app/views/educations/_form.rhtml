@@ -1,0 +1,25 @@
+<%= error_messages_for 'education' %>
+
+<!--[form:education]-->
+<p><label for="education_from">From</label><br/>
+<%= date_select 'education', 'from', :start_year => 1971 %></p>
+
+<p><label for="education_to">To</label><br/>
+<%= date_select 'education', 'to', :start_year => 1971  %></p>
+
+<p><label for="education_title">Title</label><br/>
+<%= text_field 'education', 'title'  %></p>
+
+<p><label for="education_skills">Skills</label><br/>
+<%= text_area 'education', 'skills'  %></p>
+
+<p><label for="education_organisation">Organisation</label><br/>
+<%= text_field 'education', 'organisation'  %></p>
+
+<p><label for="education_level">Level</label><br/>
+<%= text_field 'education', 'level'  %></p>
+
+<p><label for="education_klang">Klang</label><br/>
+<%= collection_select(:education, :klang, @languages, :id, :isoname)%>
+<!--[eoform:education]-->
+

@@ -1,0 +1,34 @@
+<h3>Listing curricula sent</h3>
+
+<table>
+  <tr>
+    <th>Job</th>
+    <th>Company</th>
+    <th>Cur Sent</th>
+    <th>Result</th>
+  </tr>
+  
+<% for destcurr in @destcurrs %>
+  <tr>
+    <td><%=h destcurr.send('inserat') %></td>
+    <td><%=h destcurr.send('contact_company') %></td>
+    <% date_curr_sent =  destcurr[:curr_sent_at]
+       if  date_curr_sent.year == 2003 %> 
+    <td>None</td>
+    <% else %>
+    <td><%=h destcurr.send('curr_sent_at') %></td>
+    <% end%>
+    <td><%=h destcurr.send('risultato') %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => destcurr %>
+    <%= link_to 'Edit', :action => 'edit', :id => destcurr %>
+    <%= link_to 'Destroy', { :action => 'destroy', :id => destcurr }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @destcurr_pages.current.previous } if @destcurr_pages.current.previous %>
+<%= link_to 'Next page', { :page => @destcurr_pages.current.next } if @destcurr_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New Application', :action => 'new' %>

@@ -1,0 +1,29 @@
+<%= error_messages_for 'workexperience' %>
+
+<!--[form:workexperience]-->
+<p><label for="workexperience_from">From</label><br/>
+<%= date_select 'workexperience', 'from', :start_year => 1971  %></p>
+
+<p><label for="workexperience_to">To</label><br/>
+<%= date_select 'workexperience', 'to', :start_year => 1971  %></p>
+
+<p><label for="workexperience_position">Position</label><br/>
+<%= text_field 'workexperience', 'position'  %></p>
+
+<p><label for="workexperience_activities">Activities</label><br/>
+<%= text_area 'workexperience', 'activities'  %></p>
+
+<p><label for="workexperience_employer">Employer</label><br/>
+<%= text_area 'workexperience', 'employer'  %></p>
+
+<p><label for="workexperience_sector">Sector</label><br/>
+<%= text_field 'workexperience', 'sector'  %></p>
+
+<p><label for="workexperience_tag">Tag</label><br/>
+<%= text_field 'workexperience', 'tag'  %></p>
+
+<p><label for="workexperience_klang">Klang</label><br/>
+<%= collection_select(:workexperience, :klang, @languages, :id, :isoname)%>
+</p>
+<!--[eoform:workexperience]-->
+

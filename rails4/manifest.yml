@@ -1,0 +1,8 @@
+---
+applications:
+- name: MySmileCV
+  memory: 256M
+  instances: 1
+  path: .
+  command: bundle exec rails server
+  

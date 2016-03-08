@@ -1,0 +1,9 @@
+<h3>Editing miscellaneous stuff</h3>
+
+<% form_tag :action => 'update', :id => @miscstuff do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @miscstuff %> |
+<%= link_to 'Back', :action => 'list' %>

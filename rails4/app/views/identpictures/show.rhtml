@@ -1,0 +1,7 @@
+
+<h3><%= @identpicture.foto_filename %></h3>
+<img src="<%= url_for(:action => "picture", :id => @identpicture.id) %>"/>
+
+
+<%= link_to 'Edit', :action => 'edit', :id => @identpicture %> |
+<%= link_to 'Back', :action => 'list' %>

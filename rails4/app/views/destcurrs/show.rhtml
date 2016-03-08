@@ -1,0 +1,34 @@
+<% for column in Destcurr.content_columns 
+      contenuto_campo = "" 
+      if column.name == 'kcurr_saved'
+        contenuto_campo = h @destcurr.filecurrsaved.curr_title 
+      else
+        contenuto_campo = h @destcurr.send(column.name)
+      end 
+
+%>
+<p>
+  
+  <% if column.name == 'kcurr_saved' %>
+     <b><%= 'Curriculum' %>:</b> <%= contenuto_campo %>
+     <%= link_to 'View PDF', :action => 'view_curr_pdf', :id => @destcurr %>
+  <% elsif column.name == 'inserat_filename'
+      next
+     elsif column.name == 'inserat' 
+  %>
+     <b><%= column.human_name %>:</b> <%= contenuto_campo %></p>
+     <% contenuto_campo = h @destcurr.send(:inserat_filename) %>
+     <p><b><%= 'Desc file ( dir: public/inserat )' %>:</b> <%= contenuto_campo %>
+     <%= link_to 'View description', :action => 'view_curr_insertion', :id => @destcurr %>
+  <%else%>
+  <b><%= column.human_name %>:</b> <%= contenuto_campo %>
+  <% end%>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @destcurr %> |
+<%= link_to 'Back', :action => 'list' %>
+<p>
+<%= link_to 'Prev', :action => 'show_prev', :id => @destcurr %>
+<%= link_to 'Next', :action => 'show_next', :id => @destcurr %>
+</p>

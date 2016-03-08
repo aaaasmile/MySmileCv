@@ -1,0 +1,15 @@
+<% for column in Otherskill.content_columns 
+      contenuto_campo = "" 
+      if column.name == 'klang'
+        contenuto_campo = h @otherskill.language.isoname 
+      else
+        contenuto_campo = h @otherskill.send(column.name)
+      end 
+%>
+<p>
+  <b><%= column.human_name %>:</b> <%=contenuto_campo %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @otherskill %> |
+<%= link_to 'Back', :action => 'list' %>

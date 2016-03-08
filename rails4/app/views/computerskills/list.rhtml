@@ -1,0 +1,40 @@
+<h3>Listing technologies</h3>
+
+<%= button_to 'Add All to Curriculum', :action => 'curr_add_all_computerskill', :controller => 'Curriculum' %><br/>
+<table>
+  <tr>
+  <% for column in Computerskill.content_columns
+  colonna_nome =  column.human_name
+  colonna_nome = 'Lang' if column.human_name == 'Klang'
+ 
+%>
+    <th><%= colonna_nome %></th>
+  <% end %>
+  </tr>
+  
+<% for computerskill in @computerskills %>
+  <tr>
+  <% for column in Computerskill.content_columns 
+      contenuto_campo = "" 
+      if column.name == 'klang'
+        contenuto_campo = h computerskill.language.isoname 
+      else
+        contenuto_campo = h computerskill.send(column.name)
+      end
+%>
+    <td><%=contenuto_campo %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => computerskill %>
+    <%= link_to 'Edit', :action => 'edit', :id => computerskill %>
+    <%= link_to 'Destroy', { :action => 'destroy', :id => computerskill }, :confirm => 'Are you sure?', :method => :post %>
+    <%= button_to 'Curriculum', :action => 'curr_add_computer_skill', :controller => 'Curriculum',  :id => computerskill %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @computerskill_pages.current.previous } if @computerskill_pages.current.previous %>
+<%= link_to 'Next page', { :page => @computerskill_pages.current.next } if @computerskill_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New computerskill', :action => 'new' %>
