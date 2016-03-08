@@ -1,5 +1,5 @@
-require 'pdf/writer'
-require 'iconv'
+Ôªørequire 'pdf/writer'
+#require 'iconv'
 
 class CurriculumController < ApplicationController
   before_filter :authorize
@@ -317,7 +317,7 @@ class CurriculumController < ApplicationController
       pdf.move_pointer(up_y)
       pdf.text("<c:alink uri=\"mailto:#{info_identity.email}\">#{info_identity.email}</c:alink>, <i>Web</i>: <c:alink uri=\"http://#{info_identity.web}\">#{info_identity.web}</c:alink>",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
-      pdf.text('Staatsangehˆrigkeit',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text('Staatsangeh√∂rigkeit',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
       pdf.text("#{cm_isolatin(info_identity.nationality)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
@@ -341,7 +341,7 @@ class CurriculumController < ApplicationController
       txt_space_2lines_gb = 1
       txt_space = 1.3
       up_y_2lines_gb = - pdf.font_height(fnt_size_gb) * txt_space_2lines_gb
-      pdf.text('<b>Gew¸nschte Besch‰ftigung</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_gb, :spacing => txt_space_2lines_gb)
+      pdf.text('<b>Gew√ºnschte Besch√§ftigung</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_gb, :spacing => txt_space_2lines_gb)
       y_ag = pdf.y
       pdf.move_pointer(2 * up_y_2lines_gb)
       pdf.text("<b>#{cm_isolatin(@curriculum.cur_scope)}</b>",:justification => :left, :left => left_part_data, :font_size => fnt_size_gb,  :spacing => txt_space_2lines_gb )
@@ -380,7 +380,7 @@ class CurriculumController < ApplicationController
       pdf.text("#{cm_isolatin(we_item.position)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
       pdf.move_pointer(inter_leave)
       
-      pdf.text('Wichtigste T‰tigkeiten und Zust‰ndigkeiten',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space_2lines)
+      pdf.text('Wichtigste T√§tigkeiten und Zust√§ndigkeiten',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space_2lines)
       y_ag = pdf.y
       pdf.move_pointer(2 * up_y_2lines)
       # NOTA su bullet: funziona solo se si scrive <C:bullet/>
@@ -406,7 +406,7 @@ class CurriculumController < ApplicationController
       pdf.text("#{cm_isolatin(we_item.employer)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
       pdf.move_pointer(inter_leave)
       
-      pdf.text('T‰tigkeitsbereich/Branche',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text('T√§tigkeitsbereich/Branche',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
       pdf.text("#{cm_isolatin(we_item.sector)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
       pdf.move_pointer(inter_leave)
@@ -436,7 +436,7 @@ class CurriculumController < ApplicationController
         end
       
         if ed_item.skills.size > 0
-          pdf.text('Hauptf‰cher',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+          pdf.text('Hauptf√§cher',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
           pdf.move_pointer(up_y)
           pdf.text("#{cm_isolatin(ed_item.skills)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
           pdf.move_pointer(inter_leave)
@@ -482,7 +482,7 @@ class CurriculumController < ApplicationController
     end
     
     if @curriculum.cur_other_skills.size > 0
-      pdf.text('<b>Zus‰tzliche Angaben</b>', :justification => :right, :right => col_r_rmargin, :font_size => 12, :spacing => txt_hspace)    
+      pdf.text('<b>Zus√§tzliche Angaben</b>', :justification => :right, :right => col_r_rmargin, :font_size => 12, :spacing => txt_hspace)    
       #other skills - hobbies
       ed_list = @curriculum.cur_other_skills
       pdf.text("Hobbies",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
@@ -512,7 +512,7 @@ class CurriculumController < ApplicationController
         end 
       end
       if str_drivinglicense
-        pdf.text("F¸hrerschein",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+        pdf.text("F√ºhrerschein",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
         pdf.move_pointer(up_y)
         pdf.text(str_drivinglicense,:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
         pdf.move_pointer(3)
@@ -579,7 +579,8 @@ class CurriculumController < ApplicationController
   ##
   # Convert utf8 string to iso-8859-1. pdfwriter want iso8859-1 strings, or utf16
   def cm_isolatin(text_utf8)
-    return Iconv.new('iso-8859-1', 'utf-8').iconv(text_utf8)
+    #return Iconv.new('iso-8859-1', 'utf-8').iconv(text_utf8)
+    # TODO
   end
   
 end

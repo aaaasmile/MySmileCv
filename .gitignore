@@ -18,3 +18,4 @@ rails/curr_rails/tmp
 /deploy/RailsStarter/RubyAppStarterLib/obj/x86
 /rails/vendor/cache
 /rails/.bundle
+/rails4/db/production.sqlite3
