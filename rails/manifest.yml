@@ -1,0 +1,4 @@
+---
+applications:
+- name: MySmileCV
+  command: bundle exec ruby script/server

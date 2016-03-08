@@ -1,0 +1,18 @@
+# A sample Gemfile
+source "https://rubygems.org"
+
+gem 'activesupport', '1.4.2'
+gem 'actionpack', '1.13.3'
+gem 'actionmailer', '1.3.3'
+gem 'activerecord', '1.15.3'
+gem 'actionwebservice', '1.2.3'
+gem 'rails', '1.2.3'
+gem 'color', '1.4.1'
+gem 'rubyforge', '1.0.1'
+gem 'hoe', '1.8.2'
+gem 'transaction-simple','1.4.0'
+gem 'pdf-writer', '1.1.8'
+gem 'rake', '0.8.7'
+gem 'sqlite3-ruby', :require => 'sqlite3' 
+
+ruby '1.8.7'
