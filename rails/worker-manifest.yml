@@ -1,6 +1,6 @@
 ---
 applications:
-- name: MySmileCV
+- name: MySmileCV-worker
   memory: 256M
   instances: 1
   path: .

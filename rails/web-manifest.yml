@@ -1,9 +1,7 @@
 ---
 applications:
-- name: MySmileCV-web
+- name: MySmileCV
   memory: 256M
   instances: 1
-  host: sidekiq
-  domain: ${target-base}
   path: .
   
