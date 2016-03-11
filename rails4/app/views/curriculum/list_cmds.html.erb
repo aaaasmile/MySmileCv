@@ -18,11 +18,10 @@
 <p><%= button_to 'Clear this Curriculum', {:action => 'clear_curriculum'}, :confirm => 'Are you sure?', :method => :post  %></p>
 <p><%= button_to 'Save as new Curriculum', :action => 'save_curr', :controller => 'save_curr' %></p>
 
-<% form_tag :action => 'create_scope' do %>
+<%= form_tag '/create_scope' do -%>
   <p><%= text_field 'curriculum', 'cur_scope'  %>
   <%= submit_tag "Change Scope" %></p>
-  
-<% end %>
+<% end -%>
 
 <br/>
 <hr/>

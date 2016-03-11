@@ -46,7 +46,7 @@ class CurriculumController < ApplicationController
     @curriculum = find_curriculum
     scope = params['curriculum']['cur_scope']
     @curriculum.set_scope(scope)
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   ### methods to add items to the current curriculum #######
