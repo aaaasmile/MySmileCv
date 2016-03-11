@@ -45,14 +45,13 @@
     <td><%= link_to 'Show', :action => 'show', :id => identity %>
     <%= link_to 'Edit', :action => 'edit', :id => identity %>
     <%= link_to 'Destroy', { :action => 'destroy', :id => identity }, :confirm => 'Are you sure?', :method => :post %>
-    <%= button_to 'Curriculum', :action => 'curr_set_identity', :controller => 'Curriculum',  :id => identity %>
+    <%= button_to 'Curriculum', :action => 'curr_set_identity', :controller => 'curriculum',  :id => identity %>
     </td>
   </tr>
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @identity_pages.current.previous } if @identity_pages.current.previous %>
-<%= link_to 'Next page', { :page => @identity_pages.current.next } if @identity_pages.current.next %> 
+<%= paginate @identities %>
 
 <br />
 

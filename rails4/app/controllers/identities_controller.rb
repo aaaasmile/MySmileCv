@@ -7,7 +7,7 @@ class IdentitiesController < ApplicationController
   end
 
   def list
-    @identity_pages, @identities = paginate :identities, :per_page => 10
+    @identities = Identity.page params[:page]
   end
 
   def show

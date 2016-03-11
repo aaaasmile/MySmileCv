@@ -59,7 +59,7 @@ class CurriculumController < ApplicationController
   end
   
   def curr_set_identity
-    @curriculum = find_curriculum
+    p @curriculum = find_curriculum
     ident = Identity.find(params[:id])
     @curriculum.set_identity(ident)
     redirect_to :action =>  'list_cmds'

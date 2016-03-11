@@ -10,12 +10,15 @@ Rails.application.routes.draw do
   get 'login/login_app' => 'login#login_app'
 
   get 'curriculum' => 'curriculum#list_cmds'
+  post 'curr_set_identity' => 'curriculum#curr_set_identity'
 
   get 'load_curr' => 'load_curr#load_curr'
   get 'delete_curr' => 'load_curr#delete_curr'
   get 'logout' => 'login#logout'
 
   resources :identities
+
+
   #resources :Loadcurr, controller: 'load_curr'
 
   # Example of regular route:
