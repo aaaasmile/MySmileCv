@@ -8,15 +8,19 @@ Rails.application.routes.draw do
   get 'login' => 'login#index'
   post 'login/login_app' => 'login#login_app'
   get 'login/login_app' => 'login#login_app'
+  get 'logout' => 'login#logout'
 
   get 'curriculum' => 'curriculum#list_cmds'
   post 'curr_set_identity' => 'curriculum#curr_set_identity'
+  post 'curr_add_picture' => 'curriculum#curr_add_picture'
   get 'create_pdf' => 'curriculum#create_pdf'
   post 'clear_curriculum' => 'curriculum#clear_curriculum'
   post 'create_scope' => 'curriculum#create_scope'
   get 'create_scope' => 'curriculum#create_scope'
   get 'remove_identity' => 'curriculum#remove_identity'
+  get 'remove_picture' => 'curriculum#remove_picture'
   get 'remove_scope' => 'curriculum#remove_scope'
+  
   
 
   get 'load_curr' => 'load_curr#load_curr'
@@ -25,9 +29,10 @@ Rails.application.routes.draw do
 
   get 'save_curr' => 'save_curr#save_curr'
 
-  get 'logout' => 'login#logout'
+  get 'picture' => 'identpictures#picture'
 
   resources :identities
+  resources :identpictures
 
 
   #resources :Loadcurr, controller: 'load_curr'

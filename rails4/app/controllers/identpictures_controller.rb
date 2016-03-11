@@ -7,7 +7,7 @@ class IdentpicturesController < ApplicationController
   end
 
   def list
-    @identpicture_pages, @identpictures = paginate :identpictures, :per_page => 10
+    @identpictures = Identpicture.page params[:page]
   end
 
   def show

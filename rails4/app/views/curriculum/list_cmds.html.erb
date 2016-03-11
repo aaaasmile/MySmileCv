@@ -42,7 +42,7 @@
 <%# picture %>
 <% if @curriculum.curr_picture %>
   <h4>Foto</h4>
-  <p><img src="<%= url_for(:controller => 'Identpictures',:action => "picture", :id => @curriculum.curr_picture.id) %>"/> 
+  <p><img src="<%= url_for(:controller => 'identpictures',:action => "picture", :id => @curriculum.curr_picture.id) %>"/> 
    |<%= link_to 'X', :action => 'remove_picture' %>| </p>
 <% end %>
 

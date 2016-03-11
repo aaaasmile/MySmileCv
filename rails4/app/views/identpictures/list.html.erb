@@ -19,13 +19,12 @@
     <td><%= link_to 'Show', :action => 'show', :id => identpicture %>
     <%= link_to 'Edit', :action => 'edit', :id => identpicture %>
     <%= link_to 'Destroy', { :action => 'destroy', :id => identpicture }, :confirm => 'Are you sure?', :method => :post %>
-    <%= button_to 'Curriculum', :action => 'curr_add_picture', :controller => 'Curriculum',  :id => identpicture %></td>
+    <%= button_to 'Curriculum', :action => 'curr_add_picture', :controller => 'curriculum',  :id => identpicture %></td>
   </tr>
 <% end #endfor%>
 </table>
 
-<%= link_to 'Previous page', { :page => @identpicture_pages.current.previous } if @identpicture_pages.current.previous %>
-<%= link_to 'Next page', { :page => @identpicture_pages.current.next } if @identpicture_pages.current.next %> 
+<%= paginate @identpictures %>
 
 <br />
 
