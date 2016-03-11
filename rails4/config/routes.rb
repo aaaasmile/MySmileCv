@@ -11,6 +11,13 @@ Rails.application.routes.draw do
 
   get 'curriculum' => 'curriculum#list_cmds'
 
+  get 'load_curr' => 'load_curr#load_curr'
+  get 'delete_curr' => 'load_curr#delete_curr'
+  get 'logout' => 'login#logout'
+
+  resources :identities
+  #resources :Loadcurr, controller: 'load_curr'
+
   # Example of regular route:
   #get 'curriculum' => 'curriculum#view'
 
@@ -59,5 +66,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  # TODO? map.connect '',  :controller => "curriculum"
 end

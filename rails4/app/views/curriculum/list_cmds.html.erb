@@ -1,7 +1,7 @@
 
 <p/>
-<p><%= button_to 'Load Curriculum', :action => 'load_curr', :controller => 'Loadcurr' %></p>
-<p><%= button_to 'Delete Curriculum', :action => 'delete_curr', :controller => 'Loadcurr' %></p>
+<p><%= button_to 'Load Curriculum', :action => 'load_curr', :controller => 'load_curr' %></p>
+<p><%= button_to 'Delete Curriculum', :action => 'delete_curr', :controller => 'load_curr' %></p>
 <% if @curriculum.is_empty? %>
 <h4>No items in Curriculum</h4>
 <% else %>
