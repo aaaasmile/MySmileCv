@@ -64,28 +64,8 @@ class Curriculum
       @curr_all_info = {}
       @curr_all_info = YAML::load(curr_all_info)  #YAML::load_file(yamlfilename) if File.exist?(yamlfilename)
       
-      id = @curr_all_info[:identity]
-      @cur_identity = Identity.find(id) if id
+      process_my_curr_all_info
       
-      id = @curr_all_info[:picture]
-      @curr_picture = Identpicture.find(id) if id
-      
-      @cur_scope = @curr_all_info[:scope]
-      @cur_we_only1empl = true
-      #p @curr_all_info
-      @curr_all_info[:cur_we_only1empl]
-      @cur_we_only1empl = @curr_all_info[:cur_we_only1empl] if @curr_all_info[:cur_we_only1empl] != nil
-      #p "LOAD yaml @cur_we_only1empl => #{@cur_we_only1empl}"
-      
-      
-      # now fill all array elements
-      fill_arr_withmodel(@curr_all_info[:computer_skills], :add_computer_skill, Computerskill)
-      fill_arr_withmodel(@curr_all_info[:education_list], :add_education, Education )
-      fill_arr_withmodel(@curr_all_info[:lang_skills], :add_lang_skill, Languageskill)
-      fill_arr_withmodel(@curr_all_info[:miscstuff_list], :add_miscstuff, Miscstuff)
-      fill_arr_withmodel(@curr_all_info[:other_skills], :add_otherskill, Otherskill )
-      fill_arr_withmodel(@curr_all_info[:workexperience_list], :add_workexperience, Workexperience)
-      #@curr_file_name = yamlfilename #TODO curr_file_name shold be the current Filecurrsaved
       return !is_empty?
     rescue => detail
 	  str = "Error load_from_yaml \n"
@@ -94,6 +74,32 @@ class Curriculum
       reset_info
       return false
     end 
+  end
+
+  def process_my_curr_all_info
+    id = @curr_all_info[:identity]
+    @cur_identity = Identity.find(id) if id
+      
+    id = @curr_all_info[:picture]
+    @curr_picture = Identpicture.find(id) if id
+      
+    @cur_scope = @curr_all_info[:scope]
+    @cur_we_only1empl = true
+    #p @curr_all_info
+    #@curr_all_info[:cur_we_only1empl]
+    @cur_we_only1empl = @curr_all_info[:cur_we_only1empl] if @curr_all_info[:cur_we_only1empl] != nil
+    #p "LOAD yaml @cur_we_only1empl => #{@cur_we_only1empl}"
+      
+      
+    # now fill all array elements
+    fill_arr_withmodel(@curr_all_info[:computer_skills], :add_computer_skill, Computerskill)
+    fill_arr_withmodel(@curr_all_info[:education_list], :add_education, Education )
+    fill_arr_withmodel(@curr_all_info[:lang_skills], :add_lang_skill, Languageskill)
+    fill_arr_withmodel(@curr_all_info[:miscstuff_list], :add_miscstuff, Miscstuff)
+    fill_arr_withmodel(@curr_all_info[:other_skills], :add_otherskill, Otherskill )
+    fill_arr_withmodel(@curr_all_info[:workexperience_list], :add_workexperience, Workexperience)
+
+    #@curr_file_name = yamlfilename #TODO curr_file_name shold be the current Filecurrsaved
   end
   
   ##
@@ -119,39 +125,9 @@ class Curriculum
   def save_to_yaml(curriculum_fname, title)
     set_title(title)
     @curr_file_name = curriculum_fname
-    @curr_all_info = {}
     
-    @curr_all_info[:cur_we_only1empl] = @cur_we_only1empl
-    @curr_all_info[:identity] = @cur_identity.id if @cur_identity
-    
-    @curr_all_info[:picture] = @curr_picture.id if @curr_picture
-    
-    @curr_all_info[:scope] = @cur_scope if @cur_scope
-    
-    comp_skills = []
-    @cur_computer_skills.each{|item| comp_skills << item.id}
-    @curr_all_info[:computer_skills] = comp_skills
-    
-    education_list = []
-    @cur_education_list.each{|item| education_list << item.id}
-    @curr_all_info[:education_list] = education_list 
-    
-    lang_skills = []
-    @cur_lang_skills.each{|item| lang_skills << item.id}
-    @curr_all_info[:lang_skills] = lang_skills
-    
-    miscstuff_list = []
-    @cur_miscstuff_list.each{|item| miscstuff_list << item.id}
-    @curr_all_info[:miscstuff_list] = miscstuff_list 
-    
-    other_skills = []
-    @cur_other_skills.each{|item| other_skills << item.id}
-    @curr_all_info[:other_skills] = other_skills 
-    
-    workexperience_list = []
-    @cur_workexperience_list.each{|item| workexperience_list << item.id}
-    @curr_all_info[:workexperience_list] = workexperience_list 
-    
+    get_info_for_session
+
     File.open( curriculum_fname, 'w' ) do |out|
       YAML.dump( @curr_all_info, out )
     end
@@ -325,5 +301,58 @@ class Curriculum
     id_num = id.to_i
     @cur_education_list.delete_if{|x| x.id == id_num}
   end
+
+  ### serialize stuff
   
+  def self.get_curriculum_from_session(session_info)
+    new_instance = Curriculum.new
+    new_instance.set_curr_info(session_info)
+    new_instance.process_my_curr_all_info
+    return new_instance
+  end
+
+  def set_curr_info(info_session)
+    @curr_all_info = {}
+    info_session.each do |k, v|
+      @curr_all_info[k.to_sym] = v
+    end
+  end
+
+  def get_info_for_session
+    @curr_all_info = {}
+    
+    @curr_all_info[:cur_we_only1empl] = @cur_we_only1empl
+    @curr_all_info[:identity] = @cur_identity.id if @cur_identity
+    
+    @curr_all_info[:picture] = @curr_picture.id if @curr_picture
+    
+    @curr_all_info[:scope] = @cur_scope if @cur_scope
+    
+    comp_skills = []
+    @cur_computer_skills.each{|item| comp_skills << item.id}
+    @curr_all_info[:computer_skills] = comp_skills
+    
+    education_list = []
+    @cur_education_list.each{|item| education_list << item.id}
+    @curr_all_info[:education_list] = education_list 
+    
+    lang_skills = []
+    @cur_lang_skills.each{|item| lang_skills << item.id}
+    @curr_all_info[:lang_skills] = lang_skills
+    
+    miscstuff_list = []
+    @cur_miscstuff_list.each{|item| miscstuff_list << item.id}
+    @curr_all_info[:miscstuff_list] = miscstuff_list 
+    
+    other_skills = []
+    @cur_other_skills.each{|item| other_skills << item.id}
+    @curr_all_info[:other_skills] = other_skills 
+    
+    workexperience_list = []
+    @cur_workexperience_list.each{|item| workexperience_list << item.id}
+    @curr_all_info[:workexperience_list] = workexperience_list 
+
+    return @curr_all_info
+  end
+
 end

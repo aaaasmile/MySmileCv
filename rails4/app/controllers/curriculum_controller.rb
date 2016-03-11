@@ -50,103 +50,107 @@ class CurriculumController < ApplicationController
   end
   
   ### methods to add items to the current curriculum #######
-  
+  def goto_list_of_cmds
+    session[:curriculum] = @curriculum.get_info_for_session
+    redirect_to :action =>  'list_cmds'
+  end
+
   def curr_add_picture
     @curriculum = find_curriculum
     picture = Identpicture.find(params[:id])
     @curriculum.set_picture(picture)
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def curr_set_identity
-    p @curriculum = find_curriculum
+    @curriculum = find_curriculum
     ident = Identity.find(params[:id])
     @curriculum.set_identity(ident)
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def curr_add_education
     @curriculum = find_curriculum
     edu = Education.find(params[:id])
     @curriculum.add_education(edu)
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def curr_add_all_education
     @curriculum = find_curriculum
     skill = Education.find(:all)
     skill.each{|x| @curriculum.add_education(x)}
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def curr_add_computer_skill
     @curriculum = find_curriculum
     skill = Computerskill.find(params[:id])
     @curriculum.add_computer_skill(skill)
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def curr_add_all_computerskill
     @curriculum = find_curriculum
     skill = Computerskill.find(:all)
     skill.each{|x| @curriculum.add_computer_skill(x)}
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def curr_add_lang_skill
     @curriculum = find_curriculum
     skill = Languageskill.find(params[:id])
     @curriculum.add_lang_skill(skill)
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def curr_add_all_languages
     @curriculum = find_curriculum
     skill = Languageskill.find(:all)
     skill.each{|x| @curriculum.add_lang_skill(x)}
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def curr_add_miscstuff
     @curriculum = find_curriculum
     skill = Miscstuff.find(params[:id])
     @curriculum.add_miscstuff(skill)
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def curr_add_all_miscstuff
     @curriculum = find_curriculum
     skill = Miscstuff.find(:all)
     skill.each{|x| @curriculum.add_miscstuff(x)}
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def curr_add_otherskill
     @curriculum = find_curriculum
     skill = Otherskill.find(params[:id])
     @curriculum.add_otherskill(skill)
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def curr_add_all_otherskill
     @curriculum = find_curriculum
     skill = Otherskill.find(:all)
     skill.each{|x| @curriculum.add_otherskill(x)}
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def curr_add_workexperience
     @curriculum = find_curriculum
     skill = Workexperience.find(params[:id])
     @curriculum.add_workexperience(skill)
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def curr_add_all_workexperience
     @curriculum = find_curriculum
     exps = Workexperience.find(:all)
     exps.each{|x| @curriculum.add_workexperience(x)}
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   ######### remove stuff #######################################
@@ -154,55 +158,55 @@ class CurriculumController < ApplicationController
   def remove_scope
     @curriculum = find_curriculum
     @curriculum.set_scope(nil)
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def remove_picture
     @curriculum = find_curriculum
     @curriculum.destroy_picture
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def remove_identity
     @curriculum = find_curriculum
     @curriculum.destroy_identity
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def remove_workexperince
     @curriculum = find_curriculum
     @curriculum.destroy_workexperience(params[:id])
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def remove_education
     @curriculum = find_curriculum
     @curriculum.destroy_education(params[:id])
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def remove_languageskill
     @curriculum = find_curriculum
     @curriculum.destroy_lang_skill(params[:id])
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def remove_computerskill
     @curriculum = find_curriculum
     @curriculum.destroy_computer_skill(params[:id])
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def remove_otherskill
     @curriculum = find_curriculum
     @curriculum.destroy_otherskill(params[:id])
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   def remove_miscstuff
     @curriculum = find_curriculum
     @curriculum.destroy_miscstuff(params[:id])
-    redirect_to :action =>  'list_cmds'
+    goto_list_of_cmds
   end
   
   
@@ -210,7 +214,8 @@ class CurriculumController < ApplicationController
   private
 
   def find_curriculum
-    session[:curriculum] ||= Curriculum.new
+    session[:curriculum] ||= {}
+    Curriculum.get_curriculum_from_session(session[:curriculum])
   end 
   
   def build_pdf

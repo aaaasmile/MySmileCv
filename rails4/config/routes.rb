@@ -10,10 +10,18 @@ Rails.application.routes.draw do
   get 'login/login_app' => 'login#login_app'
 
   get 'curriculum' => 'curriculum#list_cmds'
+  get 'create_pdf' => 'curriculum#create_pdf'
+  get 'clear_curriculum' => 'curriculum#clear_curriculum'
+  get 'create_scope' => 'curriculum#create_scope'
+  get 'remove_identity' => 'curriculum#remove_identity'
   post 'curr_set_identity' => 'curriculum#curr_set_identity'
 
   get 'load_curr' => 'load_curr#load_curr'
   get 'delete_curr' => 'load_curr#delete_curr'
+  get 'reload_curr' => 'load_curr#reload_curr'
+
+  get 'save_curr' => 'save_curr#save_curr'
+
   get 'logout' => 'login#logout'
 
   resources :identities
