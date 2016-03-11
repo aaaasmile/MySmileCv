@@ -1,12 +1,11 @@
-<% form_tag('/login/login_app', :class => 'create') do %>
-<div class="required">
-  <label for="name" >Name:</label>
-  <%= text_field_tag :name, params[:name] %>
+<div class="auth-form " id="login">
+  <%= form_tag '/login/login_app' , :class => 'create' do -%>
+    <div class="auth-form-body">
+      <label for="name" >Name:</label>
+      <%= text_field_tag :name, params[:name], :class => 'required input-block' %>
+      <label for="password" >Password:</label>
+      <%= password_field_tag :password, params[:password], :class => 'required input-block' %>
+      <%= submit_tag "Login", :class => 'btn btn-primary btn-block' %>
+    </div>
+  <% end -%> 
 </div>
-<div class="required">
-  <label for="password" >Password:</label>
-  <%= password_field_tag :password, params[:password] %>
-</div>
-  <%= submit_tag "Login" %>
-
-<% end %> 

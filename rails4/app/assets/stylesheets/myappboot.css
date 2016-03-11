@@ -148,12 +148,56 @@ tbody th p {
     margin: 4px 0;
 }
 
-.notice{
+.notice {
     color: green;
     background: #E7FFE1;
 }
 
-.error_toast{
+.error_toast {
     color: red;
     background: #F3D9D9;
+}
+
+.auth-form {
+    width: 340px;
+    margin: 0 auto;
+}
+
+
+.auth-form-body {
+    border-top: 1px solid #d8dee2;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid #d8dee2;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+    .auth-form-body .input-block {
+        margin-top: 5px;
+        margin-bottom: 15px;
+        display: block;
+        width: 100%;
+    }
+
+
+.form-control, input[type="text"], input[type="password"] {
+    min-height: 34px;
+    padding: 7px 8px;
+    font-size: 13px;
+    color: #333;
+    vertical-align: middle;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+}
+
+.btn {
+    margin-top: 20px;
 }
