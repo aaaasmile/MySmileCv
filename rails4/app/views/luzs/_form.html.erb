@@ -1,0 +1,17 @@
+<%= form_for(@luz) do |f| %>
+  <% if @luz.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@luz.errors.count, "error") %> prohibited this luz from being saved:</h2>
+
+      <ul>
+      <% @luz.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

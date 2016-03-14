@@ -1,0 +1,2 @@
+module LuzsHelper
+end
