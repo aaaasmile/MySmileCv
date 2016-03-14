@@ -1,8 +1,11 @@
-<h3>Listing identities</h3>
+<p id="notice"><%= notice %></p>
+
+<h3>Listing Identities</h3>
 
 <table>
-  <tr>
-  <%  col_count = 0
+  <thead>
+    <tr>
+      <%  col_count = 0
       max_col_acapo = 6
   title_rest = []
   for column in Identity.content_columns
@@ -16,14 +19,16 @@
       <th><%= colonna_nome %></th>
     <% end %>
   <% end %>
-  </tr>
-  
-<% for identity in @identities %>
-  <tr>
-  <% col_count = 0 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @identities.each do |identity| %>
+      <tr>
+        <% col_count = 0 
     for column in Identity.content_columns
       contenuto_campo = "" 
-      if column.name == 'klang'
+      if column.name == 'klang' && identity.language
         contenuto_campo = h identity.language.isoname 
       else
         contenuto_campo = h identity.send(column.name)
@@ -42,17 +47,15 @@
     end %>
     <td><%= contenuto_campo %></td>
   <%end %>
-    <td><%= link_to 'Show', :action => 'show', :id => identity %>
-    <%= link_to 'Edit', :action => 'edit', :id => identity %>
-    <%= link_to 'Destroy', { :action => 'destroy', :id => identity }, :confirm => 'Are you sure?', :method => :post %>
-    <%= button_to 'Curriculum', :action => 'curr_set_identity', :controller => 'curriculum',  :id => identity %>
-    </td>
-  </tr>
-<% end %>
+    
+        <td><%= link_to 'Show', identity %></td>
+        <td><%= link_to 'Edit', edit_identity_path(identity) %></td>
+        <td><%= link_to 'Destroy', identity, method: :destroy, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<%= paginate @identities %>
+<br>
 
-<br />
-
-<%= link_to 'New identity', :action => 'new' %>
+<%= link_to 'New Identity', new_identity_path %>

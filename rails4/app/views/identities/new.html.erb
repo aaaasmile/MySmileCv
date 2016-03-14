@@ -1,8 +1,5 @@
-<h3>New identity</h3>
+<h3>New Identity</h3>
 
-<% form_tag :action => 'create' do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag "Create" %>
-<% end %>
+<%= render 'form' %>
 
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to 'Back', identities_path %>

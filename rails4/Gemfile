@@ -48,4 +48,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pdf-writer', '1.1.8'
 gem 'kaminari'
 
+gem 'jquery-rails'
+
 ruby '2.1.7'

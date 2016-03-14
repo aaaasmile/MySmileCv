@@ -1,6 +1,6 @@
 <% for column in Identity.content_columns
       contenuto_campo = "" 
-      if column.name == 'klang'
+      if column.name == 'klang' && @identity.language
         contenuto_campo = h @identity.language.isoname 
       else
         contenuto_campo = h @identity.send(column.name)
@@ -11,5 +11,5 @@
 </p>
 <% end %>
 
-<%= link_to 'Edit', :action => 'edit', :id => @identity %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to 'Edit', edit_identity_path(@identity) %> |
+<%= link_to 'Back', identities_path %>

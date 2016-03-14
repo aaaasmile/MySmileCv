@@ -1,53 +1,70 @@
 class IdentitiesController < ApplicationController
   before_filter :authorize
+  before_action :set_identity, only: [:show, :edit, :update, :destroy]
   
+  # GET /identities
+  # GET /identities.json
   def index
-    list
-    render :action => 'list'
+    @identities = Identity.all
   end
 
-  def list
-    @identities = Identity.page params[:page]
-  end
-
+  # GET /identities/1
+  # GET /identities/1.json
   def show
-    @identity = Identity.find(params[:id])
   end
 
+  # GET /identities/new
   def new
-    @languages = Language.find(:all)
     @identity = Identity.new
   end
 
-  def create
-    @languages = Language.find(:all)
-    @identity = Identity.new(params[:identity])
-    if @identity.save
-      flash[:notice] = 'Identity was successfully created.'
-      redirect_to :action => 'list'
-    else
-      render :action => 'new'
-    end
-  end
-
+  # GET /identities/1/edit
   def edit
-    @languages = Language.find(:all)
-    @identity = Identity.find(params[:id])
   end
 
-  def update
-    @languages = Language.find(:all)
-    @identity = Identity.find(params[:id])
-    if @identity.update_attributes(params[:identity])
-      flash[:notice] = 'Identity was successfully updated.'
-      redirect_to :action => 'show', :id => @identity
-    else
-      render :action => 'edit'
+  # POST /identities
+  # POST /identities.json
+  def create
+    @identity = Identity.new(identity_params)
+
+    respond_to do |format|
+      if @identity.save
+        format.html { redirect_to @identity, notice: 'Identity was successfully created.' }
+      else
+        format.html { render :new }
+      end
     end
   end
 
-  def destroy
-    Identity.find(params[:id]).destroy
-    redirect_to :action => 'list'
+  # PATCH/PUT /identities/1
+  # PATCH/PUT /identities/1.json
+  def update
+    respond_to do |format|
+      if @identity.update(identity_params)
+        format.html { redirect_to @identity, notice: 'Identity was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
   end
+
+  # DELETE /identities/1
+  # DELETE /identities/1.json
+  def destroy
+    @identity.destroy
+    respond_to do |format|
+      format.html { redirect_to identities_url, notice: 'Identity was successfully destroyed.' }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_identity
+      @identity = Identity.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def identity_params
+      params.require(:identity).permit(:firstname, :lastname, :address, :email, :web, :birthdate, :gender, :nationality, :familystate)
+    end
 end
