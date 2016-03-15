@@ -20,6 +20,11 @@
         <% end %>
       <% end %>
     </tr>
+    <tr>
+      <% title_rest.each do |colonna_nome| %>
+        <th><%= colonna_nome %></th>
+      <%end %>
+    </tr>
   </thead>
 
   <tbody>
@@ -36,11 +41,7 @@
         if col_count >= max_col_acapo
           col_count = 0 %>
     </tr>
-    <tr>
-      <% title_rest.each do |colonna_nome| %>
-        <th><%= colonna_nome %></th>
-      <%end %>
-    </tr>
+    
     <tr>
       <% else
           col_count += 1
