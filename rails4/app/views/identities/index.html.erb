@@ -28,8 +28,11 @@
   </thead>
 
   <tbody>
-    <% @identities.each do |identity| %>
-    <tr>
+    <% row_odd = false 
+      @identities.each do |identity| 
+        class_name = row_odd == true ? 'list_line_odd' : 'list_line_even' 
+        row_odd = !row_odd %>
+    <tr class="<%= class_name %>">
       <% col_count = 0
       for column in Identity.content_columns
         contenuto_campo = ""
@@ -42,7 +45,7 @@
           col_count = 0 %>
     </tr>
     
-    <tr>
+    <tr class="<%= class_name %>">
       <% else
           col_count += 1
         end %>
