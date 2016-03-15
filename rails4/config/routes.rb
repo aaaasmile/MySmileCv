@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'logout' => 'login#logout'
 
   get 'curriculum' => 'curriculum#list_cmds'
-  post 'curr_set_identity' => 'curriculum#curr_set_identity'
+  get 'curr_set_identity' => 'curriculum#curr_set_identity'
   post 'curr_add_picture' => 'curriculum#curr_add_picture'
   get 'create_pdf' => 'curriculum#create_pdf'
   post 'clear_curriculum' => 'curriculum#clear_curriculum'

@@ -7,51 +7,54 @@
     <tr>
       <%  col_count = 0
       max_col_acapo = 6
-  title_rest = []
-  for column in Identity.content_columns
-    colonna_nome =  column.human_name
-    colonna_nome = 'Lang' if column.human_name == 'Klang'
-    if col_count >= max_col_acapo
-      title_rest << colonna_nome
-    else
-      col_count += 1
-  %>
+      title_rest = []
+      for column in Identity.content_columns
+        colonna_nome =  column.human_name
+        colonna_nome = 'Lang' if column.human_name == 'Klang'
+        if col_count >= max_col_acapo
+          title_rest << colonna_nome
+        else
+          col_count += 1
+      %>
       <th><%= colonna_nome %></th>
-    <% end %>
-  <% end %>
+        <% end %>
+      <% end %>
     </tr>
   </thead>
 
   <tbody>
     <% @identities.each do |identity| %>
-      <tr>
-        <% col_count = 0 
-    for column in Identity.content_columns
-      contenuto_campo = "" 
-      if column.name == 'klang' && identity.language
-        contenuto_campo = h identity.language.isoname 
-      else
-        contenuto_campo = h identity.send(column.name)
-      end
-      if col_count >= max_col_acapo
-        col_count = 0 %>
-        </tr><tr>
-  <% 
-      title_rest.each do |colonna_nome| %>
+    <tr>
+      <% col_count = 0
+      for column in Identity.content_columns
+        contenuto_campo = ""
+        if column.name == 'klang' && identity.language
+          contenuto_campo = h identity.language.isoname
+        else
+          contenuto_campo = h identity.send(column.name)
+        end
+        if col_count >= max_col_acapo
+          col_count = 0 %>
+    </tr>
+    <tr>
+      <% title_rest.each do |colonna_nome| %>
         <th><%= colonna_nome %></th>
       <%end %>
-      </tr><tr>
-      <%
-    else
-      col_count += 1
-    end %>
-    <td><%= contenuto_campo %></td>
-  <%end %>
-    
-        <td><%= link_to 'Show', identity %></td>
-        <td><%= link_to 'Edit', edit_identity_path(identity) %></td>
-        <td><%= link_to 'Destroy', identity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    </tr>
+    <tr>
+      <% else
+          col_count += 1
+        end %>
+      <td><%= contenuto_campo %></td>
+      <%end %>
+
+      <td>
+        <%= link_to 'Show', identity %>
+        <%= link_to 'Edit', edit_identity_path(identity) %>
+        <%= link_to 'Destroy', identity, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'In Curriculum', :controller => 'curriculum', :action => 'curr_set_identity', :id => identity %>
+      </td>
+    </tr>
     <% end %>
   </tbody>
 </table>
