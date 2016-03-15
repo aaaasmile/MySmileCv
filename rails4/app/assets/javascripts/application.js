@@ -2,3 +2,6 @@
 // This file is automatically included by javascript_include_tag :defaults
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
+//= require_tree .
+//= require bootstrap-sprockets

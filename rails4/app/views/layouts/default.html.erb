@@ -5,8 +5,10 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Smile Curriculum: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
   <%= stylesheet_link_tag  'myappboot' %>
-  <%= stylesheet_link_tag  'bootstrap' %>
 </head>
 <body>
 
@@ -59,7 +61,5 @@ menu_selected = ""
 
 </div>
 
-<%= javascript_include_tag 'jquery-1.11.3.min.js' %>
-<%= javascript_include_tag 'bootstrap.min.js' %>
 </body>
 </html>
