@@ -50,7 +50,7 @@
     
         <td><%= link_to 'Show', identity %></td>
         <td><%= link_to 'Edit', edit_identity_path(identity) %></td>
-        <td><%= link_to 'Destroy', identity, method: :destroy, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', identity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
