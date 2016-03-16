@@ -2,4 +2,6 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', identities_path %>
+<%= link_to(identities_path, class: 'btn btn-default', aria:{label: 'Back'} ) do %>
+  <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+<% end %>
