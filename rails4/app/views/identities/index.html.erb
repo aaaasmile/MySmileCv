@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h3>Listing Identities</h3>
+<h3>Identities</h3>
 
 <table>
   <thead>
@@ -63,8 +63,8 @@
           <%= link_to(identity, method: :delete, class: 'btn btn-default', aria:{label: 'Delete'}, data: { confirm: 'Are you sure?' }) do %>
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
           <% end %>
-          <%= link_to({:controller => 'curriculum', :action => 'curr_set_identity', :id => identity}, class: 'btn btn-default', aria:{label: 'Use'}) do %>
-            <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Use
+          <%= link_to({:controller => 'curriculum', :action => 'curr_set_identity', :id => identity}, class: 'btn btn-primary', aria:{label: 'Use'}) do %>
+             Use
           <% end %>
         </div>
       </td>
@@ -75,4 +75,6 @@
 
 <br>
 
-<%= link_to 'New Identity', new_identity_path %>
+<%= link_to(new_identity_path, class: 'btn btn-default', aria:{label: 'Add'}) do %>
+  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+<% end %>
