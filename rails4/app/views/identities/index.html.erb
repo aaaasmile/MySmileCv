@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h3>Listing Identities</h3>
-
+<a class="btn btn-default" >
+  <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+</a>
 <table>
   <thead>
     <tr>
@@ -53,7 +55,9 @@
       <%end %>
 
       <td>
-        <%= link_to 'Show', identity %>
+        <%= link_to(identity, class: 'btn btn-default', aria:{label: 'Show'} ) do %>
+          <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+        <% end %>
         <%= link_to 'Edit', edit_identity_path(identity) %>
         <%= link_to 'Destroy', identity, method: :delete, data: { confirm: 'Are you sure?' } %>
         <%= link_to 'In Curriculum', :controller => 'curriculum', :action => 'curr_set_identity', :id => identity %>

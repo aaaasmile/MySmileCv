@@ -49,5 +49,6 @@ gem 'pdf-writer', '1.1.8'
 gem 'kaminari'
 
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'autoprefixer-rails'
 
 ruby '2.1.7'

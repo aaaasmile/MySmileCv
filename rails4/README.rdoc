@@ -1,11 +1,9 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
 Things you may want to cover:
 
 * Ruby version
+Sviluppato con 2.1.7
 
 * System dependencies
 
@@ -41,3 +39,15 @@ Il delete di un record, o risorsa come viene chiamato ora, viene fatto attravers
 per questo occorre jqueryu. Le routes vengono annesse automaticamente con il comando resources: in routes.rb.
 Per l'update di una risorsa, occorre avere qualcosa come params.require(:identity).permit(<lista dei campi ammessi>,
 prima questo codice era nel modello, ora è nel controllo.
+Le icone in boostrap (glyphicon) vengono incluse di default e se boostrap va, vanno anche le icone
+senza fare nulla.
+
+== Snippets non chiari
+<%= link_to(identity, class: 'btn btn-default', aria:{label: 'Show'} ) do %>
+    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+<% end %>
+
+Genera:
+<a class="btn btn-default" aria-label="Show" href="/identities/2">
+   <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+</a>
