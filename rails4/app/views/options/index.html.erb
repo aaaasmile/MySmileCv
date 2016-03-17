@@ -5,7 +5,10 @@
 <%= form_for(@option) do |f| %>
 
   <p><label for="option_language">Language</label><br/>
+  <%= f.collection_select :language_id, Language.all, :id, :isoname, prompt: true %>
+  <%= text_field 'option', 'user_id'  %>
   </p>
+  
 
   <div class="actions">
     <%= f.submit 'Save', class: 'btn btn-primary' %>

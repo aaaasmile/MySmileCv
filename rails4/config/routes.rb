@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get 'picture' => 'identpictures#picture'
 
   get 'options' => 'options#index'
+  post 'options' => 'options#create'
 
   resources :identities
   resources :identpictures
