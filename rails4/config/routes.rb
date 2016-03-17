@@ -31,12 +31,13 @@ Rails.application.routes.draw do
 
   get 'picture' => 'identpictures#picture'
 
-  get 'options' => 'options#index'
-  post 'options' => 'options#create'
+  #get 'options' => 'options#index'
+  #post 'options' => 'options#create'
 
   resources :identities
   resources :identpictures
   resources :languages
+  resources :options
 
 
   #resources :Loadcurr, controller: 'load_curr'
