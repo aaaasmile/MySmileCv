@@ -88,11 +88,6 @@ ActiveRecord::Schema.define(version: 20160316153200) do
     t.integer "klang"
   end
 
-  create_table "luzs", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "miscstuffs", force: :cascade do |t|
     t.text    "misc"
     t.string  "mstype", limit: 255
