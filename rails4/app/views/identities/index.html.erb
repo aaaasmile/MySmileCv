@@ -63,7 +63,7 @@
           <%= link_to(identity, method: :delete, class: 'btn btn-default', title: 'Delete question',  aria:{label: 'Delete'}, data: { confirm: 'Are you sure?'}) do %>
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
           <% end %>
-          <%= link_to({:controller => 'curriculum', :action => 'curr_set_identity', :id => identity}, class: 'btn btn-primary', aria:{label: 'Use'}) do %>
+          <%= button_to({:controller => 'curriculum', :action => 'curr_set_identity', :id => identity}, class: 'btn btn-primary', aria:{label: 'Use'}) do %>
              Use
           <% end %>
         </div>

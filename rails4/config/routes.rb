@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   get 'logout' => 'login#logout'
 
   get 'curriculum' => 'curriculum#list_cmds'
-  get 'curr_set_identity' => 'curriculum#curr_set_identity'
-  post 'curr_add_picture' => 'curriculum#curr_add_picture'
   get 'create_pdf' => 'curriculum#create_pdf'
   post 'clear_curriculum' => 'curriculum#clear_curriculum'
   post 'create_scope' => 'curriculum#create_scope'
@@ -20,7 +18,11 @@ Rails.application.routes.draw do
   get 'remove_identity' => 'curriculum#remove_identity'
   get 'remove_picture' => 'curriculum#remove_picture'
   get 'remove_scope' => 'curriculum#remove_scope'
-  
+  get 'remove_computerskill' => 'curriculum#remove_computerskill'
+  post 'curr_add_all_computerskill' => 'curriculum#curr_add_all_computerskill'
+  post 'curr_add_computer_skill' => 'curriculum#curr_add_computer_skill'
+  post 'curr_set_identity' => 'curriculum#curr_set_identity'
+  post 'curr_add_picture' => 'curriculum#curr_add_picture'
   
 
   get 'load_curr' => 'load_curr#load_curr'
@@ -38,6 +40,7 @@ Rails.application.routes.draw do
   resources :identpictures
   resources :languages
   resources :options
+  resources :computerskills
 
 
   #resources :Loadcurr, controller: 'load_curr'

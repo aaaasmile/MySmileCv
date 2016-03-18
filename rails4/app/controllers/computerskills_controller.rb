@@ -1,13 +1,9 @@
 class ComputerskillsController < ApplicationController
   before_filter :authorize
+  before_action :set_computerskill, only: [:show, :edit, :update, :destroy]
   
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
-    @computerskill_pages, @computerskills = paginate :computerskills, :per_page => 10
+    @computerskills = Computerskill.all
   end
 
   def show
@@ -15,39 +11,44 @@ class ComputerskillsController < ApplicationController
   end
 
   def new
-    @languages = Language.find(:all)
     @computerskill = Computerskill.new
   end
+  
+  def edit
+  end
+
 
   def create
-    @languages = Language.find(:all)
-    @computerskill = Computerskill.new(params[:computerskill])
+    @computerskill = Computerskill.new(computerskill_params)
     if @computerskill.save
       flash[:notice] = 'Computerskill was successfully created.'
-      redirect_to :action => 'list'
+      redirect_to @computerskill
     else
-      render :action => 'new'
+      render :new
     end
   end
 
-  def edit
-    @languages = Language.find(:all)
-    @computerskill = Computerskill.find(params[:id])
-  end
-
   def update
-    @languages = Language.find(:all)
-    @computerskill = Computerskill.find(params[:id])
-    if @computerskill.update_attributes(params[:computerskill])
+    if @computerskill.update_attributes(computerskill_params)
       flash[:notice] = 'Computerskill was successfully updated.'
-      redirect_to :action => 'show', :id => @computerskill
+      redirect_to @computerskill
     else
-      render :action => 'edit'
+      render :edit
     end
   end
 
   def destroy
-    Computerskill.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    @computerskill.destroy
+    flash[:notice] = 'Computerskill was successfully destroyed'
+    redirect_to_computerskill_url
+  end
+  
+  private
+  def set_computerskill
+    @computerskill = Computerskill.find(params[:id])
+  end
+  
+  def computerskill_params
+    params.require(:computerskill).permit()
   end
 end

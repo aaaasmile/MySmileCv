@@ -6,7 +6,7 @@ class CurriculumController < ApplicationController
   
   def index
     @curriculum = find_curriculum
-    render :action => 'list_cmds'
+    render :list_cmds
   end
   
   def list_cmds
@@ -52,7 +52,7 @@ class CurriculumController < ApplicationController
   ### methods to add items to the current curriculum #######
   def goto_list_of_cmds
     session[:curriculum] = @curriculum.get_info_for_session
-    redirect_to :action =>  'list_cmds'
+    redirect_to :action => :list_cmds
   end
 
   def curr_add_picture
@@ -78,8 +78,8 @@ class CurriculumController < ApplicationController
   
   def curr_add_all_education
     @curriculum = find_curriculum
-    skill = Education.find(:all)
-    skill.each{|x| @curriculum.add_education(x)}
+    educations = Education.all
+    educations.each{|x| @curriculum.add_education(x)}
     goto_list_of_cmds
   end
   
@@ -92,8 +92,8 @@ class CurriculumController < ApplicationController
   
   def curr_add_all_computerskill
     @curriculum = find_curriculum
-    skill = Computerskill.find(:all)
-    skill.each{|x| @curriculum.add_computer_skill(x)}
+    skills = Computerskill.all
+    skills.each{|x| @curriculum.add_computer_skill(x)}
     goto_list_of_cmds
   end
   
@@ -106,8 +106,8 @@ class CurriculumController < ApplicationController
   
   def curr_add_all_languages
     @curriculum = find_curriculum
-    skill = Languageskill.find(:all)
-    skill.each{|x| @curriculum.add_lang_skill(x)}
+    languages = Languageskill.all
+    languages.each{|x| @curriculum.add_lang_skill(x)}
     goto_list_of_cmds
   end
   
@@ -120,8 +120,8 @@ class CurriculumController < ApplicationController
   
   def curr_add_all_miscstuff
     @curriculum = find_curriculum
-    skill = Miscstuff.find(:all)
-    skill.each{|x| @curriculum.add_miscstuff(x)}
+    stuff = Miscstuff.all
+    stuff.each{|x| @curriculum.add_miscstuff(x)}
     goto_list_of_cmds
   end
   
@@ -134,8 +134,8 @@ class CurriculumController < ApplicationController
   
   def curr_add_all_otherskill
     @curriculum = find_curriculum
-    skill = Otherskill.find(:all)
-    skill.each{|x| @curriculum.add_otherskill(x)}
+    otherskills = Otherskill.all
+    otherskills.each{|x| @curriculum.add_otherskill(x)}
     goto_list_of_cmds
   end
   
@@ -148,7 +148,7 @@ class CurriculumController < ApplicationController
   
   def curr_add_all_workexperience
     @curriculum = find_curriculum
-    exps = Workexperience.find(:all)
+    exps = Workexperience.all
     exps.each{|x| @curriculum.add_workexperience(x)}
     goto_list_of_cmds
   end
@@ -586,6 +586,7 @@ class CurriculumController < ApplicationController
   def cm_isolatin(text_utf8)
     #return Iconv.new('iso-8859-1', 'utf-8').iconv(text_utf8)
     # TODO
+    text_utf8
   end
   
 end
