@@ -26,7 +26,7 @@ Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
 
 == Passaggio dalla versione 1.2.3
-Da rails 1.2.3 a rails 4.2.6 è cambiato molto e non so quanto valga la pena riusare i files.
+Da rails 1.2.3 a rails 4.2.6 ï¿½ cambiato molto e non so quanto valga la pena riusare i files.
 Ora si usa bundle, ruby 2.1.7 o superiore.
 Quello che prima era in public (javascripts e css) vanno a finire in app/assets.
 Ma per librerie come jquery e boostrap, si includono usando il Gemfile di bundle e poi
@@ -38,7 +38,7 @@ dell'oggetto e non l'istanza dell'oggetto, quindi ho dovuto ricreare l'oggetto C
 Il delete di un record, o risorsa come viene chiamato ora, viene fatto attraverso un tag dell'html <a>,
 per questo occorre jqueryu. Le routes vengono annesse automaticamente con il comando resources: in routes.rb.
 Per l'update di una risorsa, occorre avere qualcosa come params.require(:identity).permit(<lista dei campi ammessi>,
-prima questo codice era nel modello, ora è nel controllo.
+prima questo codice era nel modello, ora ï¿½ nel controllo.
 Le icone in boostrap (glyphicon) vengono incluse di default e se boostrap va, vanno anche le icone
 senza fare nulla.
 
@@ -51,3 +51,11 @@ Genera:
 <a class="btn btn-default" aria-label="Show" href="/identities/2">
    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
 </a>
+
+== Nuovo utente
+rails console
+myuser = User.new
+myuser.salt = '<salt>'
+myuser.name = '<nome>'
+myuser.hashed_password = User.encrypted_password('<password>', myuser.salt)
+myuser.save
