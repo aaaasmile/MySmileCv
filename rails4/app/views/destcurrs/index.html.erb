@@ -1,0 +1,52 @@
+<h3>Curricula sent</h3>
+
+<table>
+  <thead>
+  <tr>
+    <th>Job</th>
+    <th>Company</th>
+    <th>Cur Sent</th>
+    <th>Result</th>
+  </tr>
+  </thead>
+  <tbody>
+<% row_odd = false
+    for destcurr in @destcurrs 
+     class_name = row_odd == true ? 'list_line_odd' : 'list_line_even' 
+        row_odd = !row_odd %>
+  <tr class="<%= class_name %>">
+    <td><%=h destcurr.send('inserat') %></td>
+    <td><%=h destcurr.send('contact_company') %></td>
+    <% date_curr_sent =  destcurr[:curr_sent_at]
+       if  date_curr_sent.year == 2003 %> 
+    <td>None</td>
+    <% else %>
+    <td><%=h destcurr.send('curr_sent_at') %></td>
+    <% end%>
+    <td><%=h destcurr.send('risultato') %></td>
+    <td>
+
+      <div class="btn-group" role="group" aria-label="Commands">
+        <%= link_to(destcurr, class: 'btn btn-default', aria:{label: 'Show'} ) do %>
+          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+        <% end %>
+        <%= link_to(edit_destcurr_path(destcurr), class: 'btn btn-default', aria:{label: 'Edit'} ) do %>
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+        <% end %>
+        <%= link_to(destcurr, method: :delete, class: 'btn btn-default', title: 'Delete question',  aria:{label: 'Delete'}, data: { confirm: 'Are you sure?'}) do %>
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        <% end %>
+      </div>
+
+    </td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+
+<br />
+
+<%= link_to(new_destcurr_path, class: 'btn btn-default', aria:{label: 'Add'}) do %>
+  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+<% end %>

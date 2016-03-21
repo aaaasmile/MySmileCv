@@ -44,6 +44,10 @@ Rails.application.routes.draw do
   post 'curr_add_miscstuff' => 'curriculum#curr_add_miscstuff'
   get 'remove_miscstuff' => 'curriculum#remove_miscstuff'
   
+  get 'view_curr_insertion' => 'destcurrs#view_curr_insertion'
+  get 'view_curr_pdf' => 'destcurrs#view_curr_pdf'
+  get 'destcurrs_show_prev' => 'destcurrs#show_prev'
+  get 'destcurrs_show_next' => 'destcurrs#show_next'
 
   get 'load_curr' => 'load_curr#load_curr'
   get 'delete_curr' => 'load_curr#delete_curr'
@@ -66,6 +70,7 @@ Rails.application.routes.draw do
   resources :languageskills
   resources :otherskills
   resources :miscstuffs
+  resources :destcurrs
 
 
   #resources :Loadcurr, controller: 'load_curr'

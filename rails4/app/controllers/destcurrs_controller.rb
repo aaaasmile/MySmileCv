@@ -1,13 +1,9 @@
 class DestcurrsController < ApplicationController
   before_filter :authorize
-  
-  def index
-    list
-    render :action => 'list'
-  end
+  before_action :set_destcurr, only: [:show, :edit, :update, :destroy, :view_curr_insertion]
 
-  def list
-    @destcurr_pages, @destcurrs = paginate :destcurrs, :per_page => 10
+  def index
+    @destcurrs = Destcurr.all
   end
 
   def show
@@ -41,41 +37,48 @@ class DestcurrsController < ApplicationController
     @destcurr = Destcurr.new
   end
 
-  def create
-    @filecurrsaveds =  Filecurrsaved.find(:all)
-    @destcurr = Destcurr.new(params[:destcurr])
-    if @destcurr.save
-      flash[:notice] = 'Destcurr was successfully created.'
-      redirect_to :action => 'list'
-    else
-      render :action => 'new'
-    end
-  end
-
   def edit
     @filecurrsaveds =  Filecurrsaved.find(:all)
-    @destcurr = Destcurr.find(params[:id])
+  end
+
+  def create
+    @filecurrsaveds =  Filecurrsaved.find(:all)
+    @destcurr = Destcurr.new(destcurr_params)
+    respond_to do |format|
+      if @destcurr.save
+        format.html { redirect_to @destcurr,  notice: 'Curricula sent was successfully created.'}
+      else
+        format.html { render :new }
+      end
+    end
   end
 
   def update
     @filecurrsaveds =  Filecurrsaved.find(:all)
-    @destcurr = Destcurr.find(params[:id])
-    if @destcurr.update_attributes(params[:destcurr])
-      flash[:notice] = 'Destcurr was successfully updated.'
-      redirect_to :action => 'show', :id => @destcurr
-    else
-      render :action => 'edit'
+    respond_to do |format|
+      if @destcurr.update_attributes(destcurr_params)
+        format.html {redirect_to @destcurr, notice: 'Curricula sent was successfully updated.'}
+      else
+        format.html { render :edit }
+      end
     end
   end
 
   def destroy
-    Destcurr.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    @destcurr.destroy
+    respond_to do |format|
+      format.html { redirect_to destcurrs_url, notice: 'Curricula sent was successfully destroyed.' }
+    end
   end
   
   def view_curr_insertion
-    @destcurr = Destcurr.find(params[:id])
-    redirect_to("#{@request.relative_url_root}/inserat/#{@destcurr.inserat_filename}")
+    inserat_fname = Rails.root.join('public', 'inserat', @destcurr.inserat_filename)
+    if File.exist?(inserat_fname)
+      # inserat_fname.relative_path_from(Rails.root).to_s # Pathname class
+      redirect_to("inserat/#{@destcurr.inserat_filename}")
+    else
+      render :show
+    end
   end
   
   def view_curr_pdf
@@ -90,6 +93,19 @@ class DestcurrsController < ApplicationController
   end
   
   def next_item
+  end
+
+  private
+  def set_destcurr
+    @destcurr = Destcurr.find(params[:id])
+  end
+  
+  def destcurr_params
+    par = params.require(:destcurr).permit(:inserat, :contact_email, :contact_web, :contact_person, 
+      :contact_company, :contact_note, :contact_ams, :curr_sent_at, :colloquio_at, :email_motivaz, :note, 
+      :risultato, :kcurr_saved, :inserat_filename)
+    
+    return par
   end
   
 end
