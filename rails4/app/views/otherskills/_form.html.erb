@@ -1,4 +1,15 @@
-<%= error_messages_for 'otherskill' %>
+<%= form_for(@otherskill) do |f| %>
+  <% if @otherskill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@otherskill.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @otherskill.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 <!--[form:otherskill]-->
 <p><label for="otherskill_skill">Skill</label><br/>
@@ -7,7 +18,10 @@
 <p><label for="otherskill_skill">Type</label><br/>
 <%= text_field 'otherskill', 'sktype'  %></p>
 
-<p><label for="otherskill_klang">Klang</label><br/>
-<%= collection_select(:otherskill, :klang, @languages, :id, :isoname)%>
-<!--[eoform:otherskill]-->
+
+<div class="actions">
+      <%= f.submit class: 'btn btn-primary' %>
+  </div>
+
+<% end %>
 

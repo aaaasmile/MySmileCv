@@ -21,10 +21,6 @@
 <p><label for="languageskill_lang">Lang</label><br/>
 <%= text_field 'languageskill', 'lang'  %></p>
 
-<p><label for="languageskill_klang">Klang</label><br/>
-<%= collection_select(:languageskill, :klang, @languages, :id, :isoname)%>
-</p>
-
   <div class="actions">
       <%= f.submit class: 'btn btn-primary' %>
   </div>
