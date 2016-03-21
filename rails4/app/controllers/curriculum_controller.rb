@@ -97,17 +97,17 @@ class CurriculumController < ApplicationController
     goto_list_of_cmds
   end
   
-  def curr_add_lang_skill
+  def curr_add_languageskill
     @curriculum = find_curriculum
     skill = Languageskill.find(params[:id])
-    @curriculum.add_lang_skill(skill)
+    @curriculum.add_languageskill(skill)
     goto_list_of_cmds
   end
   
-  def curr_add_all_languages
+  def curr_add_all_languageskill
     @curriculum = find_curriculum
     languages = Languageskill.all
-    languages.each{|x| @curriculum.add_lang_skill(x)}
+    languages.each{|x| @curriculum.add_languageskill(x)}
     goto_list_of_cmds
   end
   

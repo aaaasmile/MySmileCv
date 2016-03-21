@@ -1,13 +1,9 @@
 class LanguageskillsController < ApplicationController
   before_filter :authorize
+  before_action :set_languageskill, only: [:show, :edit, :update, :destroy]
   
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
-    @languageskill_pages, @languageskills = paginate :languageskills, :per_page => 10
+    @languageskills = Languageskill.all
   end
 
   def show
@@ -15,39 +11,50 @@ class LanguageskillsController < ApplicationController
   end
 
   def new
-    @languages = Language.find(:all)
     @languageskill = Languageskill.new
   end
 
   def create
-    @languages = Language.find(:all)
-    @languageskill = Languageskill.new(params[:languageskill])
-    if @languageskill.save
-      flash[:notice] = 'Languageskill was successfully created.'
-      redirect_to :action => 'list'
-    else
-      render :action => 'new'
+    @languageskill = Languageskill.new(languageskill_params)
+    respond_to do |format|
+      if @languageskill.save
+        format.html { redirect_to @languageskill,  notice: 'Language skill was successfully created.'}
+      else
+        format.html { render :new }
+      end
     end
   end
 
-  def edit
-    @languages = Language.find(:all)
-    @languageskill = Languageskill.find(params[:id])
-  end
-
   def update
-    @languages = Language.find(:all)
-    @languageskill = Languageskill.find(params[:id])
-    if @languageskill.update_attributes(params[:languageskill])
-      flash[:notice] = 'Languageskill was successfully updated.'
-      redirect_to :action => 'show', :id => @languageskill
-    else
-      render :action => 'edit'
+    respond_to do |format|
+      if @languageskill.update_attributes(languageskill_params)
+        format.html {redirect_to @languageskill, notice: 'Language skill was successfully updated.'}
+      else
+        format.html { render :edit }
+      end
     end
   end
 
   def destroy
-    Languageskill.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    @languageskill.destroy
+    respond_to do |format|
+      format.html { redirect_to languageskills_url, notice: 'Technology was successfully destroyed.' }
+    end
   end
+  
+  private
+  def set_languageskill
+    @languageskill = Languageskill.find(params[:id])
+  end
+  
+  def languageskill_params
+    par = params.require(:languageskill).permit(:name, :level, :lang, :klang)
+    if par[:klang] == nil
+      option = Option.find_by_user_id(session[:user_id]) 
+      par[:klang] = option.language_id
+    end
+    return par
+  end
+
+
 end

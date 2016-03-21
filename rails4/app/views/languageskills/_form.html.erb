@@ -1,4 +1,15 @@
-<%= error_messages_for 'languageskill' %>
+<%= form_for(@languageskill) do |f| %>
+  <% if @languageskill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@languageskill.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @languageskill.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 <!--[form:languageskill]-->
 <p><label for="languageskill_name">Name</label><br/>
@@ -13,5 +24,10 @@
 <p><label for="languageskill_klang">Klang</label><br/>
 <%= collection_select(:languageskill, :klang, @languages, :id, :isoname)%>
 </p>
-<!--[eoform:languageskill]-->
+
+  <div class="actions">
+      <%= f.submit class: 'btn btn-primary' %>
+  </div>
+
+<% end %>
 

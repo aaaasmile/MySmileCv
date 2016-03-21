@@ -1,8 +1,7 @@
 <h3>New language skill</h3>
 
-<% form_tag :action => 'create' do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag "Create" %>
-<% end %>
+<%= render 'form' %>
 
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to(languageskills_path, class: 'btn btn-default', aria:{label: 'Back'} ) do %>
+  <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+<% end %>

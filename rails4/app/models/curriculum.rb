@@ -94,7 +94,7 @@ class Curriculum
     # now fill all array elements
     fill_arr_withmodel(@curr_all_info[:computer_skills], :add_computer_skill, Computerskill)
     fill_arr_withmodel(@curr_all_info[:education_list], :add_education, Education )
-    fill_arr_withmodel(@curr_all_info[:lang_skills], :add_lang_skill, Languageskill)
+    fill_arr_withmodel(@curr_all_info[:lang_skills], :add_languageskill, Languageskill)
     fill_arr_withmodel(@curr_all_info[:miscstuff_list], :add_miscstuff, Miscstuff)
     fill_arr_withmodel(@curr_all_info[:other_skills], :add_otherskill, Otherskill )
     fill_arr_withmodel(@curr_all_info[:workexperience_list], :add_workexperience, Workexperience)
@@ -264,7 +264,7 @@ class Curriculum
   end
   
   ### LANGSKILL
-  def add_lang_skill(item)
+  def add_languageskill(item)
     @cur_lang_skills << item
   end
   
