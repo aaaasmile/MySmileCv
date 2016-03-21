@@ -17,30 +17,32 @@ class ComputerskillsController < ApplicationController
   def edit
   end
 
-
   def create
     @computerskill = Computerskill.new(computerskill_params)
-    if @computerskill.save
-      flash[:notice] = 'Computerskill was successfully created.'
-      redirect_to @computerskill
-    else
-      render :new
+    respond_to do |format|
+      if @computerskill.save
+        format.html { redirect_to @computerskill,  notice: 'Computerskill was successfully created.'}
+      else
+        format.html { render :new }
+      end
     end
   end
 
   def update
-    if @computerskill.update_attributes(computerskill_params)
-      flash[:notice] = 'Computerskill was successfully updated.'
-      redirect_to @computerskill
-    else
-      render :edit
+    respond_to do |format|
+      if @computerskill.update_attributes(computerskill_params)
+        format.html {redirect_to @computerskillm, notice: 'Computerskill was successfully updated.'}
+      else
+        format.html { render :edit }
+      end
     end
   end
 
   def destroy
     @computerskill.destroy
-    flash[:notice] = 'Computerskill was successfully destroyed'
-    redirect_to_computerskill_url
+    respond_to do |format|
+      format.html { redirect_to computerskills_url, notice: 'Technology was successfully destroyed.' }
+    end
   end
   
   private
@@ -49,6 +51,11 @@ class ComputerskillsController < ApplicationController
   end
   
   def computerskill_params
-    params.require(:computerskill).permit()
+    par = params.require(:computerskill).permit(:name, :cstype, :level, :experience, :klang)
+    if par[:klang] == nil
+      option = Option.find_by_user_id(session[:user_id]) 
+      par[:klang] = option.language_id
+    end
+    return par
   end
 end
