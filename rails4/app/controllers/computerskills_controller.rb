@@ -31,7 +31,7 @@ class ComputerskillsController < ApplicationController
   def update
     respond_to do |format|
       if @computerskill.update_attributes(computerskill_params)
-        format.html {redirect_to @computerskillm, notice: 'Computerskill was successfully updated.'}
+        format.html {redirect_to @computerskill, notice: 'Computerskill was successfully updated.'}
       else
         format.html { render :edit }
       end

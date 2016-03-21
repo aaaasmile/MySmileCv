@@ -1,56 +1,61 @@
 class EducationsController < ApplicationController
   before_filter :authorize
+  before_action :set_education, only: [:show, :edit, :update, :destroy]
   
   def index
-    list
-    render :action => 'list'
-  end
-
-  
-
-  def list
-    @education_pages, @educations = paginate :educations, :per_page => 10
+    @educations = Education.all
   end
 
   def show
-    @languages = Language.find(:all)
     @education = Education.find(params[:id])
   end
 
   def new
-    @languages = Language.find(:all)
     @education = Education.new
   end
 
+  def edit
+  end
+
   def create
-    @languages = Language.find(:all)
-    @education = Education.new(params[:education])
-    if @education.save
-      flash[:notice] = 'Education was successfully created.'
-      redirect_to :action => 'list'
-    else
-      render :action => 'new'
+    @education = Education.new(education_params)
+    respond_to do |format|
+      if @education.save
+        format.html { redirect_to @education,  notice: 'Education was successfully created.'}
+      else
+        format.html { render :new }
+      end
     end
   end
 
-  def edit
-    @languages = Language.find(:all)
-    @education = Education.find(params[:id])
-  end
-
   def update
-    @languages = Language.find(:all)
-    @education = Education.find(params[:id])
-    if @education.update_attributes(params[:education])
-      flash[:notice] = 'Education was successfully updated.'
-      redirect_to :action => 'show', :id => @education
-    else
-      render :action => 'edit'
+    respond_to do |format|
+      if @education.update_attributes(education_params)
+        format.html {redirect_to @education, notice: 'Education was successfully updated.'}
+      else
+        format.html { render :edit }
+      end
     end
   end
 
   def destroy
-    Education.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    @education.destroy
+    respond_to do |format|
+      format.html { redirect_to educations_url, notice: 'Education was successfully destroyed.' }
+    end
+  end
+
+  private
+  def set_education
+    @education = Education.find(params[:id])
+  end
+  
+  def education_params
+    par = params.require(:education).permit(:from, :to, :title, :skills, :organisation, :level, :klang)
+    if par[:klang] == nil
+      option = Option.find_by_user_id(session[:user_id]) 
+      par[:klang] = option.language_id
+    end
+    return par
   end
 end

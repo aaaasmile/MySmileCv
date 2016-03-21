@@ -23,6 +23,10 @@ Rails.application.routes.draw do
   post 'curr_add_computer_skill' => 'curriculum#curr_add_computer_skill'
   post 'curr_set_identity' => 'curriculum#curr_set_identity'
   post 'curr_add_picture' => 'curriculum#curr_add_picture'
+
+  post 'curr_add_all_education' => 'curriculum#curr_add_all_education'
+  post 'curr_add_education' => 'curriculum#curr_add_education'
+  get 'remove_education' => 'curriculum#remove_education'
   
 
   get 'load_curr' => 'load_curr#load_curr'
@@ -41,6 +45,7 @@ Rails.application.routes.draw do
   resources :languages
   resources :options
   resources :computerskills
+  resources :educations
 
 
   #resources :Loadcurr, controller: 'load_curr'
