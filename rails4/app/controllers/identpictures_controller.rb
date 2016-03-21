@@ -1,15 +1,11 @@
 class IdentpicturesController < ApplicationController
   before_filter :authorize
+  before_action :set_identpicture, only: [:show, :edit, :update, :destroy]
   
   def index
-    list
-    render :action => 'list'
+    @identpictures = Identpicture.all
   end
-
-  def list
-    @identpictures = Identpicture.page params[:page]
-  end
-
+  
   def show
     @identpicture = Identpicture.find(params[:id])
   end
@@ -31,32 +27,44 @@ class IdentpicturesController < ApplicationController
     @identpicture = Identpicture.new
   end
 
+  def edit
+  end
+
   def create
-    @identpicture = Identpicture.new(params[:identpicture])
-    if @identpicture.save
-      flash[:notice] = 'Identpicture was successfully created.'
-      redirect_to :action => 'list'
-    else
-      render :action => 'new'
+    p @identpicture = Identpicture.new(identpicture_params)
+    respond_to do |format|
+      if @identpicture.save
+        format.html { redirect_to @identpicture,  notice: 'Picture was successfully created.'}
+      else
+        format.html { render :new }
+      end
     end
   end
 
-  def edit
-    @identpicture = Identpicture.find(params[:id])
-  end
-
   def update
-    @identpicture = Identpicture.find(params[:id])
-    if @identpicture.update_attributes(params[:identpicture])
-      flash[:notice] = 'Identpicture was successfully updated.'
-      redirect_to :action => 'show', :id => @identpicture
-    else
-      render :action => 'edit'
+    respond_to do |format|
+      if @identpicture.update_attributes(identpicture_params)
+        format.html {redirect_to @identpicture, notice: 'Picture was successfully updated.'}
+      else
+        format.html { render :edit }
+      end
     end
   end
 
   def destroy
-    Identpicture.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    @identpicture.destroy
+    respond_to do |format|
+      format.html { redirect_to identpictures_url, notice: 'Picture was successfully destroyed.' }
+    end
   end
+  
+  private
+  def set_identpicture
+    @identpicture = Identpicture.find(params[:id])
+  end
+  
+  def identpicture_params
+    params.require(:identpicture).permit(:identpicture_picture)
+  end
+  
 end

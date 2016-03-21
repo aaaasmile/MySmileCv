@@ -42,6 +42,11 @@ prima questo codice era nel modello, ora � nel controllo.
 Le icone in boostrap (glyphicon) vengono incluse di default e se boostrap va, vanno anche le icone
 senza fare nulla.
 
+Nella picture, per far funzionare il modello bisogna usare nel form il multipart=true in questo modo
+<%= form_for(@identpicture, html:{multipart: true})
+Nel validates_format_of del modello, la regex /^image/ diventa /\Aimage/
+
+
 == Snippets non chiari
 <%= link_to(identity, class: 'btn btn-default', aria:{label: 'Show'} ) do %>
     <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>

@@ -1,11 +1,27 @@
-<%= error_messages_for 'identpicture' %>
+<%= form_for(@identpicture, html:{multipart: true}) do |f| %>
+  <% if @identpicture.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@identpicture.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @identpicture.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 <!--[form:identpicture]-->
-<p><label for="identpicture_foto">Foto</label><br/>
-</p>
+<p><label for="identpicture_foto">Foto filename</label><br/>
+<div><%= @identpicture.foto_filename %></div></p>
 
 <p>Upload your picture:</p> 
 <%= file_field('identpicture', "identpicture_picture") %>
 
 <!--[eoform:identpicture]-->
 
+<div class="actions">
+      <%= f.submit class: 'btn btn-primary' %>
+  </div>
+
+<% end %>

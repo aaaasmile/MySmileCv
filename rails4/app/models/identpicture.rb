@@ -1,9 +1,8 @@
 class Identpicture < ActiveRecord::Base
   
-  #validates_format_of :content_type,
-  #                  :with => /^image/,
-  #                  :message => "-- you can only upload pictures"
-  # TODO
+  validates_format_of :content_type, 
+        :with => /\Aimage/, :message => "-- you can only upload pictures"
+   
 
   def identpicture_picture=(picture_field)
     #p picture_field.class
