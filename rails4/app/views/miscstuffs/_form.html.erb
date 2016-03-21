@@ -1,4 +1,15 @@
-<%= error_messages_for 'miscstuff' %>
+<%= form_for(@miscstuff) do |f| %>
+  <% if @miscstuff.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@miscstuff.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @miscstuff.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 <!--[form:miscstuff]-->
 <p><label for="miscstuff_misc">Misc</label><br/>
@@ -8,7 +19,8 @@
 <%= text_field 'miscstuff', 'mstype'  %></p>
 
 
-<p><label for="miscstuff_klang">Klang</label><br/>
-<%= collection_select(:miscstuff, :klang, @languages, :id, :isoname)%>
-<!--[eoform:miscstuff]-->
+<div class="actions">
+      <%= f.submit class: 'btn btn-primary' %>
+  </div>
 
+<% end %>

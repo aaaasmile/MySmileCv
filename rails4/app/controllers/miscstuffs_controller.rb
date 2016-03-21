@@ -1,13 +1,8 @@
 class MiscstuffsController < ApplicationController
-  before_filter :authorize
+  before_action :set_miscstuff, only: [:show, :edit, :update, :destroy]
   
   def index
-    list
-    render :action => 'list'
-  end
-
-  def list
-    @miscstuff_pages, @miscstuffs = paginate :miscstuffs, :per_page => 10
+    @miscstuffs = Miscstuff.all
   end
 
   def show
@@ -15,39 +10,51 @@ class MiscstuffsController < ApplicationController
   end
 
   def new
-    @languages = Language.find(:all)
     @miscstuff = Miscstuff.new
+  end
+  
+  def edit
   end
 
   def create
-    @languages = Language.find(:all)
-    @miscstuff = Miscstuff.new(params[:miscstuff])
-    if @miscstuff.save
-      flash[:notice] = 'Miscstuff was successfully created.'
-      redirect_to :action => 'list'
-    else
-      render :action => 'new'
+    @miscstuff = Miscstuff.new(miscstuff_params)
+    respond_to do |format|
+      if @miscstuff.save
+        format.html { redirect_to @miscstuff,  notice: 'Mis. cstuff was successfully created.'}
+      else
+        format.html { render :new }
+      end
     end
   end
 
-  def edit
-    @languages = Language.find(:all)
-    @miscstuff = Miscstuff.find(params[:id])
-  end
-
   def update
-    @languages = Language.find(:all)
-    @miscstuff = Miscstuff.find(params[:id])
-    if @miscstuff.update_attributes(params[:miscstuff])
-      flash[:notice] = 'Miscstuff was successfully updated.'
-      redirect_to :action => 'show', :id => @miscstuff
-    else
-      render :action => 'edit'
+    respond_to do |format|
+      if @miscstuff.update_attributes(miscstuff_params)
+        format.html {redirect_to @miscstuff, notice: 'Misc. stuff was successfully updated.'}
+      else
+        format.html { render :edit }
+      end
     end
   end
 
   def destroy
-    Miscstuff.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    @miscstuff.destroy
+    respond_to do |format|
+      format.html { redirect_to miscstuffs_url, notice: 'Misc. stuff was successfully destroyed.' }
+    end
+  end
+  
+  private
+  def set_miscstuff
+    @miscstuff = Miscstuff.find(params[:id])
+  end
+  
+  def miscstuff_params
+    par = params.require(:miscstuff).permit(:misc, :mstype, :klang)
+    if par[:klang] == nil
+      option = Option.find_by_user_id(session[:user_id]) 
+      par[:klang] = option.language_id
+    end
+    return par
   end
 end

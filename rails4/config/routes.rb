@@ -39,6 +39,10 @@ Rails.application.routes.draw do
   post 'curr_add_all_otherskill' => 'curriculum#curr_add_all_otherskill'
   post 'curr_add_otherskill' => 'curriculum#curr_add_otherskill'
   get 'remove_otherskill' => 'curriculum#remove_otherskill'
+
+  post 'curr_add_all_miscstuff' => 'curriculum#curr_add_all_miscstuff'
+  post 'curr_add_miscstuff' => 'curriculum#curr_add_miscstuff'
+  get 'remove_miscstuff' => 'curriculum#remove_miscstuff'
   
 
   get 'load_curr' => 'load_curr#load_curr'
@@ -61,6 +65,7 @@ Rails.application.routes.draw do
   resources :workexperiences
   resources :languageskills
   resources :otherskills
+  resources :miscstuffs
 
 
   #resources :Loadcurr, controller: 'load_curr'

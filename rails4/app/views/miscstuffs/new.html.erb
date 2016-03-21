@@ -1,8 +1,8 @@
 <h3>New miscellaneous stuff</h3>
 
-<% form_tag :action => 'create' do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag "Create" %>
+<%= render 'form' %>
+
+<%= link_to(miscstuffs_path, class: 'btn btn-default', aria:{label: 'Back'} ) do %>
+  <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 <% end %>
 
-<%= link_to 'Back', :action => 'list' %>
