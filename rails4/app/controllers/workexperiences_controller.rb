@@ -1,14 +1,9 @@
 class WorkexperiencesController < ApplicationController
   before_filter :authorize
+  before_action :set_workexperience, only: [:show, :edit, :update, :destroy]
   
   def index
-    list
-    render :action => 'list'
-  end
-
- 
-  def list
-    @workexperience_pages, @workexperiences = paginate :workexperiences, :per_page => 10
+    @workexperiences = Workexperience.all
   end
 
   def show
@@ -16,39 +11,51 @@ class WorkexperiencesController < ApplicationController
   end
 
   def new
-    @languages = Language.find(:all)
     @workexperience = Workexperience.new
   end
 
+  def edit
+  end
+
   def create
-    @languages = Language.find(:all)
-    @workexperience = Workexperience.new(params[:workexperience])
-    if @workexperience.save
-      flash[:notice] = 'Workexperience was successfully created.'
-      redirect_to :action => 'list'
-    else
-      render :action => 'new'
+    @workexperience = Workexperience.new(workexperience_params)
+    respond_to do |format|
+      if @workexperience.save
+        format.html { redirect_to @workexperience,  notice: 'Work experience was successfully created.'}
+      else
+        format.html { render :new }
+      end
     end
   end
 
-  def edit
-    @languages = Language.find(:all)
-    @workexperience = Workexperience.find(params[:id])
-  end
-
   def update
-    @languages = Language.find(:all)
-    @workexperience = Workexperience.find(params[:id])
-    if @workexperience.update_attributes(params[:workexperience])
-      flash[:notice] = 'Workexperience was successfully updated.'
-      redirect_to :action => 'show', :id => @workexperience
-    else
-      render :action => 'edit'
+    respond_to do |format|
+      if @workexperience.update_attributes(workexperience_params)
+        format.html {redirect_to @workexperience, notice: 'Work experience was successfully updated.'}
+      else
+        format.html { render :edit }
+      end
     end
   end
 
   def destroy
-    Workexperience.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    @workexperience.destroy
+    respond_to do |format|
+      format.html { redirect_to workexperiences_url, notice: 'Work experience was successfully destroyed.' }
+    end
+  end
+
+  private
+  def set_workexperience
+    @workexperience = Workexperience.find(params[:id])
+  end
+  
+  def workexperience_params
+    par = params.require(:workexperience).permit(:from, :to, :position, :activities, :employer, :sector, :tag, :klang)
+    if par[:klang] == nil
+      option = Option.find_by_user_id(session[:user_id]) 
+      par[:klang] = option.language_id
+    end
+    return par
   end
 end

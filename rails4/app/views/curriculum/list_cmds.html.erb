@@ -52,7 +52,7 @@
   <%# debug(@curriculum.cur_workexperience_list) %>
   <% @curriculum.cur_workexperience_list.each do |item| %> 
     <%# debug(item) %>
-    <p><%= item.info_compact %> |<%= link_to 'X', :action => 'remove_workexperince', :id => item.id  %>| </p>
+    <p><%= item.info_compact %> |<%= link_to 'X', :action => 'remove_workexperience', :id => item.id  %>| </p>
   <% end %>
 <% end %>
 

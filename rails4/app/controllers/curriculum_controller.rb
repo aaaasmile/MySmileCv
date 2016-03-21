@@ -173,7 +173,7 @@ class CurriculumController < ApplicationController
     goto_list_of_cmds
   end
   
-  def remove_workexperince
+  def remove_workexperience
     @curriculum = find_curriculum
     @curriculum.destroy_workexperience(params[:id])
     goto_list_of_cmds

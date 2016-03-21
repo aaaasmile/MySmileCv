@@ -1,9 +1,10 @@
 <h3>Editing workexperience</h3>
 
-<% form_tag :action => 'update', :id => @workexperience do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
-<% end %>
+<%= render 'form' %>
 
-<%= link_to 'Show', :action => 'show', :id => @workexperience %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to(@workexperience, class: 'btn btn-default', aria:{label: 'Show'} ) do %>
+  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+<% end %>
+<%= link_to(workexperiences_path, class: 'btn btn-default', aria:{label: 'Back'} ) do %>
+  <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+<% end %>
