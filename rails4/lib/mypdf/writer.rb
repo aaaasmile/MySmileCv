@@ -713,7 +713,9 @@ class PDF::Writer
     pos = content.size
 
     objects.each do |oo|
-      cont = oo.to_s
+      cont_iso = oo.to_s
+      # ISS changed
+      cont = cont_iso.encode("UTF-8")
       content << cont
       xref << pos
       pos += cont.size
@@ -1563,6 +1565,7 @@ class PDF::Writer
 
     max   = 0
 
+    # ISS changed
     text.to_s.each_line do |line|
       width = text_line_width(line, size)
       max = width if width > max
@@ -2294,6 +2297,7 @@ class PDF::Writer
 
   def preprocess_text(text)
     text
+    uuml_latin1 = text.encode("ISO-8859-1") # ISS changed
   end
   private :preprocess_text
 
@@ -2372,6 +2376,7 @@ class PDF::Writer
       height = font_height(size)
     end
 
+    # ISS changed
     text.each_line do |line|
       start = true
       loop do # while not line.empty? or start

@@ -30,7 +30,7 @@
     builder.build_pdf(@pdf_file_name)
     #flash[:notice] = 'PDF file  was successfully created.'
     #redirect_to :action =>  'list_cmds'
-    redirect_to("#{@request.relative_url_root}/pdf/#{title_pdf}")
+    redirect_to("#{relative_url_root}/pdf/#{title_pdf}")
   end
   
   def save_extra_options
@@ -318,9 +318,20 @@ class CurrPdfBuilder
     
     pdf.move_pointer(30)
     if info_identity
-      str_tmp = '<b>Lebenslauf</b>'
-      add_each_tostring_inst(str_tmp) 
+      str_tmp = '<b>Lebenslaufä</b>'
+      #p str_tmp.encoding
+      #p str_tmp.bytes
+      #p str_tmp = str_tmp.encode("ISO-8859-1")
+      #p str_tmp.encoding
+      #p str_tmp.bytes
+
       pdf.text(str_tmp, {:justification => :right, :right => col_r_rmargin, :font_size => 18})
+      pdf.stop_page_numbering(true, :current)
+      pdf.save_as(pdf_file_name)
+      return
+
+
+      
       pdf.text('<b>Angaben zur Person</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
       # data identity
       pdf.text('Nachnamen/Vorname', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_hspace)
