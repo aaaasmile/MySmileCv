@@ -1,4 +1,4 @@
-#! /usr/bin/env ruby
+﻿#! /usr/bin/env ruby
 #--
 # PDF::Writer for Ruby.
 #   http://rubyforge.org/projects/ruby-pdf/

@@ -1,4 +1,4 @@
-#--
+﻿#--
 # PDF::Writer for Ruby.
 #   http://rubyforge.org/projects/ruby-pdf/
 #   Copyright 2003 - 2005 Austin Ziegler.
@@ -20,7 +20,7 @@ module PDF::Writer::Lang
       #
       # If the file 'pdf/writer/lang/es' contains the module
       # <tt>PDF::Writer::Lang::ES</tt>, the error messages for PDF could be
-      # localized to Espa�ol thus:
+      # localized to Español thus:
       #
       #   require 'pdf/writer'
       #   require 'pdf/writer/lang/es'
