@@ -1,6 +1,12 @@
 ﻿require 'pdf/writer'
 #require 'iconv'
 
+class String
+  def each
+    each_line
+  end
+end
+
 class CurriculumController < ApplicationController
   before_filter :authorize
   
@@ -298,45 +304,47 @@ class CurriculumController < ApplicationController
     
     pdf.move_pointer(30)
     if info_identity
-      pdf.text('<b>Lebenslauf</b>', :justification => :right, :right => col_r_rmargin, :font_size => 18)
-      pdf.text('<b>Angaben zur Person</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
+      pdf.text(['<b>Lebenslauf</b>'], {:justification => :right, :right => col_r_rmargin, :font_size => 18})
+      pdf.text(['<b>Angaben zur Person</b>'], :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
       # data identity
-      pdf.text('Nachnamen/Vorname', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_hspace)
+      pdf.text(['Nachnamen/Vorname'], :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_hspace)
       pdf.move_pointer(up_y)
-      pdf.text("<b>#{cm_isolatin(info_identity.lastname)}, #{cm_isolatin(info_identity.firstname)}</b>", :justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      pdf.text(["<b>#{cm_isolatin(info_identity.lastname)}, #{cm_isolatin(info_identity.firstname)}</b>"], :justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
-      pdf.text('Adresse',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield,  :spacing => txt_space)
+      pdf.text(['Adresse'],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield,  :spacing => txt_space)
       pdf.move_pointer(up_y)
-      pdf.text("#{cm_isolatin(info_identity.address)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      pdf.text(["#{cm_isolatin(info_identity.address)}"],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
-      pdf.text('Telefon',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(['Telefon'],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
-      pdf.text("<i>Mobil</i>: #{info_identity.mobile}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      pdf.text(["<i>Mobil</i>: #{info_identity.mobile}"],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
       # FAX ??? pretty old stuff
       #pdf.text('Fax',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       #pdf.move_pointer(up_y)
       #pdf.text("#{info_identity.fax}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
-      pdf.text('E-mail/Web',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(['E-mail/Web'],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
-      pdf.text("<c:alink uri=\"mailto:#{info_identity.email}\">#{info_identity.email}</c:alink>, <i>Web</i>: <c:alink uri=\"http://#{info_identity.web}\">#{info_identity.web}</c:alink>",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      str_tmp = "<c:alink uri=\"mailto:#{info_identity.email}\">#{info_identity.email}</c:alink>, <i>Web</i>: <c:alink uri=\"http://#{info_identity.web}\">#{info_identity.web}</c:alink>"
+      add_each_tostring_inst(str_tmp)
+      pdf.text(str_tmp,:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
-      pdf.text('Staatsangehörigkeit',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(['Staatsangehörigkeit'],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
-      pdf.text("#{cm_isolatin(info_identity.nationality)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      pdf.text(["#{cm_isolatin(info_identity.nationality)}"],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
-      pdf.text('Geburtsdatum',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(['Geburtsdatum'],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
-      pdf.text("#{datum_format(info_identity.birthdate)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      pdf.text(["#{datum_format(info_identity.birthdate)}"],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
-      pdf.text('Geschlecht',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield,  :spacing => txt_space)
+      pdf.text(['Geschlecht'],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield,  :spacing => txt_space)
       pdf.move_pointer(up_y)
-      pdf.text("#{cm_isolatin(info_identity.gender)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      pdf.text(["#{cm_isolatin(info_identity.gender)}"],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
-      pdf.text('Familienstand',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(['Familienstand'],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
-      pdf.text("#{cm_isolatin(info_identity.familystate)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      pdf.text(["#{cm_isolatin(info_identity.familystate)}"],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
       pdf.move_pointer(4)
     end
@@ -346,24 +354,24 @@ class CurriculumController < ApplicationController
       txt_space_2lines_gb = 1
       txt_space = 1.3
       up_y_2lines_gb = - pdf.font_height(fnt_size_gb) * txt_space_2lines_gb
-      pdf.text('<b>Gewünschte Beschäftigung</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_gb, :spacing => txt_space_2lines_gb)
+      pdf.text(['<b>Gewünschte Beschäftigung</b>'], :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_gb, :spacing => txt_space_2lines_gb)
       y_ag = pdf.y
       pdf.move_pointer(2 * up_y_2lines_gb)
-      pdf.text("<b>#{cm_isolatin(@curriculum.cur_scope)}</b>",:justification => :left, :left => left_part_data, :font_size => fnt_size_gb,  :spacing => txt_space_2lines_gb )
+      pdf.text(["<b>#{cm_isolatin(@curriculum.cur_scope)}</b>"],:justification => :left, :left => left_part_data, :font_size => fnt_size_gb,  :spacing => txt_space_2lines_gb )
       y_ag_text = pdf.y
       if y_ag_text > y_ag
         pdf.move_pointer(y_ag_text - y_ag )
       end
     end
     
-    pdf.text('<b>Berufserfahrung</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
+    pdf.text(['<b>Berufserfahrung</b>'], :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
     
     # foto
     if @curriculum.curr_picture
       img_stream = Base64.decode64(@curriculum.curr_picture.foto)
       x_foto = 440
       y_foto = 670
-      pdf.add_image(img_stream, x_foto, y_foto, 100 )
+      pdf.add_image(img_stream, x_foto, y_foto, 100, 150 ) #TODO: foto height and width devono essere presi dall'immagine
     end
     
     #workexperience
@@ -375,27 +383,30 @@ class CurriculumController < ApplicationController
     txt_space_2lines = 1.5
     up_y_2lines = - pdf.font_height(fnt_size_hfield) * txt_space_2lines # offset yup
     we_list.each do |we_item|
-      pdf.text('Datum',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(['Datum'],  {:justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space})
       pdf.move_pointer(up_y)
-      pdf.text("<b>#{datum_format(we_item.from)} - #{datum_format(we_item.to)}</b>",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      pdf.text(["<b>#{datum_format(we_item.from)} - #{datum_format(we_item.to)}</b>"],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
       pdf.move_pointer(inter_leave)
       
-      pdf.text('Beruf oder Funktion',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(['Beruf oder Funktion'],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
-      pdf.text("#{cm_isolatin(we_item.position)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      pdf.text(["#{cm_isolatin(we_item.position)}"],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
       pdf.move_pointer(inter_leave)
       
-      pdf.text('Wichtigste Tätigkeiten und Zuständigkeiten',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space_2lines)
+      pdf.text(['Wichtigste Tätigkeiten und Zuständigkeiten'],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space_2lines)
       y_ag = pdf.y
       pdf.move_pointer(2 * up_y_2lines)
       # NOTA su bullet: funziona solo se si scrive <C:bullet/>
       #pdf.text("<C:bullet/>#{cm_isolatin(we_item.activities)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space_2lines )
       #we_item.activities.flatten!
-      we_item.activities.each do |activity_text|
+      temp_arr = [we_item.activities].flatten
+      temp_arr.each do |activity_text|
         if we_item.activities.size <= 1
-          pdf.text("#{cm_isolatin(activity_text)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space_2lines )
-        else    
-          pdf.text("<C:bullet/>#{cm_isolatin(activity_text).strip}",:justification => :left, :left => left_part_data + 7, :font_size => fnt_size_hfield,  :spacing => txt_space_2lines )
+          pdf.text(["#{cm_isolatin(activity_text)}"],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space_2lines )
+        else
+          str_tmp = "<C:bullet/>#{cm_isolatin(activity_text).strip}"
+          add_each_tostring_inst(str_tmp)    
+          pdf.text(str_tmp,:justification => :left, :left => left_part_data + 7, :font_size => fnt_size_hfield,  :spacing => txt_space_2lines )
           pdf.move_pointer(2)
         end
       end
@@ -406,14 +417,14 @@ class CurriculumController < ApplicationController
       end
       pdf.move_pointer(inter_leave)
       
-      pdf.text('Name des Arbeitgebers',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(['Name des Arbeitgebers'],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
-      pdf.text("#{cm_isolatin(we_item.employer)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      pdf.text(["#{cm_isolatin(we_item.employer)}"],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
       pdf.move_pointer(inter_leave)
       
-      pdf.text('Tätigkeitsbereich/Branche',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(['Tätigkeitsbereich/Branche'],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
-      pdf.text("#{cm_isolatin(we_item.sector)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      pdf.text(["#{cm_isolatin(we_item.sector)}"],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
       pdf.move_pointer(inter_leave)
       
       pdf.move_pointer(4)
@@ -421,36 +432,36 @@ class CurriculumController < ApplicationController
     
     # Education
     if @curriculum.cur_education_list.size > 0
-      pdf.text('<b>Ausbildung</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
+      pdf.text(['<b>Ausbildung</b>'], :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
       ed_list = @curriculum.cur_education_list
       ed_list.sort!{|a,b| (a.from <=> b.from)}
       ed_list.reverse!
       ed_list.each do |ed_item|
-        pdf.text('Datum',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+        pdf.text(['Datum'],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
         pdf.move_pointer(up_y)
-        pdf.text("<b>#{datum_format(ed_item.from)} - #{datum_format(ed_item.to)}</b>",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+        pdf.text(["<b>#{datum_format(ed_item.from)} - #{datum_format(ed_item.to)}</b>"],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
         pdf.move_pointer(inter_leave)
       
         if ed_item.title.size > 0
-          pdf.text('Bezeichnung',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+          pdf.text(['Bezeichnung'],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
           pdf.move_pointer(up_y)
           str_text = "#{ed_item.title}"
           str_text.concat(" (#{ed_item.level})") if ed_item.level.size > 0
-          pdf.text(cm_isolatin(str_text),:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+          pdf.text([cm_isolatin(str_text)],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
           pdf.move_pointer(inter_leave)
         end
       
         if ed_item.skills.size > 0
-          pdf.text('Hauptfächer',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+          pdf.text(['Hauptfächer'],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
           pdf.move_pointer(up_y)
-          pdf.text("#{cm_isolatin(ed_item.skills)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+          pdf.text(["#{cm_isolatin(ed_item.skills)}"],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
           pdf.move_pointer(inter_leave)
         end
       
         if ed_item.organisation.size > 0
-          pdf.text('Ausbildungseinrichtung',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+          pdf.text(['Ausbildungseinrichtung'],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
           pdf.move_pointer(up_y)
-          pdf.text("#{cm_isolatin(ed_item.organisation)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+          pdf.text(["#{cm_isolatin(ed_item.organisation)}"],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
           pdf.move_pointer(inter_leave)
         end
       
@@ -460,12 +471,12 @@ class CurriculumController < ApplicationController
 
     # Languages
     if @curriculum.cur_lang_skills.size > 0
-      pdf.text('<b>Sprachen</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)    
+      pdf.text(['<b>Sprachen</b>'], :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)    
       ed_list = @curriculum.cur_lang_skills
       ed_list.each do |ed_item|
-        pdf.text("#{cm_isolatin(ed_item.name)}",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+        pdf.text(["#{cm_isolatin(ed_item.name)}"],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
         pdf.move_pointer(up_y)
-        pdf.text("#{cm_isolatin(ed_item.level)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+        pdf.text(["#{cm_isolatin(ed_item.level)}"],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
         pdf.move_pointer(inter_leave)
      
         pdf.move_pointer(3)
@@ -474,12 +485,12 @@ class CurriculumController < ApplicationController
     
     #computer skills
     if @curriculum.cur_computer_skills.size > 0
-      pdf.text('<b>IKT-Kenntnisse</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)    
+      pdf.text(['<b>IKT-Kenntnisse</b>'], :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)    
       ed_list = @curriculum.cur_computer_skills
       ed_list.each do |ed_item|
-        pdf.text("#{cm_isolatin(ed_item.name)}",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+        pdf.text(["#{cm_isolatin(ed_item.name)}"],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
         pdf.move_pointer(up_y)
-        pdf.text("#{cm_isolatin(ed_item.experience)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+        pdf.text(["#{cm_isolatin(ed_item.experience)}"],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
         pdf.move_pointer(inter_leave)
      
         pdf.move_pointer(3)
@@ -487,10 +498,10 @@ class CurriculumController < ApplicationController
     end
     
     if @curriculum.cur_other_skills.size > 0
-      pdf.text('<b>Zusätzliche Angaben</b>', :justification => :right, :right => col_r_rmargin, :font_size => 12, :spacing => txt_hspace)    
+      pdf.text(['<b>Zusätzliche Angaben</b>'], :justification => :right, :right => col_r_rmargin, :font_size => 12, :spacing => txt_hspace)    
       #other skills - hobbies
       ed_list = @curriculum.cur_other_skills
-      pdf.text("Hobbies",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(["Hobbies"],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
       strtext = ""
       count = 0
@@ -501,7 +512,7 @@ class CurriculumController < ApplicationController
         strtext.concat("#{prefix}#{cm_isolatin(ed_item.skill)}")
         count += 1
       end
-      pdf.text(strtext,:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      pdf.text([strtext],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
       pdf.move_pointer(3)
     end
     
@@ -517,20 +528,22 @@ class CurriculumController < ApplicationController
         end 
       end
       if str_drivinglicense
-        pdf.text("Führerschein",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+        pdf.text(["Führerschein"],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
         pdf.move_pointer(up_y)
-        pdf.text(str_drivinglicense,:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+        pdf.text([str_drivinglicense],:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
         pdf.move_pointer(3)
       end 
       # misc
       txt_space_misc = 1
       up_y_misc = - pdf.font_height(fnt_size_hfield) * txt_space_misc
-      pdf.text("Verschiedene Erfahrungen",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(["Verschiedene Erfahrungen"],  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y_misc)
       ed_list.each do |ed_item|
         #next if ed_item.mstype != 'misc'
         str_txt = pdef_replace_link(ed_item.misc)
-        pdf.text("#{cm_isolatin(str_txt)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space_misc )
+        str_tmp = "#{cm_isolatin(str_txt)}"
+        add_each_tostring_inst(str_tmp)  
+        pdf.text(str_tmp,:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space_misc )
         pdf.move_pointer(3)
       end
     end
@@ -548,6 +561,7 @@ class CurriculumController < ApplicationController
     #pdf.add_text(x, y, memo, 5, 90)
   
     pdf.stop_page_numbering(true, :current)
+    
     
     pdf.save_as(@pdf_file_name)
   end
@@ -587,6 +601,13 @@ class CurriculumController < ApplicationController
     #return Iconv.new('iso-8859-1', 'utf-8').iconv(text_utf8)
     # TODO
     text_utf8
+  end
+
+  # in ruby >= 1.9 the String.each method is not valid anymore (replaced by each_line)
+  def add_each_tostring_inst(str)
+    def str.each
+      each_line
+    end
   end
   
 end

@@ -153,8 +153,14 @@ class Curriculum
     end
     employer.each do |k,v|
       if v.size == 1
-        v[0].activities = [v[0].activities]
-        v[0].activities.flatten!
+        #p v[0].activities = [v[0].activities]
+        #p v[0].class
+        #luz_arr = []
+        #luz_arr << v[0].activities
+        #p v[0].activities = luz_arr #activities is readonly
+        #p v[0].activities.class
+        #p luz_arr.class
+        #v[0].activities.flatten!
         res << v[0]
       else
         # we have more that one activity pro employer
