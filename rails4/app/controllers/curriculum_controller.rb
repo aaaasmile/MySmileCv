@@ -1,13 +1,4 @@
-﻿require 'pdf/writer'
-#require 'iconv'
-
-class String
-  def each
-    each_line
-  end
-end
-
-class CurriculumController < ApplicationController
+﻿class CurriculumController < ApplicationController
   before_filter :authorize
   
   def index
@@ -35,7 +26,8 @@ class CurriculumController < ApplicationController
     base_dir_log = File.expand_path( File.dirname(__FILE__) + '/../../public/pdf' )
     FileUtils.mkdir_p(base_dir_log)
     @pdf_file_name = File.join(base_dir_log, title_pdf)
-    build_pdf
+    builder = CurrPdfBuilder.new(@curriculum)
+    builder.build_pdf
     #flash[:notice] = 'PDF file  was successfully created.'
     #redirect_to :action =>  'list_cmds'
     redirect_to("#{@request.relative_url_root}/pdf/#{title_pdf}")
@@ -223,7 +215,29 @@ class CurriculumController < ApplicationController
     session[:curriculum] ||= {}
     Curriculum.get_curriculum_from_session(session[:curriculum])
   end 
-  
+ 
+end
+
+
+
+################## Here because in lib is not refreshed on edit
+
+#file: curr_pdfbuilder.rb
+require 'mypdf/writer'
+#require 'iconv'
+
+#class String
+#  def each
+#    each_line
+#  end
+#end
+
+class CurrPdfBuilder
+
+  def initialize(curr)
+    @curriculum = curr
+  end
+
   def build_pdf
     pdf = PDF::Writer.new(:paper => "A4") 
     x0 = 190
@@ -304,7 +318,9 @@ class CurriculumController < ApplicationController
     
     pdf.move_pointer(30)
     if info_identity
-      pdf.text('<b>Lebenslauf</b>', {:justification => :right, :right => col_r_rmargin, :font_size => 18})
+      str_tmp = '<b>Lebenslauf</b>'
+      add_each_tostring_inst(str_tmp) 
+      pdf.text(str_tmp, {:justification => :right, :right => col_r_rmargin, :font_size => 18})
       pdf.text('<b>Angaben zur Person</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
       # data identity
       pdf.text('Nachnamen/Vorname', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_hspace)
@@ -565,12 +581,12 @@ class CurriculumController < ApplicationController
     
     pdf.save_as(@pdf_file_name)
   end
-  
+
   def datum_format(datum)
     return datum.strftime("%d.%m.%Y")
   end
-  
-  ##
+
+   ##
   # Check if text contains a tink tag, something like link:.... 
   # then replace it with link pdf uri
   def pdef_replace_link(txt)
@@ -606,9 +622,9 @@ class CurriculumController < ApplicationController
 
   # in ruby >= 1.9 the String.each method is not valid anymore (replaced by each_line)
   def add_each_tostring_inst(str)
-    def str.each
-      each_line
-    end
+    #def str.each
+    #  each_line
+    #end
   end
-  
+
 end
