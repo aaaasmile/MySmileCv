@@ -79,6 +79,8 @@ class Curriculum
   def process_my_curr_all_info
     id = @curr_all_info[:identity]
     @cur_identity = Identity.find(id) if id
+
+    @curr_title = @curr_all_info[:curr_title]
       
     id = @curr_all_info[:picture]
     @curr_picture = Identpicture.find(id) if id
@@ -351,6 +353,7 @@ class Curriculum
     workexperience_list = []
     @cur_workexperience_list.each{|item| workexperience_list << item.id}
     @curr_all_info[:workexperience_list] = workexperience_list 
+    @curr_all_info[:curr_title] = @curr_title
 
     return @curr_all_info
   end

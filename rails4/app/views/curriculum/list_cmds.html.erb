@@ -9,8 +9,8 @@
 <% if @curriculum.curr_title.length == 0 %>
 <h4>Current Curriculum [New*]</h4><br/>
 <% else %>
-<h4>Current Curriculum [<%= @curriculum.curr_title%>] </h4><br/>
-<p><%= button_to 'Save Curriculum', :action => 'update_curr', :controller => 'save_curr' %></p>
+  <h4>Current Curriculum [<%= @curriculum.curr_title%>] </h4><br/>
+  <p><%= link_to('Save Curriculum', {:action => 'update_curr', :controller => 'save_curr'}, class: 'btn btn-default') %></p>
 <% end %>
 
 <%= link_to( 'Reload Curriculum', {:action => 'reload_curr', :controller => 'loadcurr'}, class: 'btn btn-default') %>

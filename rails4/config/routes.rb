@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   get 'delete_curr' => 'loadcurr#delete_curr'
   post 'reload_curr' => 'loadcurr#reload_curr'
 
+  get 'update_curr' => 'save_curr#update_curr'
   get 'save_curr' => 'save_curr#save_curr'
 
   get 'picture' => 'identpictures#picture'
