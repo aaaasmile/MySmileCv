@@ -5,4 +5,7 @@ applications:
   instances: 1
   path: .
   command: bundle exec rails server
+
+
+  ==> Non sono riuscito a farlo andare, quindi l'ho rinominato e si fa senza.
   
