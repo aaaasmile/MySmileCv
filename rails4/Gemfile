@@ -51,6 +51,11 @@ gem 'kaminari'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'autoprefixer-rails'
 
+gem 'rails_12factor', group: :production
+gem 'puma', group: :production
+
 gem 'data-confirm-modal', git:'https://github.com/ifad/data-confirm-modal.git'
 
-ruby '2.1.7'
+
+
+#ruby '2.1.7'

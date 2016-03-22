@@ -64,3 +64,17 @@ myuser.salt = '<salt>'
 myuser.name = '<nome>'
 myuser.hashed_password = User.encrypted_password('<password>', myuser.salt)
 myuser.save
+
+== Pivotal
+per fare un deploy su pivotal ho usato la linea di comando 
+cf push MySimileCv
+Ho messo due gems per il deploy, puma e rails_12factor.
+Per lo sviluppo locale, ho usato il seguente comando per testare l'ambiente di produzione:
+bundle exec rails s webrick -e production
+Nel fare il deploy non mi funzionava nulla, poi ho lasciato fuori il file manifest.yml e magiacamente
+ha funzionato subito. ===> manifest.yml NON si usa!
+Da ricordare che puma non va in windows.
+Poi ho creato il file Procfile come suggerito dal warning e tutto sembra funzionare per il meglio.
+Per fare andare l'applicazione in ambiente production, ho dovuto mettere
+config.assets.compile = false
+nel file production.rb, altrimenti myappboot.css non veniva caricato.
