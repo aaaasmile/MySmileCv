@@ -318,20 +318,18 @@ class CurrPdfBuilder
     
     pdf.move_pointer(30)
     if info_identity
-      str_tmp = '<b>Lebenslaufä</b>'
+      str_tmp = '<b>Lebenslauf</b>'
       #p str_tmp.encoding
       #p str_tmp.bytes
       #p str_tmp = str_tmp.encode("ISO-8859-1")
       #p str_tmp.encoding
       #p str_tmp.bytes
+      
 
       pdf.text(str_tmp, {:justification => :right, :right => col_r_rmargin, :font_size => 18})
-      pdf.stop_page_numbering(true, :current)
-      pdf.save_as(pdf_file_name)
-      return
-
 
       
+     
       pdf.text('<b>Angaben zur Person</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
       # data identity
       pdf.text('Nachnamen/Vorname', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_hspace)
@@ -346,11 +344,6 @@ class CurrPdfBuilder
       pdf.move_pointer(up_y)
       pdf.text("<i>Mobil</i>: #{info_identity.mobile}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
-      # FAX ??? pretty old stuff
-      #pdf.text('Fax',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
-      #pdf.move_pointer(up_y)
-      #pdf.text("#{info_identity.fax}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
-    
       pdf.text('E-mail/Web',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
       str_tmp = "<c:alink uri=\"mailto:#{info_identity.email}\">#{info_identity.email}</c:alink>, <i>Web</i>: <c:alink uri=\"http://#{info_identity.web}\">#{info_identity.web}</c:alink>"
@@ -361,6 +354,9 @@ class CurrPdfBuilder
       pdf.move_pointer(up_y)
       pdf.text("#{cm_isolatin(info_identity.nationality)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
+      
+
+
       pdf.text('Geburtsdatum',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
       pdf.text("#{datum_format(info_identity.birthdate)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
@@ -373,6 +369,8 @@ class CurrPdfBuilder
       pdf.move_pointer(up_y)
       pdf.text("#{cm_isolatin(info_identity.familystate)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
+      
+
       pdf.move_pointer(4)
     end
     #scope
@@ -392,14 +390,20 @@ class CurrPdfBuilder
     end
     
     pdf.text('<b>Berufserfahrung</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
-    
+   
     # foto
     if @curriculum.curr_picture
       img_stream = Base64.decode64(@curriculum.curr_picture.foto)
       x_foto = 440
       y_foto = 670
-      pdf.add_image(img_stream, x_foto, y_foto, 100, 150 ) #TODO: foto height and width devono essere presi dall'immagine
+      # TODO, fix picture
+      #p pdf.add_image(img_stream, x_foto, y_foto, 100, 150 ) #TODO: foto height and width devono essere presi dall'immagine
     end
+
+     #pdf.stop_page_numbering(true, :current)
+     #pdf.save_as(pdf_file_name)
+     #return
+
     
     #workexperience
     we_list = @curriculum.preproc_workexperience_list
@@ -426,14 +430,11 @@ class CurrPdfBuilder
       # NOTA su bullet: funziona solo se si scrive <C:bullet/>
       #pdf.text("<C:bullet/>#{cm_isolatin(we_item.activities)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space_2lines )
       #we_item.activities.flatten!
-      temp_arr = [we_item.activities].flatten
-      temp_arr.each do |activity_text|
-        if we_item.activities.size <= 1
+      we_item.cumulated_activities.each do |activity_text|
+        if we_item.cumulated_activities.size <= 1
           pdf.text("#{cm_isolatin(activity_text)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space_2lines )
-        else
-          str_tmp = "<C:bullet/>#{cm_isolatin(activity_text).strip}"
-          add_each_tostring_inst(str_tmp)    
-          pdf.text(str_tmp,:justification => :left, :left => left_part_data + 7, :font_size => fnt_size_hfield,  :spacing => txt_space_2lines )
+        else    
+          pdf.text("<C:bullet/>#{cm_isolatin(activity_text).strip}",:justification => :left, :left => left_part_data + 7, :font_size => fnt_size_hfield,  :spacing => txt_space_2lines )
           pdf.move_pointer(2)
         end
       end
@@ -624,10 +625,7 @@ class CurrPdfBuilder
   ##
   # Convert utf8 string to iso-8859-1. pdfwriter want iso8859-1 strings, or utf16
   def cm_isolatin(text_utf8)
-    #return Iconv.new('iso-8859-1', 'utf-8').iconv(text_utf8)
-    # TODO
-    #text_utf8
-    "testo_convascii"
+    text_utf8 #iso latin conversion is done into the pdf lib
   end
 
   # in ruby >= 1.9 the String.each method is not valid anymore (replaced by each_line)

@@ -712,10 +712,9 @@ class PDF::Writer
     content = "%PDF-#{@version}\n%âãÏÓ\n"
     pos = content.size
 
+    content = content.encode("ISO-8859-1") # ISS changed
     objects.each do |oo|
-      cont_iso = oo.to_s
-      # ISS changed
-      cont = cont_iso.encode("UTF-8")
+      cont = oo.to_s
       content << cont
       xref << pos
       pos += cont.size

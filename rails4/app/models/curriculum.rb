@@ -149,20 +149,16 @@ class Curriculum
       det = employer[item.employer]
       det = [] unless det
       det << item
-      employer[item.employer] = det 
+      employer[item.employer] = det
     end
     employer.each do |k,v|
       if v.size == 1
-        #p v[0].activities = [v[0].activities]
-        #p v[0].class
-        #luz_arr = []
-        #luz_arr << v[0].activities
-        #p v[0].activities = luz_arr #activities is readonly
-        #p v[0].activities.class
-        #p luz_arr.class
+        #v[0].activities = [v[0].activities]
         #v[0].activities.flatten!
+        v[0].set_cumulated_activities([v[0].activities])
         res << v[0]
       else
+        #p v
         # we have more that one activity pro employer
         # first get date, min and max
         min_date_item = v.min{|a,b| a.from <=> b.from }
@@ -177,11 +173,10 @@ class Curriculum
         
         activities = []
         aa.each do |ele|
-          #p ele.activities
+          ele.activities
           #p ele.from
           activities << ele.activities
         end
-        
         sect_arr = []
         aa.each do |ele|
           sect_arr << ele.sector.split(',')
@@ -192,13 +187,13 @@ class Curriculum
         wenew.from = min_date_item.from
         wenew.to = max_date_item.to
         wenew.position = position
-        wenew.activities = activities.flatten
+        wenew.set_cumulated_activities(activities)
         wenew.sector = sector
         wenew.employer = v[0].employer
         res << wenew 
       end
     end
-    #res.each{|e| p e.from}
+    #res.each{|e| p e}
     return res
   end
   
