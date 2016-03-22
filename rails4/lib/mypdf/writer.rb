@@ -1,4 +1,4 @@
-#--
+﻿#--
 # PDF::Writer for Ruby.
 #   http://rubyforge.org/projects/ruby-pdf/
 #   Copyright 2003 - 2005 Austin Ziegler.
@@ -34,9 +34,9 @@ module PDF
   end
 end
 
-require 'pdf/math'
-require 'pdf/writer/lang'
-require 'pdf/writer/lang/en'
+require 'mypdf/math'
+require 'mypdf/writer/lang'
+require 'mypdf/writer/lang/en'
 
 begin
   require 'zlib'
@@ -46,32 +46,32 @@ rescue LoadError
   PDF::Writer::Compression = false
 end
 
-require 'pdf/writer/arc4'
-require 'pdf/writer/fontmetrics'
-require 'pdf/writer/object'
-require 'pdf/writer/object/action'
-require 'pdf/writer/object/annotation'
-require 'pdf/writer/object/catalog'
-require 'pdf/writer/object/contents'
-require 'pdf/writer/object/destination'
-require 'pdf/writer/object/encryption'
-require 'pdf/writer/object/font'
-require 'pdf/writer/object/fontdescriptor'
-require 'pdf/writer/object/fontencoding'
-require 'pdf/writer/object/image'
-require 'pdf/writer/object/info'
-require 'pdf/writer/object/outlines'
-require 'pdf/writer/object/outline'
-require 'pdf/writer/object/page'
-require 'pdf/writer/object/pages'
-require 'pdf/writer/object/procset'
-require 'pdf/writer/object/viewerpreferences'
+require 'mypdf/writer/arc4'
+require 'mypdf/writer/fontmetrics'
+require 'mypdf/writer/object'
+require 'mypdf/writer/object/action'
+require 'mypdf/writer/object/annotation'
+require 'mypdf/writer/object/catalog'
+require 'mypdf/writer/object/contents'
+require 'mypdf/writer/object/destination'
+require 'mypdf/writer/object/encryption'
+require 'mypdf/writer/object/font'
+require 'mypdf/writer/object/fontdescriptor'
+require 'mypdf/writer/object/fontencoding'
+require 'mypdf/writer/object/image'
+require 'mypdf/writer/object/info'
+require 'mypdf/writer/object/outlines'
+require 'mypdf/writer/object/outline'
+require 'mypdf/writer/object/page'
+require 'mypdf/writer/object/pages'
+require 'mypdf/writer/object/procset'
+require 'mypdf/writer/object/viewerpreferences'
 
-require 'pdf/writer/ohash'
-require 'pdf/writer/strokestyle'
-require 'pdf/writer/graphics'
-require 'pdf/writer/graphics/imageinfo'
-require 'pdf/writer/state'
+require 'mypdf/writer/ohash'
+require 'mypdf/writer/strokestyle'
+require 'mypdf/writer/graphics'
+require 'mypdf/writer/graphics/imageinfo'
+require 'mypdf/writer/state'
 
 class PDF::Writer
     # The system font path. The sytem font path will be determined
@@ -1563,7 +1563,7 @@ class PDF::Writer
 
     max   = 0
 
-    text.to_s.each do |line|
+    text.to_s.each_line do |line|
       width = text_line_width(line, size)
       max = width if width > max
     end
@@ -2372,7 +2372,7 @@ class PDF::Writer
       height = font_height(size)
     end
 
-    text.each do |line|
+    text.each_line do |line|
       start = true
       loop do # while not line.empty? or start
         break if (line.nil? or line.empty?) and not start

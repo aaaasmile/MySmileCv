@@ -8,8 +8,8 @@
 #
 # $Id: stddev.rb 186 2007-12-10 22:58:48Z sandal $
 #++
-require 'pdf/writer'
-require 'pdf/charts'
+require 'mypdf/writer'
+require 'mypdf/charts'
 require 'ostruct'
 
   # Creates a standard deviation chart. This is a type of chart that is

@@ -45,7 +45,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'pdf-writer', '1.1.8'
+#gem 'pdf-writer', '1.1.8'
+gem 'transaction-simple', '1.4.0'
+gem 'color', '1.4.1'
+
 gem 'kaminari'
 
 gem 'bootstrap-sass', '~> 3.3.6'

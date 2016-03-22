@@ -8,7 +8,7 @@
 #
 # $Id: image.rb 177 2007-11-26 16:06:58Z sandal $
 #++
-require 'pdf/writer/oreader'
+require 'mypdf/writer/oreader'
 
 # An image object. This will be an /XObject dictionary in the document. This
 # includes description and data. The diectionary includes:

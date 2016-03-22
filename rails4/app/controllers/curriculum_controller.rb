@@ -27,7 +27,7 @@
     FileUtils.mkdir_p(base_dir_log)
     @pdf_file_name = File.join(base_dir_log, title_pdf)
     builder = CurrPdfBuilder.new(@curriculum)
-    builder.build_pdf
+    builder.build_pdf(@pdf_file_name)
     #flash[:notice] = 'PDF file  was successfully created.'
     #redirect_to :action =>  'list_cmds'
     redirect_to("#{@request.relative_url_root}/pdf/#{title_pdf}")
@@ -238,7 +238,7 @@ class CurrPdfBuilder
     @curriculum = curr
   end
 
-  def build_pdf
+  def build_pdf(pdf_file_name)
     pdf = PDF::Writer.new(:paper => "A4") 
     x0 = 190
     #y0 = 50
@@ -578,8 +578,7 @@ class CurrPdfBuilder
   
     pdf.stop_page_numbering(true, :current)
     
-    
-    pdf.save_as(@pdf_file_name)
+    pdf.save_as(pdf_file_name)
   end
 
   def datum_format(datum)

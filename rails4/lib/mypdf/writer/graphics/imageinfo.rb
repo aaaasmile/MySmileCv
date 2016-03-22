@@ -11,7 +11,7 @@
 #
 # $Id: imageinfo.rb 173 2007-11-15 17:58:43Z sandal $
 #++
-require 'pdf/writer/oreader'
+require 'mypdf/writer/oreader'
 
   # This is based on ImageSize, by Keisuke Minami <keisuke@rccn.com>. It can
   # be found at http://www.rubycgi.org/tools/index.en.htm
