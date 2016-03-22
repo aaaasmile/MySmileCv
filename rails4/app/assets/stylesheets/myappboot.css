@@ -203,6 +203,10 @@ tbody th p {
     text-decoration: none;
 }
 
+.btn-nomargin{
+    margin-top: 0px;
+}
+
 .list_line_even {
   background: #F2F3F0;
 }
