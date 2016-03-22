@@ -1,9 +1,11 @@
-<h3>Load Curriculum</h3>
+<h3>Manage Curriculum</h3>
 
-<% form_tag :action => 'load_title' do %>
-<p><label for="filecurrsaved_curr_title">Title</label><br/>
-<%# select( 'filecurrsaved', 'curr_title',  @filecurrsaveds.each{|p| [ p.curr_title, p.id ] } )%>
-<%# select( 'filecurrsaved', 'curr_title',  [["uno", 1], ["due", 2]] )%>
-<%= select( 'filecurrsaved', 'id', Filecurrsaved.find(:all).collect{|p| [ p.curr_title, p.id ] }  )%>
-  <%= submit_tag "Load" %>
-<% end %>
+
+<%= form_tag('/load_title') do -%>
+  <p><label for="file_loaded_title">Title</label><br/>
+  <%= select('file_loaded', 'id', Filecurrsaved.all.collect{|x| [ x.curr_title, x.id ] }  )%>
+
+  <div><%= submit_tag 'Load', class: 'btn btn-primary' %></div>
+<% end -%>
+
+

@@ -2,7 +2,6 @@ class LoadcurrController < ApplicationController
   before_filter :authorize
   
   def load_curr
-    #@filecurrsaveds = Filecurrsaved.find(:all) # codice messo nella view
   end
   
   def delete_curr
@@ -25,20 +24,16 @@ class LoadcurrController < ApplicationController
   end
   
   def load_title
-    @FileCurr= Filecurrsaved.find(params[:filecurrsaved][:id])
-    curr_model = find_curriculum
-    #p "lo yaml vale:"
-    #p title_yaml_fname = "public/curriculum/#{@FileCurr.curr_filename}"
-    #base_dir = File.expand_path( File.dirname(__FILE__) + '/../../public/curriculum' )
-    #title_yaml_fname = File.join( base_dir, @FileCurr.curr_filename)
-	#p @FileCurr.content
-    if curr_model.load_from_yaml(@FileCurr.content)
-      curr_model.set_title(@FileCurr.curr_title)
+    @file_loaded= Filecurrsaved.find(params[:file_loaded][:id])
+    curr_model = Curriculum.new
+    if curr_model.load_from_yaml(@file_loaded.content)
+      curr_model.set_title(@file_loaded.curr_title)
       flash[:notice] = 'Curriculum was successfully loaded.'
     else
       flash[:error_toast] = 'Unable to load curriculum.'
     end
-    redirect_to :action => 'list_cmds', :controller => 'Curriculum'
+    session[:curriculum] = curr_model.get_info_for_session
+    redirect_to :action => :list_cmds, :controller => :curriculum
 
   end
   

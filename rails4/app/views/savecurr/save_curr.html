@@ -1,10 +1,27 @@
 
 <h3>Save curriculum</h3>
 
-<% form_tag :action => 'create' do %>
+
+<%= form_for(@filecurrsaved) do |f| %>
+  <% if @filecurrsaved.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@filecurrsaved.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @filecurrsaved.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <p><label for="filecurrsaved_curr_title">Title</label><br/>
   <%= text_field 'filecurrsaved', 'curr_title'  %></p>
-  <%= submit_tag "Save" %>
+
+  <div class="actions">
+      <%= f.submit class: 'btn btn-primary' %>
+  </div>
+
 <% end %>
 
 

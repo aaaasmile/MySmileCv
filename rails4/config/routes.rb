@@ -49,9 +49,10 @@ Rails.application.routes.draw do
   get 'destcurrs_show_prev' => 'destcurrs#show_prev'
   get 'destcurrs_show_next' => 'destcurrs#show_next'
 
-  get 'load_curr' => 'load_curr#load_curr'
-  get 'delete_curr' => 'load_curr#delete_curr'
-  post 'reload_curr' => 'load_curr#reload_curr'
+  get 'load_curr' => 'loadcurr#load_curr'
+  post 'load_title' => 'loadcurr#load_title'
+  get 'delete_curr' => 'loadcurr#delete_curr'
+  post 'reload_curr' => 'loadcurr#reload_curr'
 
   get 'save_curr' => 'save_curr#save_curr'
 
