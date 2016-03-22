@@ -1,45 +1,41 @@
 class LoadcurrController < ApplicationController
   before_filter :authorize
   
-  def load_curr
-  end
-  
-  def delete_curr
-  end
-  
-  ##
-  # reload current curriculum
   def reload_curr
-    curr_model = find_curriculum
-    curr_model.reload
+    id = session[:curriculum]["file_curr_id"]
+    @file_loaded = Filecurrsaved.find(id)
+    build_curriculum
     flash[:notice] = 'Curriculum reloaded.'
-    redirect_to :action => 'list_cmds', :controller => 'Curriculum'
   end
   
   def delete_title
-    Filecurrsaved.find(params[:filecurrsaved][:id]).destroy
-    curr_model = find_curriculum
-    flash[:notice] = 'Curriculum destroyed.'
+    item = Filecurrsaved.find(params[:filecurrsaved][:id])
+    if(item)
+      item.destroy
+      if session[:curriculum] && item.id.to_s == session[:curriculum]["file_curr_id"]
+        session[:curriculum] = Curriculum.new.get_info_for_session
+      end
+    end
     redirect_to :action => 'list_cmds', :controller => 'Curriculum'
   end
   
   def load_title
     @file_loaded= Filecurrsaved.find(params[:file_loaded][:id])
+    build_curriculum
+  end
+
+  private
+
+  def build_curriculum
     curr_model = Curriculum.new
-    if curr_model.load_from_yaml(@file_loaded.content)
-      curr_model.set_title(@file_loaded.curr_title)
+    if @file_loaded && curr_model.load_from_yaml(@file_loaded.content)
+      curr_model.set_title(@file_loaded.curr_title, @file_loaded.id)
       flash[:notice] = 'Curriculum was successfully loaded.'
     else
       flash[:error_toast] = 'Unable to load curriculum.'
     end
     session[:curriculum] = curr_model.get_info_for_session
     redirect_to :action => :list_cmds, :controller => :curriculum
-
   end
   
-  private
-
-  def find_curriculum
-    session[:curriculum] ||= Curriculum.new
-  end 
 end

@@ -4,7 +4,7 @@
 class Curriculum
   attr_reader :cur_identity, :cur_computer_skills, :cur_education_list,
       :cur_lang_skills, :cur_miscstuff_list, :cur_other_skills, :cur_workexperience_list,
-      :curr_title, :curr_picture, :cur_scope
+      :curr_title, :curr_picture, :cur_scope, :file_curr_id
   attr_accessor :cur_we_only1empl
   
   def initialize
@@ -24,6 +24,7 @@ class Curriculum
     @curr_picture = nil
     @cur_scope = nil
     @cur_we_only1empl = true
+    @file_curr_id = nil
   end
   
   def is_empty?
@@ -40,20 +41,13 @@ class Curriculum
     end
   end
   
-  def set_title(title)
+  def set_title(title, file_curr_id)
     @curr_title = title
+    @file_curr_id = file_curr_id
   end
   
   def save_onlastyaml
     save_to_yaml(@curr_file_name, @curr_title)
-  end
-  
-  def reload
-    curr_fname = @curr_file_name
-    curr_title = @curr_title
-    load_from_yaml(curr_fname)
-    @curr_file_name = curr_fname
-    @curr_title = curr_title
   end
   
   ##
@@ -81,6 +75,7 @@ class Curriculum
     @cur_identity = Identity.find(id) if id
 
     @curr_title = @curr_all_info[:curr_title]
+    @file_curr_id = @curr_all_info[:file_curr_id]
       
     id = @curr_all_info[:picture]
     @curr_picture = Identpicture.find(id) if id
@@ -354,6 +349,7 @@ class Curriculum
     @cur_workexperience_list.each{|item| workexperience_list << item.id}
     @curr_all_info[:workexperience_list] = workexperience_list 
     @curr_all_info[:curr_title] = @curr_title
+    @curr_all_info[:file_curr_id] = @file_curr_id
 
     return @curr_all_info
   end
