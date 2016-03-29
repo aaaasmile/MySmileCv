@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get 'curriculum' => 'curriculum#list_cmds'
   get 'create_pdf' => 'curriculum#create_pdf'
-  get 'clear_curriculum' => 'curriculum#clear_curriculum'
+  post 'clear_curriculum' => 'curriculum#clear_curriculum'
   post 'create_scope' => 'curriculum#create_scope'
   get 'create_scope' => 'curriculum#create_scope'
   get 'remove_identity' => 'curriculum#remove_identity'
