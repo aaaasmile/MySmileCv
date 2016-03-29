@@ -73,6 +73,7 @@ class Curriculum
     @cur_identity = Identity.find_by(id: id) if id
 
     @curr_title = @curr_all_info[:curr_title]
+    @curr_title ||= ''
     @file_curr_id = @curr_all_info[:file_curr_id]
       
     id = @curr_all_info[:picture]

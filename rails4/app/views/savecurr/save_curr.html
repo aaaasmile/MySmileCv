@@ -2,7 +2,7 @@
 <h3>Save curriculum</h3>
 
 
-<%= form_for(@filecurrsaved) do |f| %>
+<%= form_for(:filecurrsaved, url: 'create_curr') do |f| %>
   <% if @filecurrsaved.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@filecurrsaved.errors.count, "error") %> prohibited this item from being saved:</h2>

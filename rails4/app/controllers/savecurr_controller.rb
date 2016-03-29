@@ -18,11 +18,13 @@ class SavecurrController < ApplicationController
   end
   
   def create
-    @filecurrsaved = Filecurrsaved.new(params[:filecurrsaved])
+    @filecurrsaved = Filecurrsaved.new(filecurrsaved_params)
     curr_obj = find_curriculum
     @filecurrsaved.content = YAML.dump(curr_obj.get_info_for_session)
-
+    @filecurrsaved.kuser = session[:user_id]
     if @filecurrsaved.save
+      curr_obj.set_title(@filecurrsaved.curr_title, @filecurrsaved.id)
+      session[:curriculum] = curr_obj.get_info_for_session
       flash[:notice] = 'Curriculum was successfully saved.'
     else
       flash[:notice] = 'Curriculum save failed.'
@@ -35,6 +37,11 @@ class SavecurrController < ApplicationController
   def find_curriculum
     session[:curriculum] ||= {}
     Curriculum.get_curriculum_from_session(session[:curriculum])
+  end
+  
+  def filecurrsaved_params
+    par = params.require(:filecurrsaved).permit(:curr_title)
+    return par
   end 
   
 end
