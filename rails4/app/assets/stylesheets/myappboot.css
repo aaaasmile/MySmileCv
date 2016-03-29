@@ -199,9 +199,13 @@ tbody th p {
 }
 
 .btn {
-    margin-top: 20px;
     text-decoration: none;
 }
+
+.btnt20 {
+    margin-top: 20px;
+}
+
 
 .btn-nomargin{
     margin-top: 0px;

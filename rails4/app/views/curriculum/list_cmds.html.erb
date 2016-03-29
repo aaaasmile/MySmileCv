@@ -32,7 +32,10 @@
 <%# Scope %>
 <% if @curriculum.cur_scope %>
   <h4>Scope</h4> 
-  <p><%=@curriculum.cur_scope %> |<%= link_to 'X', :action => 'remove_scope' %>| </p>
+  <p><%=@curriculum.cur_scope %> <%= link_to('remove_scope', class: 'btn btn-default', aria:{label: 'Remove'})  do %>
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    <% end %>
+  </p>
 <% end %>
  
 <%# identity %>
