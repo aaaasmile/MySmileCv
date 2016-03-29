@@ -88,3 +88,7 @@ Tutti i files li ho convertiti in ascii con notepad++ e ho messo l'intestazione
 In cima ad ogni files in modo che le stringhe dichiarate nei vari files fossero in formato binario.
 Poi nella funzione preprocess_text ho messo la conversione in ISO-8859-1, altrimenti gli accenti non
 funzionano. 
+Altra particolarità per quanto riguarda gli spazi, nel file writer.rb si trova:
+char = char[0] unless @fonts[font].c[char]
+Ma da ruby 1.9.3 char[0] non produce nulla e quindi occorre chiamare la funzione ord:
+char = char.respond_to?(:ord) ? char.ord : char[0]

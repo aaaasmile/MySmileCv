@@ -325,6 +325,13 @@ class CurrPdfBuilder
       pdf.text(str_tmp, {:justification => :right, :right => col_r_rmargin, :font_size => 18})
      
       pdf.text('<b>Angaben zur Person</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
+
+      # START test
+      #pdf.stop_page_numbering(true, :current)
+      #pdf.save_as(pdf_file_name)
+      #return
+      #END Test
+
       # data identity
       pdf.text('Nachnamen/Vorname', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_hspace)
       pdf.move_pointer(up_y)
@@ -385,8 +392,7 @@ class CurrPdfBuilder
       img_stream = Base64.decode64(@curriculum.curr_picture.foto)
       x_foto = 440
       y_foto = 670
-      # TODO, fix picture
-      pdf.add_image(img_stream, x_foto, y_foto, 100) #TODO: foto height and width devono essere presi dall'immagine
+      pdf.add_image(img_stream, x_foto, y_foto, 100)
     end
 
     #pdf.stop_page_numbering(true, :current)

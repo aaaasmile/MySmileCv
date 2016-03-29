@@ -1469,8 +1469,12 @@ class PDF::Writer
   end
 
   def char_width(font, char)
-    char = char[0] unless @fonts[font].c[char]
-
+    # ISS changed in ruby 1.9.3 char[0] for string is not supported, but ord
+    #p char = char[0] unless @fonts[font].c[char]
+    unless @fonts[font].c[char]
+      char = char.respond_to?(:ord) ? char.ord : char[0] 
+    end
+    
     if @fonts[font].differences and @fonts[font].c[char].nil?
       name = @fonts[font].differences[char] || 'M'
       width = @fonts[font].c[name]['WX'] if @fonts[font].c[name]['WX']
@@ -1640,8 +1644,9 @@ class PDF::Writer
         end
         pos += (tag_size - 1)
       else
-        w += char_width(font, text[pos, 1])
-
+        w_temp = char_width(font, text[pos, 1])
+        w += w_temp
+        #print "Witdh #{w_temp}/#{w}, text #{text[pos, 1]}, font #{font}\n"
         if w > tw # We need to truncate this line
           if brk > 0 # There is somewhere to break the line.
             if text[brk] == " "
@@ -1651,14 +1656,13 @@ class PDF::Writer
             end
             x, adjust = adjust_wrapped_text(tmp, brkw, width, x, justification)
 
-              # Reset the text state
+            # Reset the text state
             @current_text_state = t_CTS.dup
             current_font!
             add_text(x, y, tmp, size, angle, adjust) unless test
             return text[brk + 1..-1]
           else # just break before the current character
             tmp = text[0, pos]
-#           tmpw = (w - char_width(font, text[pos, 1])) * size / 1000.0
             x, adjust = adjust_wrapped_text(tmp, brkw, width, x, justification)
 
               # Reset the text state
@@ -2297,10 +2301,11 @@ class PDF::Writer
   private :add_page_numbers
 
   def preprocess_text(text)
-    #text
-    #uuml_latin1 = text.encode("ISO-8859-1") # ISS changed
-    uuml_latin1 = text.encode("ISO-8859-1").force_encoding("ASCII-8BIT")
-    #uuml_latin1 = text.force_encoding("ASCII-8BIT")
+    if RUBY_VERSION == "1.8.6"
+      return text
+    else
+      return uuml_latin1 = text.encode("ISO-8859-1").force_encoding("ASCII-8BIT") # with utf-8 does not works.
+    end
   end
   private :preprocess_text
 
@@ -2413,7 +2418,6 @@ class PDF::Writer
             end
           end
         end
-
         line = add_text_wrap(left, @y, right - left, line, size, just, 0, options[:test])
       end
     end
