@@ -1,6 +1,6 @@
 
 <p/>
-<p><%= link_to('Load Curriculum', {:action => 'load_curr', :controller => 'loadcurr'}, class: 'btn btn-default') %></p>
+<p><%= link_to('Load', {:action => 'load_curr', :controller => 'loadcurr'}, class: 'btn btn-default') %></p>
 <% if @curriculum.is_empty? %>
 <h4>No items in Curriculum</h4>
 <% else %>
@@ -9,14 +9,15 @@
 <% if @curriculum.curr_title.length == 0 %>
 <h4>Current Curriculum [New*]</h4><br/>
 <% else %>
-  <h4>Current Curriculum [<%= @curriculum.curr_title%>] </h4><br/>
-  <p><%= link_to('Save Curriculum', {:action => 'update_curr', :controller => 'savecurr'}, class: 'btn btn-default') %></p>
+  <h4>Curriculum [<%= @curriculum.curr_title%>] </h4><br/>
+  <p><%= link_to('Save', {:action => 'update_curr', :controller => 'savecurr'}, class: 'btn btn-default') %></p>
 <% end %>
 
-<%= link_to( 'Reload Curriculum', {:action => 'reload_curr', :controller => 'loadcurr'}, class: 'btn btn-default') %>
+<%= link_to( 'Reload', {:action => 'reload_curr', :controller => 'loadcurr'}, class: 'btn btn-default') %>
+<%= link_to( 'Clear', {:action => 'clear_curriculum', :confirm => 'Are you sure?', :method => :post}, class: 'btn btn-default')  %>
+<%= link_to( 'Save as...', {:action => 'save_curr', :controller => 'savecurr'}, class: 'btn btn-default') %>
 <%= link_to( 'Create PDF', {:action => 'create_pdf'}, class: 'btn btn-default') %>
-<%= link_to( 'Clear this Curriculum', {:action => 'clear_curriculum', :confirm => 'Are you sure?', :method => :post}, class: 'btn btn-default')  %>
-<%= link_to( 'Save as new Curriculum', {:action => 'save_curr', :controller => 'savecurr'}, class: 'btn btn-default') %>
+
 
 
 <%= form_tag '/create_scope' do -%>
