@@ -24,14 +24,10 @@
     title_pdf = 'new' if title_pdf.length == 0
     title_pdf += '.pdf'
     base_dir_log = File.join(Rails.root, "public/pdf")
-
-    #base_dir_log = File.expand_path( File.dirname(__FILE__) + '/../../public/pdf' )
-    #FileUtils.mkdir_p(base_dir_log)
     @pdf_file_name = File.join(base_dir_log, title_pdf)
     builder = CurrPdfBuilder.new(@curriculum)
     builder.build_pdf(@pdf_file_name)
     #flash[:notice] = 'PDF file  was successfully created.'
-    #redirect_to("#{relative_url_root}/pdf/#{title_pdf}")
     send_file(@pdf_file_name, :filename => title_pdf, :disposition => 'inline', :type => "application/pdf")
 
     
