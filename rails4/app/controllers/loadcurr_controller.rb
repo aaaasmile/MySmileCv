@@ -16,7 +16,7 @@ class LoadcurrController < ApplicationController
         session[:curriculum] = Curriculum.new.get_info_for_session
       end
     end
-    redirect_to :action => 'list_cmds', :controller => 'Curriculum'
+    redirect_to :action => :list_cmds, :controller => :curriculum
   end
   
   def load_title

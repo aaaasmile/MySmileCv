@@ -46,9 +46,7 @@ class Curriculum
     @file_curr_id = file_curr_id
   end
   
-  def save_onlastyaml
-    save_to_yaml(@curr_file_name, @curr_title)
-  end
+  
   
   ##
   # Load curriculum from yaml file
@@ -72,13 +70,13 @@ class Curriculum
 
   def process_my_curr_all_info
     id = @curr_all_info[:identity]
-    @cur_identity = Identity.find(id) if id
+    @cur_identity = Identity.find_by(id: id) if id
 
     @curr_title = @curr_all_info[:curr_title]
     @file_curr_id = @curr_all_info[:file_curr_id]
       
     id = @curr_all_info[:picture]
-    @curr_picture = Identpicture.find(id) if id
+    @curr_picture = Identpicture.find_by(id: id) if id
       
     @cur_scope = @curr_all_info[:scope]
     @cur_we_only1empl = true
@@ -96,7 +94,6 @@ class Curriculum
     fill_arr_withmodel(@curr_all_info[:other_skills], :add_otherskill, Otherskill )
     fill_arr_withmodel(@curr_all_info[:workexperience_list], :add_workexperience, Workexperience)
 
-    #@curr_file_name = yamlfilename #TODO curr_file_name shold be the current Filecurrsaved
   end
   
   ##
@@ -116,20 +113,7 @@ class Curriculum
       end
     end
   end
-  
-  ##
-  # Save the current curriculum into yaml file
-  def save_to_yaml(curriculum_fname, title)
-    set_title(title)
-    @curr_file_name = curriculum_fname
-    
-    get_info_for_session
-
-    File.open( curriculum_fname, 'w' ) do |out|
-      YAML.dump( @curr_all_info, out )
-    end
-  end
-  
+ 
   ##
   # Used to preprocess work experience list. We can put the same employer in one item.
   def preproc_workexperience_list
