@@ -1,4 +1,6 @@
-Ôªø#--
+# -*- coding: ASCII-8BIT -*-
+
+#--
 # PDF::Writer for Ruby.
 #   http://rubyforge.org/projects/ruby-pdf/
 #   Copyright 2003 - 2005 Austin Ziegler.
@@ -709,12 +711,12 @@ class PDF::Writer
 
     xref = []
 
-    content = "%PDF-#{@version}\n%√¢√£√è√ì\n"
+    content = "%PDF-#{@version}\n%‚„œ”\n"
     pos = content.size
 
-    content = content.encode("ISO-8859-1") # ISS changed
     objects.each do |oo|
       cont = oo.to_s
+      #cont = cont.force_encoding("ASCII-8BIT") #ISS changed
       content << cont
       xref << pos
       pos += cont.size
@@ -2295,8 +2297,10 @@ class PDF::Writer
   private :add_page_numbers
 
   def preprocess_text(text)
-    text
-    uuml_latin1 = text.encode("ISO-8859-1") # ISS changed
+    #text
+    #uuml_latin1 = text.encode("ISO-8859-1") # ISS changed
+    uuml_latin1 = text.encode("ISO-8859-1").force_encoding("ASCII-8BIT")
+    #uuml_latin1 = text.force_encoding("ASCII-8BIT")
   end
   private :preprocess_text
 

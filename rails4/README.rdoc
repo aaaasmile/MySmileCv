@@ -80,3 +80,11 @@ Per fare andare l'applicazione in ambiente production, ho dovuto mettere
 config.assets.compile = false
 nel file production.rb, altrimenti myappboot.css non veniva caricato.
 Su Pivotal il server usato è puma.
+
+== PDF
+La libreria pdf-writer non va con utf8. Quindi lo copiata in rails4/lib e rinominata mypdf.
+Tutti i files li ho convertiti in ascii con notepad++ e ho messo l'intestazione 
+# -*- coding: ASCII-8BIT -*-
+In cima ad ogni files in modo che le stringhe dichiarate nei vari files fossero in formato binario.
+Poi nella funzione preprocess_text ho messo la conversione in ISO-8859-1, altrimenti gli accenti non
+funzionano. 

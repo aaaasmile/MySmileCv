@@ -31,7 +31,7 @@ class IdentpicturesController < ApplicationController
   end
 
   def create
-    p @identpicture = Identpicture.new(identpicture_params)
+    @identpicture = Identpicture.new(identpicture_params)
     respond_to do |format|
       if @identpicture.save
         format.html { redirect_to @identpicture,  notice: 'Picture was successfully created.'}

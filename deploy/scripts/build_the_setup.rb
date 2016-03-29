@@ -53,3 +53,7 @@ if $0 == __FILE__
   dep.exec_mycmd(nsi_cmd)
   puts "Setup #{nsi_out_name} successfully created"
 end
+
+
+
+

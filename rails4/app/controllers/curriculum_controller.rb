@@ -313,22 +313,15 @@ class CurrPdfBuilder
     up_y = - pdf.font_height(fnt_size_hfield) * txt_space # offset yup
     #col_r_rmargin = pdf.page_width - x1
     
-    #pdf.start_page_numbering(300, 500, 20, nil, nil, 1)
-    
+    #pdf.start_page_numbering(300, 500, 20, nil, nil, 1)    
     
     pdf.move_pointer(30)
+
+
     if info_identity
       str_tmp = '<b>Lebenslauf</b>'
-      #p str_tmp.encoding
-      #p str_tmp.bytes
-      #p str_tmp = str_tmp.encode("ISO-8859-1")
-      #p str_tmp.encoding
-      #p str_tmp.bytes
-      
-
+     
       pdf.text(str_tmp, {:justification => :right, :right => col_r_rmargin, :font_size => 18})
-
-      
      
       pdf.text('<b>Angaben zur Person</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
       # data identity
@@ -353,9 +346,6 @@ class CurrPdfBuilder
       pdf.text('Staatsangehörigkeit',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
       pdf.text("#{cm_isolatin(info_identity.nationality)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
-    
-      
-
 
       pdf.text('Geburtsdatum',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
@@ -368,8 +358,6 @@ class CurrPdfBuilder
       pdf.text('Familienstand',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
       pdf.text("#{cm_isolatin(info_identity.familystate)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
-    
-      
 
       pdf.move_pointer(4)
     end
@@ -397,14 +385,14 @@ class CurrPdfBuilder
       x_foto = 440
       y_foto = 670
       # TODO, fix picture
-      #p pdf.add_image(img_stream, x_foto, y_foto, 100, 150 ) #TODO: foto height and width devono essere presi dall'immagine
+      pdf.add_image(img_stream, x_foto, y_foto, 100) #TODO: foto height and width devono essere presi dall'immagine
     end
 
-     #pdf.stop_page_numbering(true, :current)
-     #pdf.save_as(pdf_file_name)
-     #return
+    #pdf.stop_page_numbering(true, :current)
+    #pdf.save_as(pdf_file_name)
+    #return
 
-    
+
     #workexperience
     we_list = @curriculum.preproc_workexperience_list
     #we_list = @curriculum.cur_workexperience_list

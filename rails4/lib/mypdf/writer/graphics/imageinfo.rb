@@ -1,4 +1,6 @@
-﻿#--
+# -*- coding: ASCII-8BIT -*-
+
+#--
 # PDF::Writer for Ruby.
 #   http://rubyforge.org/projects/ruby-pdf/
 #   Copyright 2003 - 2005 Austin Ziegler.
@@ -100,6 +102,8 @@ class PDF::Writer::Graphics::ImageInfo
   attr_reader :info
 
   def discover_format
+    #@top = @top.force_encoding("ISO-8859-1")
+    #p @top[0, 3]
     if    @top        =~ %r{^GIF8[79]a}
       Formats::GIF
     elsif @top[0, 3]  == "\xff\xd8\xff"
@@ -173,6 +177,10 @@ class PDF::Writer::Graphics::ImageInfo
     @data.read_o(2)   # Skip the first two bytes of JPEG identifier.
     loop do
       marker, code, length = @data.read_o(4).unpack('aan')
+      #marker = marker.force_encoding("ISO-8859-1")
+      #p c_marker.encoding
+      #p marker
+      #p c_marker
       raise "JPEG marker not found!" if marker != c_marker
 
       if JPEG_SOF_BLOCKS.include?(code)

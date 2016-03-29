@@ -1,4 +1,5 @@
-﻿#--
+# -*- coding: ASCII-8BIT -*-
+#--
 # PDF::Writer for Ruby.
 #   http://rubyforge.org/projects/ruby-pdf/
 #   Copyright 2003 - 2005 Austin Ziegler.
