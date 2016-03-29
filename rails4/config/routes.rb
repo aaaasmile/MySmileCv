@@ -51,7 +51,7 @@ Rails.application.routes.draw do
 
   get 'load_curr' => 'loadcurr#load_curr'
   post 'load_title' => 'loadcurr#load_title'
-  get 'delete_curr' => 'loadcurr#delete_curr'
+  delete 'delete_curr' => 'loadcurr#delete_curr'
   get 'reload_curr' => 'loadcurr#reload_curr'
 
   get 'update_curr' => 'savecurr#update_curr'

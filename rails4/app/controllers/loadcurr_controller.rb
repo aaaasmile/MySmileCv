@@ -3,18 +3,22 @@ class LoadcurrController < ApplicationController
   
   def reload_curr
     id = session[:curriculum]["file_curr_id"]
-    @file_loaded = Filecurrsaved.find(id)
-    build_curriculum
-    flash[:notice] = 'Curriculum reloaded.'
+    @file_loaded = Filecurrsaved.find_by(id: id)
+    if @file_loaded 
+      build_curriculum
+      flash[:notice] = 'Curriculum reloaded.'
+    else
+      redirect_to :action => :list_cmds, :controller => :curriculum
+    end
   end
   
-  def delete_title
-    item = Filecurrsaved.find(params[:filecurrsaved][:id])
+  def delete_curr
+    file_id = session[:curriculum]["file_curr_id"]
+    item = Filecurrsaved.find_by(id: file_id)
     if(item)
       item.destroy
-      if session[:curriculum] && item.id.to_s == session[:curriculum]["file_curr_id"]
-        session[:curriculum] = Curriculum.new.get_info_for_session
-      end
+      new_curr = Curriculum.new
+      session[:curriculum] = new_curr.get_info_for_session
     end
     redirect_to :action => :list_cmds, :controller => :curriculum
   end
