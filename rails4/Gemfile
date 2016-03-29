@@ -45,7 +45,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-#gem 'pdf-writer', '1.1.8'
 gem 'transaction-simple', '1.4.0'
 gem 'color', '1.4.1'
 
@@ -60,5 +59,4 @@ gem 'puma', group: :production
 gem 'data-confirm-modal', git:'https://github.com/ifad/data-confirm-modal.git'
 
 
-
-#ruby '2.1.7'
+ruby '2.2.4'
