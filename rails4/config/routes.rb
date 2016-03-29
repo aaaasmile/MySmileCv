@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'remove_identity' => 'curriculum#remove_identity'
   get 'remove_picture' => 'curriculum#remove_picture'
   get 'remove_scope' => 'curriculum#remove_scope'
-  get 'remove_computerskill' => 'curriculum#remove_computerskill'
+  post 'remove_computerskill' => 'curriculum#remove_computerskill'
   post 'curr_add_all_computerskill' => 'curriculum#curr_add_all_computerskill'
   post 'curr_add_computer_skill' => 'curriculum#curr_add_computer_skill'
   post 'curr_set_identity' => 'curriculum#curr_set_identity'
@@ -26,23 +26,23 @@ Rails.application.routes.draw do
 
   post 'curr_add_all_education' => 'curriculum#curr_add_all_education'
   post 'curr_add_education' => 'curriculum#curr_add_education'
-  get 'remove_education' => 'curriculum#remove_education'
+  post 'remove_education' => 'curriculum#remove_education'
   
   post 'curr_add_all_workexperience' => 'curriculum#curr_add_all_workexperience'
   post 'curr_add_workexperience' => 'curriculum#curr_add_workexperience'
-  get 'remove_workexperience' => 'curriculum#remove_workexperience'
+  post 'remove_workexperience' => 'curriculum#remove_workexperience'
 
   post 'curr_add_all_languageskill' => 'curriculum#curr_add_all_languageskill'
   post 'curr_add_languageskill' => 'curriculum#curr_add_languageskill'
-  get 'remove_languageskill' => 'curriculum#remove_languageskill'
+  post 'remove_languageskill' => 'curriculum#remove_languageskill'
 
   post 'curr_add_all_otherskill' => 'curriculum#curr_add_all_otherskill'
   post 'curr_add_otherskill' => 'curriculum#curr_add_otherskill'
-  get 'remove_otherskill' => 'curriculum#remove_otherskill'
+  post 'remove_otherskill' => 'curriculum#remove_otherskill'
 
   post 'curr_add_all_miscstuff' => 'curriculum#curr_add_all_miscstuff'
   post 'curr_add_miscstuff' => 'curriculum#curr_add_miscstuff'
-  get 'remove_miscstuff' => 'curriculum#remove_miscstuff'
+  post 'remove_miscstuff' => 'curriculum#remove_miscstuff'
   
   get 'view_curr_insertion' => 'destcurrs#view_curr_insertion'
   get 'view_curr_pdf' => 'destcurrs#view_curr_pdf'

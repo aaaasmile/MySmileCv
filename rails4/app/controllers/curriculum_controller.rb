@@ -173,6 +173,7 @@
   
   def remove_workexperience
     @curriculum = find_curriculum
+    p params
     @curriculum.destroy_workexperience(params[:id])
     goto_list_of_cmds
   end

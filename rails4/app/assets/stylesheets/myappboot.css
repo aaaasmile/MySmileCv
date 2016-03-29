@@ -217,3 +217,7 @@ tbody th p {
 .list_line_odd {
   background: #D6D8E8;
 }
+
+.remove_item{
+  margin-top: 15px;
+}
