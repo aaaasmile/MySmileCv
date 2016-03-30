@@ -67,7 +67,7 @@ myuser.save
 
 == Pivotal
 per fare un deploy su pivotal ho usato la linea di comando 
-cf push MySimileCv
+cf push MySmileCv
 Ho messo due gems per il deploy, puma e rails_12factor.
 Per lo sviluppo locale, ho usato il seguente comando per testare l'ambiente di produzione:
 bundle exec rails s webrick -e production
@@ -80,6 +80,7 @@ Per fare andare l'applicazione in ambiente production, ho dovuto mettere
 config.assets.compile = false
 nel file production.rb, altrimenti myappboot.css non veniva caricato.
 Su Pivotal il server usato è puma.
+Web: http://mysmilecv.cfapps.io/
 
 == PDF
 La libreria pdf-writer non va con utf8. Quindi lo copiata in rails4/lib e rinominata mypdf.
