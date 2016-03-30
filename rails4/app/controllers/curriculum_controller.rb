@@ -29,8 +29,6 @@
     builder.build_pdf(@pdf_file_name)
     #flash[:notice] = 'PDF file  was successfully created.'
     send_file(@pdf_file_name, :filename => title_pdf, :disposition => 'inline', :type => "application/pdf")
-
-    
   end
   
   def save_extra_options
@@ -206,6 +204,12 @@
     @curriculum = find_curriculum
     @curriculum.destroy_miscstuff(params[:id])
     goto_list_of_cmds
+  end
+
+  ########################## other
+
+  def edit_curr_scope
+    @curriculum = find_curriculum
   end
   
   

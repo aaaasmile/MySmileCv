@@ -60,6 +60,8 @@ Rails.application.routes.draw do
 
   get 'picture' => 'identpictures#picture'
 
+  get 'edit_curr_scope' => 'curriculum#edit_curr_scope'
+
   resources :identities
   resources :identpictures
   resources :languages
