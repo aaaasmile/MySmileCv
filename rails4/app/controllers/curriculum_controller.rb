@@ -227,15 +227,8 @@ end
 
 ################## Here because in lib is not refreshed on edit
 
-#file: curr_pdfbuilder.rb
-require 'mypdf/writer'
-#require 'iconv'
+require 'mypdf/writer' #using an adpted version of pdf writer
 
-#class String
-#  def each
-#    each_line
-#  end
-#end
 
 class CurrPdfBuilder
 
@@ -296,14 +289,11 @@ class CurrPdfBuilder
       x = pdf.absolute_left_margin
       y = pdf.absolute_bottom_margin
       pdf.add_text(x + 47, 26, t, s)
-      #pdf.pointer = 26
-      #pdf.text( t, :justification => :right, :right => col_r_rmargin, :font_size => s)
             
       pdf.restore_state
       pdf.close_object
       pdf.add_object(footing, :all_pages)
     end
-
     
     # page numeration
     pnx = pdf.absolute_right_margin
@@ -311,17 +301,12 @@ class CurrPdfBuilder
     
     info_identity = @curriculum.cur_identity
     
-    #pdf.add_text_wrap("Ruby is fun!")
     # per disegnare i campi con i dati allineati intorno alla linea verticale
     # uso text con l'allineamento a destra, poi sposto il cursore y dov'era prima
     # e a questo punto mando il testo allineato a sinistra
     up_y = - pdf.font_height(fnt_size_hfield) * txt_space # offset yup
-    #col_r_rmargin = pdf.page_width - x1
-    
-    #pdf.start_page_numbering(300, 500, 20, nil, nil, 1)    
     
     pdf.move_pointer(30)
-
 
     if info_identity
       str_tmp = '<b>Lebenslauf</b>'
