@@ -74,22 +74,19 @@ class DestcurrsController < ApplicationController
   def view_curr_insertion
     inserat_fname = Rails.root.join('public', 'inserat', @destcurr.inserat_filename)
     if File.exist?(inserat_fname)
-      # inserat_fname.relative_path_from(Rails.root).to_s # Pathname class
-      redirect_to("inserat/#{@destcurr.inserat_filename}")
+      send_file(inserat_fname, :filename => @destcurr.inserat_filename, :disposition => 'inline', :type => "application/pdf")
     else
       render :show
     end
   end
   
   def view_curr_pdf
-    #title_pdf = curriculum.curr_title
-    #title_pdf += '.pdf'
     @destcurr = Destcurr.find(params[:id])
     title_pdf = @destcurr.filecurrsaved.curr_title
     title_pdf += '.pdf'
-    #redirect_to(title_pdf)
-    redirect_to("#{@request.relative_url_root}/pdf/#{title_pdf}")
-    #pdf_file_name = "public/pdf/#{title_pdf}"
+    base_dir_log = File.join(Rails.root, "public/pdf")
+    @pdf_file_name = File.join(base_dir_log, title_pdf)
+    send_file(@pdf_file_name, :filename => title_pdf, :disposition => 'inline', :type => "application/pdf")
   end
   
   def next_item
