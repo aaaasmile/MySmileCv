@@ -33,16 +33,16 @@ class DestcurrsController < ApplicationController
   end
 
   def new
-    @filecurrsaveds =  Filecurrsaved.find(:all)
+    @filecurrsaveds =  Filecurrsaved.all
     @destcurr = Destcurr.new
   end
 
   def edit
-    @filecurrsaveds =  Filecurrsaved.find(:all)
+    @filecurrsaveds =  Filecurrsaved.all
   end
 
   def create
-    @filecurrsaveds =  Filecurrsaved.find(:all)
+    @filecurrsaveds =  Filecurrsaved.all
     @destcurr = Destcurr.new(destcurr_params)
     respond_to do |format|
       if @destcurr.save
@@ -54,7 +54,7 @@ class DestcurrsController < ApplicationController
   end
 
   def update
-    @filecurrsaveds =  Filecurrsaved.find(:all)
+    @filecurrsaveds =  Filecurrsaved.all
     respond_to do |format|
       if @destcurr.update_attributes(destcurr_params)
         format.html {redirect_to @destcurr, notice: 'Curricula sent was successfully updated.'}

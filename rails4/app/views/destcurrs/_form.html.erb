@@ -1,4 +1,15 @@
-<%= error_messages_for 'destcurr' %>
+<%= form_for(@destcurr) do |f| %>
+  <% if @destcurr.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@destcurr.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @destcurr.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 <!--[form:destcurr]-->
 <p><label for="destcurr_inserat">Job description</label><br/>
@@ -44,4 +55,11 @@
 <%= collection_select(:destcurr, :kcurr_saved, @filecurrsaveds, :id, :curr_title)%>
 </p>
 <!--[eoform:destcurr]-->
+
+<div class="actions">
+      <%= f.submit class: 'btn btn-primary' %>
+  </div>
+
+<% end %>
+
 
