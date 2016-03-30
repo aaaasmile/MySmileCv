@@ -13,17 +13,9 @@
 <body>
 
 <% 
-   menu_items_view = [{:type => IdentitiesController, :title => 'Identities', :link => 'identities'}, 
-                      {:type => OptionsController, :title => 'Options', :link => 'options'},
-                      {:type => ComputerskillsController, :title => 'TechnologySK', :link => 'computerskills'},
-                      {:type => EducationsController, :title => 'Education', :link => 'educations'},
-                      {:type => WorkexperiencesController, :title => 'WorkExperience', :link => 'workexperiences'},
-                      {:type => LanguageskillsController, :title => 'LanguagesSK', :link => 'languageskills'},
-                      {:type => OtherskillsController, :title => 'OtherSK', :link => 'otherskills'},
-                      {:type => MiscstuffsController, :title => 'MiscStuff', :link => 'miscstuffs'},
-                      {:type => IdentpicturesController, :title => 'Picture', :link => 'identpictures'},
-                      {:type => CurriculumController, :title => 'Curriculum', :link => 'curriculum'},
-                      {:type => DestcurrsController, :title => 'Application', :link => 'destcurrs'}
+   menu_items_view = [{:type => CurriculumController, :title => 'Curriculum', :link => 'curriculum'},
+                      {:type => DestcurrsController, :title => 'Application', :link => 'destcurrs'},
+                      {:type => OptionsController, :title => 'Options', :link => 'options'}                    
                      ]
 menu_selected = ""
 %> 
@@ -58,7 +50,7 @@ menu_selected = ""
 
 
 <%= yield  %>
-
+  </div>
 </div>
 
 </body>

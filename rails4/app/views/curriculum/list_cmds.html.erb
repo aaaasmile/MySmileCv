@@ -1,9 +1,7 @@
 
-<p/>
+<!-- Curriculum view -->
 <p><%= link_to('Load', {:action => 'load_curr', :controller => 'loadcurr'}, class: 'btn btn-default') %></p>
-<% if @curriculum.is_empty? %>
-<h4>No items in Curriculum</h4>
-<% else %>
+
 <br/>
 <hr/>
 <% if @curriculum.curr_title.length == 0 %>
@@ -31,36 +29,60 @@
 <hr/>
 
 
-<%# Scope %>
+<!-- Scope -->
+<h4>Scope</h4> 
 <% if @curriculum.cur_scope %>
-  <h4>Scope</h4> 
   <p><%=@curriculum.cur_scope %> <%= link_to('remove_scope', class: 'btn btn-default', aria:{label: 'Remove'})  do %>
       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
     <% end %>
   </p>
 <% end %>
  
-<%# identity %>
-<% if @curriculum.cur_identity %>
+<!-- identity -->
+<hr/>
+<div>
+  <div class="edit_title">
+    <%= link_to(identities_path, class: 'btn btn-default', aria:{label: 'Edit'})  do  %> 
+       <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+    <% end %>
+  </div>
   <h4>Identity</h4> 
+</div>
+<% if @curriculum.cur_identity %>
   <p><%=@curriculum.cur_identity.info_compact %> 
   <%= link_to('remove_identity', class: 'btn btn-default', aria:{label: 'Remove'})  do  %> 
       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
   <% end %></p>
 <% end %>
 
-<%# picture %>
+<!--picture -->
+<hr/>
+<div>
+  <div class="edit_title">
+    <%= link_to(identpictures_path, class: 'btn btn-default', aria:{label: 'Edit'})  do  %> 
+       <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+    <% end %>
+  </div>
+  <h4>Foto</h4> 
+</div>
 <% if @curriculum.curr_picture %>
-  <h4>Foto</h4>
   <p><img src="<%= url_for(:controller => 'identpictures', :action => 'picture', :id => @curriculum.curr_picture.id) %>"/> 
    <%= link_to('remove_picture', class: 'btn btn-default', aria:{label: 'Remove'})  do  %> 
       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
    <% end %></p>
 <% end %>
 
-<%# work experience %>
+<!-- work experience -->
+<hr/>
+<div>
+  <div class="edit_title">
+    <%= link_to(workexperiences_path, class: 'btn btn-default', aria:{label: 'Edit'})  do  %> 
+       <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+    <% end %>
+  </div>
+  <h4>Work experiences</h4> 
+</div>
 <% if @curriculum.cur_workexperience_list.size > 0 %>
-  <h4>Work experience</h4>
   <%# debug(@curriculum.cur_workexperience_list) %>
   <% @curriculum.cur_workexperience_list.each do |item| %> 
     <div class='remove_item'>
@@ -72,9 +94,17 @@
   <% end %>
 <% end %>
 
-<%# education %>
+<!-- education -->
+<hr/>
+<div>
+  <div class="edit_title">
+    <%= link_to(educations_path, class: 'btn btn-default', aria:{label: 'Edit'})  do  %> 
+       <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+    <% end %>
+  </div>
+  <h4>Education</h4> 
+</div>
 <% if @curriculum.cur_education_list.size > 0 %>
-  <h4>Education</h4>
   <% @curriculum.cur_education_list.each do |item| %> 
     <div class='remove_item'>
     <%= button_to({:controller => 'curriculum', :action => 'remove_education', :id => item.id}, class: 'btn btn-default', aria:{label: 'Remove'}, style: "float: right;")  do  %> 
@@ -85,9 +115,17 @@
   <% end %>
 <% end %>
 
-<%# language skill %>
+<!-- language skill -->
+<hr/>
+<div>
+  <div class="edit_title">
+    <%= link_to(languageskills_path, class: 'btn btn-default', aria:{label: 'Edit'})  do  %> 
+       <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+    <% end %>
+  </div>
+  <h4>Languages</h4> 
+</div>
 <% if @curriculum.cur_lang_skills.size > 0 %>
-  <h4>Languages</h4>
   <% @curriculum.cur_lang_skills.each do |item| %> 
     <div class='remove_item'>
     <%= button_to({:controller => 'curriculum', :action => 'remove_languageskill', :id => item.id}, class: 'btn btn-default', aria:{label: 'Remove'}, style: "float: right;")  do  %> 
@@ -98,9 +136,17 @@
   <% end %>
 <% end %>
 
-<%# computer skill %>
+<!-- computer skill -->
+<hr/>
+<div>
+  <div class="edit_title">
+    <%= link_to(computerskills_path, class: 'btn btn-default', aria:{label: 'Edit'})  do  %> 
+       <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+    <% end %>
+  </div>
+  <h4>Technologies</h4> 
+</div>
 <% if @curriculum.cur_computer_skills.size > 0 %>
-  <h4>Technology</h4>
   <% @curriculum.cur_computer_skills.each do |item| %> 
     <div class='remove_item'>
     <%= button_to({:controller => 'curriculum', :action => 'remove_computerskill', :id => item.id}, class: 'btn btn-default', aria:{label: 'Remove'}, style: "float: right;")  do  %> 
@@ -111,23 +157,17 @@
   <% end %>
 <% end %>
 
-<%# other skill %>
-<% if @curriculum.cur_other_skills.size > 0 %>
-  <h4>Other</h4>
-  <% @curriculum.cur_other_skills.each do |item| %> 
-  <%# debug(item) %>
-    <div class='remove_item'>
-    <%= button_to({:controller => 'curriculum', :action => 'remove_otherskill', :id => item.id}, class: 'btn btn-default', aria:{label: 'Remove'}, style: "float: right;")  do  %> 
-      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+<!-- misc stuff -->
+<hr/>
+<div>
+  <div class="edit_title">
+    <%= link_to(miscstuffs_path, class: 'btn btn-default', aria:{label: 'Edit'})  do  %> 
+       <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
     <% end %>
-    <%= item.info_compact %> 
-    </div>
-  <% end %>
-<% end %>
-
-<%# misc stuff %>
+  </div>
+  <h4>Miscellaneous</h4> 
+</div>
 <% if @curriculum.cur_miscstuff_list.size > 0 %>
-  <h4>Misc Stuff</h4>
   <% @curriculum.cur_miscstuff_list.each do |item| %> 
   <%# debug(item) %>
     <div class='remove_item'>
@@ -139,5 +179,24 @@
   <% end %>
 <% end %>
 
-
+<!-- other skill -->
+<hr/>
+<div>
+  <div class="edit_title">
+    <%= link_to(otherskills_path, class: 'btn btn-default', aria:{label: 'Edit'})  do  %> 
+       <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+    <% end %>
+  </div>
+  <h4>Hobbies and interests</h4> 
+</div>
+<% if @curriculum.cur_other_skills.size > 0 %>
+  <% @curriculum.cur_other_skills.each do |item| %> 
+  <%# debug(item) %>
+    <div class='remove_item'>
+    <%= button_to({:controller => 'curriculum', :action => 'remove_otherskill', :id => item.id}, class: 'btn btn-default', aria:{label: 'Remove'}, style: "float: right;")  do  %> 
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    <% end %>
+    <%= item.info_compact %> 
+    </div>
+  <% end %>
 <% end %>
