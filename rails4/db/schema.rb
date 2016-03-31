@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331100142) do
+ActiveRecord::Schema.define(version: 20160331135931) do
 
   create_table "computerskills", force: :cascade do |t|
     t.string  "name",       limit: 255
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20160331100142) do
     t.integer "klang"
     t.string  "familystate", limit: 255
     t.string  "other"
+    t.string  "codice_fisc"
   end
 
   create_table "identpictures", force: :cascade do |t|

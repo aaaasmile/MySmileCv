@@ -45,6 +45,11 @@
   <p><label for="identity_familystate">Family state</label><br/>
   <%= text_field 'identity', 'familystate'  %></p>
 
+  <% if @identity.language.isoname == 'IT' -%>
+    <p><label for="identity_codice_fisc">Codice fiscale</label><br/>
+    <%= text_field 'identity', 'codice_fisc'  %></p>
+  <% end -%>
+
   <p><label for="identity_klang">Locale</label><br/>
   <%= @identity.language.isoname %>
   <%= hidden_field :identity, :klang %>
