@@ -2,28 +2,40 @@ class IdentitiesController < ApplicationController
   before_filter :authorize
   before_action :set_identity, only: [:show, :edit, :update, :destroy]
   
-  # GET /identities
-  # GET /identities.json
   def index
     @identities = Identity.all
   end
 
-  # GET /identities/1
-  # GET /identities/1.json
   def show
   end
 
-  # GET /identities/new
   def new
     @identity = Identity.new
+    set_language
   end
 
-  # GET /identities/1/edit
   def edit
   end
 
-  # POST /identities
-  # POST /identities.json
+  def copy
+    identity_src = Identity.find(params[:id])
+    @identity = Identity.new
+    @identity.firstname = identity_src.firstname
+    @identity.lastname = identity_src.lastname
+    @identity.address = identity_src.address
+    @identity.email = identity_src.email
+    @identity.web = identity_src.web
+    @identity.birthdate = identity_src.birthdate
+    @identity.gender = identity_src.gender
+    @identity.nationality = identity_src.nationality
+    @identity.familystate = identity_src.familystate
+    @identity.other = identity_src.other
+    @identity.mobile = identity_src.mobile
+    set_language
+
+    render :edit
+  end
+
   def create
     @identity = Identity.new(identity_params)
 
@@ -36,8 +48,6 @@ class IdentitiesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /identities/1
-  # PATCH/PUT /identities/1.json
   def update
     respond_to do |format|
       if @identity.update(identity_params)
@@ -48,8 +58,6 @@ class IdentitiesController < ApplicationController
     end
   end
 
-  # DELETE /identities/1
-  # DELETE /identities/1.json
   def destroy
     @identity.destroy
     respond_to do |format|
@@ -63,8 +71,13 @@ class IdentitiesController < ApplicationController
       @identity = Identity.find(params[:id])
     end
 
+    def set_language
+      option = Option.find_by_user_id(session[:user_id]) 
+      @identity.klang = option.language_id
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def identity_params
-      params.require(:identity).permit(:firstname, :lastname, :address, :email, :web, :birthdate, :gender, :nationality, :familystate, :other)
+      params.require(:identity).permit(:firstname, :lastname, :address, :email, :web, :birthdate, :gender, :nationality, :familystate, :other, :klang, :mobile)
     end
 end

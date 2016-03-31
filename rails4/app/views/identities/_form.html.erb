@@ -19,7 +19,7 @@
   <%= text_field 'identity', 'lastname'  %></p>
 
   <p><label for="identity_address">Address</label><br/>
-  <%= text_field 'identity', 'address'  %></p>
+  <%= text_field 'identity', 'address', size: 50  %></p>
 
   <p><label for="identity_fax">Other</label><br/>
   <%= text_field 'identity', 'other'  %></p>
@@ -31,7 +31,7 @@
   <%= text_field 'identity', 'email'  %></p>
 
   <p><label for="identity_web">Web</label><br/>
-  <%= text_field 'identity', 'web'  %></p>
+  <%= text_field 'identity', 'web', size: 40  %></p>
 
   <p><label for="identity_birthdate">Birthdate</label><br/>
   <%= date_select 'identity', 'birthdate', :start_year => 1971  %></p>
@@ -44,6 +44,11 @@
 
   <p><label for="identity_familystate">Family state</label><br/>
   <%= text_field 'identity', 'familystate'  %></p>
+
+  <p><label for="identity_klang">Locale</label><br/>
+  <%= @identity.language.isoname %>
+  <%= hidden_field :identity, :klang %>
+  </p>
 
   <div class="actions">
     <%= f.submit class: 'btn btn-primary' %>
