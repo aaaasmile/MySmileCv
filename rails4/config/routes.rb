@@ -63,6 +63,7 @@ Rails.application.routes.draw do
   get 'edit_curr_scope' => 'curriculum#edit_curr_scope'
 
   get 'copy_identity' => 'identities#copy'
+  get 'copy_workexperience' => 'workexperiences#copy'
 
   resources :identities
   resources :identpictures

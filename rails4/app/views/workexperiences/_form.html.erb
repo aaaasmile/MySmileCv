@@ -33,6 +33,11 @@
 <p><label for="workexperience_tag">Tag</label><br/>
 <%= text_field 'workexperience', 'tag'  %></p>
 
+<p><label for="workexperience_klang">Locale</label><br/>
+  <%= @workexperience.language.isoname %>
+  <%= hidden_field :workexperience, :klang %>
+</p>
+
  <div class="actions">
     <%= f.submit class: 'btn btn-primary' %>
  </div>
