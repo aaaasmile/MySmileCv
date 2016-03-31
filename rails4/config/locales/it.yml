@@ -1,5 +1,5 @@
 ﻿it:
-  lebenlauf_bold: "<b>Curriculum</b>"
+  lebenlauf_bold: "Curriculum Vitae"
   lebenslauf: "Curriculum"
   lebenslauf_von: "Curriculum di"
   created_with: "creato con MySmileCv"
@@ -10,3 +10,10 @@
   Mobil: 'Mobile'
   Staatsangehörigkeit: 'Cittadinanza'
   Geburtsdatum: 'Data di nascita'
+  Gewünschte_Beschäftigung: 'Occupazione desiderata'
+  Berufserfahrung: 'Esperienza professionale'
+  Datum: 'Date'
+  Beruf_oder_Funktion: 'Lavoro o posizione ricoperti'
+  Wichtigste Tätigkeiten und Zuständigkeiten: 'Principali attività e responsabilità'
+  Name des Arbeitgebers: 'Nome del datore di lavoro'
+  Tätigkeitsbereich_Branche: 'Tipo di attività o settore'

@@ -249,6 +249,7 @@ class CurrPdfBuilder
     end
 
     pdf = PDF::Writer.new(:paper => "A4") 
+    pdf.select_font('Helvetica') # Courier, Times-Roman
     x0 = 190
     #y0 = 50
     y0 = pdf.absolute_bottom_margin
@@ -358,6 +359,8 @@ class CurrPdfBuilder
       
       if I18n.locale == :it
         pdf.text('Codice Fiscale',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield,  :spacing => txt_space)
+        pdf.move_pointer(up_y)
+        pdf.text("#{info_identity.codice_fisc}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
       else
         pdf.text('Geschlecht',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield,  :spacing => txt_space)
         pdf.move_pointer(up_y)
@@ -375,9 +378,13 @@ class CurrPdfBuilder
       txt_space_2lines_gb = 1
       txt_space = 1.3
       up_y_2lines_gb = - pdf.font_height(fnt_size_gb) * txt_space_2lines_gb
-      pdf.text('<b>Gewünschte Beschäftigung</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_gb, :spacing => txt_space_2lines_gb)
+      pdf.text("<b>#{I18n.t('Gewünschte_Beschäftigung')}</b>", :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_gb, :spacing => txt_space_2lines_gb)
       y_ag = pdf.y
-      pdf.move_pointer(2 * up_y_2lines_gb)
+      if I18n.locale == :de
+        pdf.move_pointer(2 * up_y_2lines_gb)
+      else
+        pdf.move_pointer(up_y_2lines_gb)
+      end
       pdf.text("<b>#{cm_isolatin(@curriculum.cur_scope)}</b>",:justification => :left, :left => left_part_data, :font_size => fnt_size_gb,  :spacing => txt_space_2lines_gb )
       y_ag_text = pdf.y
       if y_ag_text > y_ag
@@ -385,7 +392,10 @@ class CurrPdfBuilder
       end
     end
     
-    pdf.text('<b>Berufserfahrung</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
+    # workexperience header
+    exp_fnt_height = fnt_size_hsection
+    exp_fnt_height -= 3 if I18n.locale == :it
+    pdf.text("<b>#{I18n.t('Berufserfahrung')}</b>", :justification => :right, :right => col_r_rmargin, :font_size => exp_fnt_height, :spacing => txt_hspace)
    
     # foto
     if @curriculum.curr_picture
@@ -399,27 +409,25 @@ class CurrPdfBuilder
     #pdf.save_as(pdf_file_name)
     #return
 
-
     #workexperience
     we_list = @curriculum.preproc_workexperience_list
-    #we_list = @curriculum.cur_workexperience_list
     we_list.sort!{|a,b| (a.date_from <=> b.date_from)}
     we_list.reverse!
     inter_leave = 1.5
     txt_space_2lines = 1.5
     up_y_2lines = - pdf.font_height(fnt_size_hfield) * txt_space_2lines # offset yup
     we_list.each do |we_item|
-      pdf.text('Datum',  {:justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space})
+      pdf.text(I18n.t('Datum'),  {:justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space})
       pdf.move_pointer(up_y)
       pdf.text("<b>#{datum_format(we_item.date_from)} - #{datum_format(we_item.date_to)}</b>",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
       pdf.move_pointer(inter_leave)
       
-      pdf.text('Beruf oder Funktion',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(I18n.t('Beruf_oder_Funktion'),  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
       pdf.text("#{cm_isolatin(we_item.position)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
       pdf.move_pointer(inter_leave)
       
-      pdf.text('Wichtigste Tätigkeiten und Zuständigkeiten',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space_2lines)
+      pdf.text(I18n.t('Wichtigste Tätigkeiten und Zuständigkeiten'),  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space_2lines)
       y_ag = pdf.y
       pdf.move_pointer(2 * up_y_2lines)
       # NOTA su bullet: funziona solo se si scrive <C:bullet/>
@@ -440,12 +448,12 @@ class CurrPdfBuilder
       end
       pdf.move_pointer(inter_leave)
       
-      pdf.text('Name des Arbeitgebers',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(I18n.t('Name des Arbeitgebers'),  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
       pdf.text("#{cm_isolatin(we_item.employer)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
       pdf.move_pointer(inter_leave)
       
-      pdf.text('Tätigkeitsbereich/Branche',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(I18n.t('Tätigkeitsbereich_Branche'),  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
       pdf.text("#{cm_isolatin(we_item.sector)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
       pdf.move_pointer(inter_leave)
