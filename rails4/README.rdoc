@@ -57,6 +57,12 @@ Genera:
    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
 </a>
 
+== Comandi da ricordare
+Creare una migrazione
+rails g migration AddDateRefToWorkexperience
+Per eseguirla:
+rake db:migrate
+
 == Nuovo utente
 rails console
 myuser = User.new
