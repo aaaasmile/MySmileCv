@@ -132,15 +132,14 @@ ActiveRecord::Schema.define(version: 20160331100142) do
   end
 
   create_table "workexperiences", force: :cascade do |t|
-    t.date    "from"
-    t.date    "to"
+    t.date    "date_from"
+    t.date    "date_to"
     t.string  "position",   limit: 255
     t.text    "activities"
     t.text    "employer"
     t.string  "sector",     limit: 255
     t.string  "tag",        limit: 255
     t.integer "klang"
-    t.date    "date_ref"
   end
 
 end
