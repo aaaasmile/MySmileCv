@@ -1,2 +1,12 @@
 ﻿it:
   lebenlauf_bold: "<b>Curriculum</b>"
+  lebenslauf: "Curriculum"
+  lebenslauf_von: "Curriculum di"
+  created_with: "creato con MySmileCv"
+  nachnamen_vorname: 'Cognome / Nome'
+  Adresse: 'Indirizzo'
+  Angaben_zur_Person: 'Dati personali'
+  Telefon: 'Telefono'
+  Mobil: 'Mobile'
+  Staatsangehörigkeit: 'Cittadinanza'
+  Geburtsdatum: 'Data di nascita'

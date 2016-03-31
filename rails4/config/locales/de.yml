@@ -1,3 +1,12 @@
 ﻿de:
-  hello: "Hallo Welt"
   lebenlauf_bold: '<b>Lebenslauf</b>'
+  lebenslauf: "Lebenslauf"
+  lebenslauf_von: "Lebenslauf von"
+  created_with: "erstellt mit MySmileCv"
+  nachnamen_vorname: 'Nachnamen/Vorname'
+  Adresse: 'Adresse'
+  Angaben_zur_Person: 'Angaben zur Person'
+  Telefon: 'Telefon'
+  Mobil: 'Mobil'
+  Staatsangehörigkeit: 'Staatsangehörigkeit'
+  Geburtsdatum: 'Geburtsdatum'

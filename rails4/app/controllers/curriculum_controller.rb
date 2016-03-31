@@ -239,8 +239,13 @@ class CurrPdfBuilder
   def build_pdf(pdf_file_name)
     
     info_identity = @curriculum.cur_identity
+    author =  "Igor Sarzi Sartori"
+    title = "Sarzi Sartori, Igor - Lebenslauf"
+    subject = I18n.t :lebenslauf
     if info_identity
       I18n.locale = info_identity.language.isoname.downcase.to_sym
+      author = "#{info_identity.firstname} #{info_identity.lastname}"
+      title = "#{info_identity.lastname}, #{info_identity.firstname} - #{subject}"
     end
 
     pdf = PDF::Writer.new(:paper => "A4") 
@@ -259,9 +264,9 @@ class CurrPdfBuilder
     fnt_size_hsection = 14 # font size of section title
     
     
-    pdf.info.author =  "Igor Sarzi Sartori"
-    pdf.info.title =  "Sarzi Sartori, Igor - Lebenslauf"
-    pdf.info.subject =  "Lebenslauf"
+    pdf.info.author =  author
+    pdf.info.title =  title
+    pdf.info.subject =  subject
     pdf.info.creator =  "MySmileCV with PDF:Writer"
     #pdf.info.creationdate =  Time.now # Not works?
     
@@ -277,7 +282,6 @@ class CurrPdfBuilder
       pdf.stroke_style! PDF::Writer::StrokeStyle::DEFAULT
       y1 = pdf.absolute_top_margin
       pdf.line(x0,y0, x1, y1)
-      #pdf.line_to(x2, y1)
       pdf.stroke  
       pdf.restore_state
       pdf.close_object
@@ -291,7 +295,7 @@ class CurrPdfBuilder
       pdf.stroke_style! PDF::Writer::StrokeStyle::DEFAULT
 
       s = 6
-      t = "Lebenslauf von <b>Igor Sarzi Sartori</b>"
+      t = "#{I18n.t :lebenslauf_von} <b>#{author}</b> #{I18n.t :created_with}"
       x = pdf.absolute_left_margin
       y = pdf.absolute_bottom_margin
       pdf.add_text(x + 47, 26, t, s)
@@ -305,8 +309,6 @@ class CurrPdfBuilder
     pnx = pdf.absolute_right_margin
     pdf.start_page_numbering(pnx, 26, 6, :right, "<PAGENUM>", 1)
     
-    
-    
     # per disegnare i campi con i dati allineati intorno alla linea verticale
     # uso text con l'allineamento a destra, poi sposto il cursore y dov'era prima
     # e a questo punto mando il testo allineato a sinistra
@@ -315,11 +317,11 @@ class CurrPdfBuilder
     pdf.move_pointer(30)
 
     if info_identity
-      str_tmp = I18n.t 'lebenlauf_bold'
+      str_tmp = I18n.t :lebenlauf_bold
      
       pdf.text(str_tmp, {:justification => :right, :right => col_r_rmargin, :font_size => 18})
      
-      pdf.text('<b>Angaben zur Person</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
+      pdf.text("<b>#{I18n.t('Angaben_zur_Person')}</b>", :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
 
       # START test
       #pdf.stop_page_numbering(true, :current)
@@ -328,17 +330,17 @@ class CurrPdfBuilder
       #END Test
 
       # data identity
-      pdf.text('Nachnamen/Vorname', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_hspace)
+      pdf.text(I18n.t(:nachnamen_vorname), :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_hspace)
       pdf.move_pointer(up_y)
       pdf.text("<b>#{cm_isolatin(info_identity.lastname)}, #{cm_isolatin(info_identity.firstname)}</b>", :justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
-      pdf.text('Adresse',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield,  :spacing => txt_space)
+      pdf.text(I18n.t('Adresse'),  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield,  :spacing => txt_space)
       pdf.move_pointer(up_y)
       pdf.text("#{cm_isolatin(info_identity.address)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
-      pdf.text('Telefon',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(I18n.t('Telefon'),  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
-      pdf.text("<i>Mobil</i>: #{info_identity.mobile}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      pdf.text("<i>#{I18n.t('Mobil')}</i>: #{info_identity.mobile}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
       pdf.text('E-mail/Web',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
@@ -346,21 +348,24 @@ class CurrPdfBuilder
       add_each_tostring_inst(str_tmp)
       pdf.text(str_tmp,:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
-      pdf.text('Staatsangehörigkeit',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(I18n.t('Staatsangehörigkeit'),  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
       pdf.text("#{cm_isolatin(info_identity.nationality)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
 
-      pdf.text('Geburtsdatum',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text(I18n.t('Geburtsdatum'),  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
       pdf.text("#{datum_format(info_identity.birthdate)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
-    
-      pdf.text('Geschlecht',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield,  :spacing => txt_space)
-      pdf.move_pointer(up_y)
-      pdf.text("#{cm_isolatin(info_identity.gender)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
-    
-      pdf.text('Familienstand',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
-      pdf.move_pointer(up_y)
-      pdf.text("#{cm_isolatin(info_identity.familystate)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      
+      if I18n.locale == :it
+        pdf.text('Codice Fiscale',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield,  :spacing => txt_space)
+      else
+        pdf.text('Geschlecht',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield,  :spacing => txt_space)
+        pdf.move_pointer(up_y)
+        pdf.text("#{cm_isolatin(info_identity.gender)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+        pdf.text('Familienstand',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+        pdf.move_pointer(up_y)
+        pdf.text("#{cm_isolatin(info_identity.familystate)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      end
 
       pdf.move_pointer(4)
     end
