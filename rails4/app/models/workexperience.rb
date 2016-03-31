@@ -4,7 +4,7 @@ class Workexperience < ActiveRecord::Base
   attr_reader :cumulated_activities
   
   def info_compact
-    "#{from},#{to},#{position},#{activities},#{employer},#{sector}"
+    "#{date_from},#{date_to},#{position},#{activities},#{employer},#{sector}"
   end
 
   def set_cumulated_activities(arr_act)

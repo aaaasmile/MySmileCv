@@ -3,8 +3,7 @@ class WorkexperiencesController < ApplicationController
   before_action :set_workexperience, only: [:show, :edit, :update, :destroy]
   
   def index
-    #@workexperiences = Workexperience.order("created_at desc").all
-    @workexperiences = Workexperience.all
+    @workexperiences = Workexperience.order("date_from desc").all
   end
 
   def show
@@ -23,8 +22,8 @@ class WorkexperiencesController < ApplicationController
     workexperience_src = Workexperience.find(params[:id])
     @workexperience = Workexperience.new
     
-    @workexperience.from = workexperience_src.from
-    @workexperience.to = workexperience_src.to
+    @workexperience.date_from = workexperience_src.date_from
+    @workexperience.date_to = workexperience_src.date_to
     @workexperience.position = workexperience_src.position
     @workexperience.activities = workexperience_src.activities
     @workexperience.employer = workexperience_src.employer
@@ -75,6 +74,6 @@ class WorkexperiencesController < ApplicationController
   end
   
   def workexperience_params
-    params.require(:workexperience).permit(:from, :to, :position, :activities, :employer, :sector, :tag, :klang)
+    params.require(:workexperience).permit(:date_from, :date_to, :position, :activities, :employer, :sector, :tag, :klang)
   end
 end

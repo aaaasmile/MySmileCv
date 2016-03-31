@@ -385,9 +385,9 @@ class CurrPdfBuilder
     # foto
     if @curriculum.curr_picture
       img_stream = Base64.decode64(@curriculum.curr_picture.foto)
-      x_foto = 440
-      y_foto = 670
-      pdf.add_image(img_stream, x_foto, y_foto, 100)
+      x_foto = 460
+      y_foto = 680
+      pdf.add_image(img_stream, x_foto, y_foto, 80)
     end
 
     #pdf.stop_page_numbering(true, :current)
@@ -398,7 +398,7 @@ class CurrPdfBuilder
     #workexperience
     we_list = @curriculum.preproc_workexperience_list
     #we_list = @curriculum.cur_workexperience_list
-    we_list.sort!{|a,b| (a.from <=> b.from)}
+    we_list.sort!{|a,b| (a.date_from <=> b.date_from)}
     we_list.reverse!
     inter_leave = 1.5
     txt_space_2lines = 1.5
@@ -406,7 +406,7 @@ class CurrPdfBuilder
     we_list.each do |we_item|
       pdf.text('Datum',  {:justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space})
       pdf.move_pointer(up_y)
-      pdf.text("<b>#{datum_format(we_item.from)} - #{datum_format(we_item.to)}</b>",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      pdf.text("<b>#{datum_format(we_item.date_from)} - #{datum_format(we_item.date_to)}</b>",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
       pdf.move_pointer(inter_leave)
       
       pdf.text('Beruf oder Funktion',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
