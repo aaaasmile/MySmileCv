@@ -237,6 +237,12 @@ class CurrPdfBuilder
   end
 
   def build_pdf(pdf_file_name)
+    
+    info_identity = @curriculum.cur_identity
+    if info_identity
+      I18n.locale = info_identity.language.isoname.downcase.to_sym
+    end
+
     pdf = PDF::Writer.new(:paper => "A4") 
     x0 = 190
     #y0 = 50
@@ -256,7 +262,7 @@ class CurrPdfBuilder
     pdf.info.author =  "Igor Sarzi Sartori"
     pdf.info.title =  "Sarzi Sartori, Igor - Lebenslauf"
     pdf.info.subject =  "Lebenslauf"
-    pdf.info.creator =  "Curr_rails with PDF:Writer"
+    pdf.info.creator =  "MySmileCV with PDF:Writer"
     #pdf.info.creationdate =  Time.now # Not works?
     
     # first page style
@@ -299,7 +305,7 @@ class CurrPdfBuilder
     pnx = pdf.absolute_right_margin
     pdf.start_page_numbering(pnx, 26, 6, :right, "<PAGENUM>", 1)
     
-    info_identity = @curriculum.cur_identity
+    
     
     # per disegnare i campi con i dati allineati intorno alla linea verticale
     # uso text con l'allineamento a destra, poi sposto il cursore y dov'era prima
@@ -309,7 +315,7 @@ class CurrPdfBuilder
     pdf.move_pointer(30)
 
     if info_identity
-      str_tmp = '<b>Lebenslauf</b>'
+      str_tmp = I18n.t 'lebenlauf_bold'
      
       pdf.text(str_tmp, {:justification => :right, :right => col_r_rmargin, :font_size => 18})
      
