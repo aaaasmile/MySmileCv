@@ -12,9 +12,23 @@ class ComputerskillsController < ApplicationController
 
   def new
     @computerskill = Computerskill.new
+    set_language
   end
   
   def edit
+  end
+
+  def copy
+    computerskill_src = Computerskill.find(params[:id])
+    @computerskill = Computerskill.new
+    @computerskill.name = computerskill_src.name
+    @computerskill.cstype = computerskill_src.cstype
+    @computerskill.level = computerskill_src.level
+    @computerskill.experience = computerskill_src.experience
+
+    set_language
+
+    render :edit
   end
 
   def create
@@ -49,13 +63,13 @@ class ComputerskillsController < ApplicationController
   def set_computerskill
     @computerskill = Computerskill.find(params[:id])
   end
+
+  def set_language
+    option = Option.find_by_user_id(session[:user_id]) 
+    @computerskill.klang = option.language_id
+  end
   
   def computerskill_params
-    par = params.require(:computerskill).permit(:name, :cstype, :level, :experience, :klang)
-    if par[:klang] == nil
-      option = Option.find_by_user_id(session[:user_id]) 
-      par[:klang] = option.language_id
-    end
-    return par
+    params.require(:computerskill).permit(:name, :cstype, :level, :experience, :klang)
   end
 end

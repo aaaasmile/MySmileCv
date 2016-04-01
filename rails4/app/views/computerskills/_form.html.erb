@@ -24,6 +24,11 @@
   <p><label for="computerskill_cstype">Type</label><br/>
   <%= text_field 'computerskill', 'cstype'  %></p>
 
+  <p><label for="computerskill_klang">Locale</label><br/>
+    <%= @computerskill.language.isoname %>
+    <%= hidden_field :computerskill, :klang %>
+  </p>
+
   <div class="actions">
       <%= f.submit class: 'btn btn-primary' %>
   </div>
