@@ -241,9 +241,10 @@ class CurrPdfBuilder
     info_identity = @curriculum.cur_identity
     author =  "Igor Sarzi Sartori"
     title = "Sarzi Sartori, Igor - Lebenslauf"
-    subject = I18n.t :lebenslauf
+    subject = 'Lebenslauf'
     if info_identity
       I18n.locale = info_identity.language.isoname.downcase.to_sym
+      subject = I18n.t('lebenslauf')
       author = "#{info_identity.firstname} #{info_identity.lastname}"
       title = "#{info_identity.lastname}, #{info_identity.firstname} - #{subject}"
     end
