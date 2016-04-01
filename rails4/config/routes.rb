@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   get 'copy_workexperience' => 'workexperiences#copy'
   get 'copy_education' => 'educations#copy'
   get 'copy_computerskill' => 'computerskills#copy'
+  get 'copy_miscstuff' => 'miscstuffs#copy'
 
   resources :identities
   resources :identpictures

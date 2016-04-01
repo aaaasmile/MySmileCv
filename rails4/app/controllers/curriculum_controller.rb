@@ -568,7 +568,7 @@ class CurrPdfBuilder
       # misc
       txt_space_misc = 1
       up_y_misc = - pdf.font_height(fnt_size_hfield) * txt_space_misc
-      pdf.text("Verschiedene Erfahrungen",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text("#{I18n.t('Verschiedene_Erfahrungen')}",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y_misc)
       ed_list.each do |ed_item|
         #next if ed_item.mstype != 'misc'

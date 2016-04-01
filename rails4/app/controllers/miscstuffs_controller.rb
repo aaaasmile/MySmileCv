@@ -11,9 +11,22 @@ class MiscstuffsController < ApplicationController
 
   def new
     @miscstuff = Miscstuff.new
+    set_language
   end
   
   def edit
+  end
+
+  def copy
+    miscstuff_src = Miscstuff.find(params[:id])
+    @miscstuff = Miscstuff.new
+
+    @miscstuff.misc = miscstuff_src.misc
+    @miscstuff.mstype = miscstuff_src.mstype
+    
+    set_language
+
+    render :edit
   end
 
   def create
@@ -48,13 +61,13 @@ class MiscstuffsController < ApplicationController
   def set_miscstuff
     @miscstuff = Miscstuff.find(params[:id])
   end
+
+  def set_language
+    option = Option.find_by_user_id(session[:user_id]) 
+    @miscstuff.klang = option.language_id
+  end
   
   def miscstuff_params
-    par = params.require(:miscstuff).permit(:misc, :mstype, :klang)
-    if par[:klang] == nil
-      option = Option.find_by_user_id(session[:user_id]) 
-      par[:klang] = option.language_id
-    end
-    return par
+    params.require(:miscstuff).permit(:misc, :mstype, :klang)
   end
 end

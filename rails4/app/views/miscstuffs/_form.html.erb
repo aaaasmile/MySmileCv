@@ -18,6 +18,11 @@
 <p><label for="miscstuff_mstype">Type</label><br/>
 <%= text_field 'miscstuff', 'mstype'  %></p>
 
+<p><label for="miscstuff_klang">Locale</label><br/>
+  <%= @miscstuff.language.isoname %>
+  <%= hidden_field :miscstuff, :klang %>
+</p>
+
 
 <div class="actions">
       <%= f.submit class: 'btn btn-primary' %>
