@@ -13,10 +13,10 @@
 
   <!--[form:education]-->
   <p><label for="education_from">From</label><br/>
-  <%= date_select 'education', 'from', :start_year => 1971 %></p>
+  <%= date_select 'education', 'date_from', :start_year => 1971 %></p>
 
   <p><label for="education_to">To</label><br/>
-  <%= date_select 'education', 'to', :start_year => 1971  %></p>
+  <%= date_select 'education', 'date_to', :start_year => 1971  %></p>
 
   <p><label for="education_title">Title</label><br/>
   <%= text_field 'education', 'title'  %></p>
@@ -29,6 +29,11 @@
 
   <p><label for="education_level">Level</label><br/>
   <%= text_field 'education', 'level'  %></p>
+
+  <p><label for="education_klang">Locale</label><br/>
+    <%= @education.language.isoname %>
+    <%= hidden_field :education, :klang %>
+  </p>
 
   <div class="actions">
       <%= f.submit class: 'btn btn-primary' %>

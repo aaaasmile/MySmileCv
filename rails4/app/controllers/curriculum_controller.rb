@@ -465,12 +465,12 @@ class CurrPdfBuilder
     if @curriculum.cur_education_list.size > 0
       pdf.text('<b>Ausbildung</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
       ed_list = @curriculum.cur_education_list
-      ed_list.sort!{|a,b| (a.from <=> b.from)}
+      ed_list.sort!{|a,b| (a.date_from <=> b.date_from)}
       ed_list.reverse!
       ed_list.each do |ed_item|
         pdf.text('Datum',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
         pdf.move_pointer(up_y)
-        pdf.text("<b>#{datum_format(ed_item.from)} - #{datum_format(ed_item.to)}</b>",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+        pdf.text("<b>#{datum_format(ed_item.date_from)} - #{datum_format(ed_item.date_to)}</b>",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
         pdf.move_pointer(inter_leave)
       
         if ed_item.title.size > 0

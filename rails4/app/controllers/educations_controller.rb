@@ -3,7 +3,7 @@ class EducationsController < ApplicationController
   before_action :set_education, only: [:show, :edit, :update, :destroy]
   
   def index
-    @educations = Education.all
+    @educations = Education.order("date_from desc").all
   end
 
   def show
@@ -12,9 +12,26 @@ class EducationsController < ApplicationController
 
   def new
     @education = Education.new
+    set_language
   end
 
   def edit
+  end
+
+  def copy
+    education_src = Education.find(params[:id])
+    @education = Education.new
+    
+    @education.date_from = education_src.date_from
+    @education.date_to = education_src.date_to
+    @education.title = education_src.title
+    @education.skills = education_src.skills
+    @education.organisation = education_src.organisation
+    @education.level = education_src.level
+
+    set_language
+
+    render :edit
   end
 
   def create
@@ -49,13 +66,13 @@ class EducationsController < ApplicationController
   def set_education
     @education = Education.find(params[:id])
   end
+
+  def set_language
+    option = Option.find_by_user_id(session[:user_id]) 
+    @education.klang = option.language_id
+  end
   
   def education_params
-    par = params.require(:education).permit(:from, :to, :title, :skills, :organisation, :level, :klang)
-    if par[:klang] == nil
-      option = Option.find_by_user_id(session[:user_id]) 
-      par[:klang] = option.language_id
-    end
-    return par
+    params.require(:education).permit(:date_from, :date_to, :title, :skills, :organisation, :level, :klang)
   end
 end
