@@ -24,6 +24,9 @@
   <p><label for="computerskill_cstype">Type</label><br/>
   <%= text_field 'computerskill', 'cstype'  %></p>
 
+  <p><label for="computerskill_weight">Weight</label><br/>
+  <%= text_field 'computerskill', 'weight'  %></p>
+
   <p><label for="computerskill_klang">Locale</label><br/>
     <%= @computerskill.language.isoname %>
     <%= hidden_field :computerskill, :klang %>

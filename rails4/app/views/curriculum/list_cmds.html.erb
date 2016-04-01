@@ -147,8 +147,8 @@
   </div>
   <h4>Technologies</h4> 
 </div>
-<% if @curriculum.cur_computer_skills.size > 0 %>
-  <% @curriculum.cur_computer_skills.each do |item| %> 
+<% if @curriculum.get_cur_computer_skills.size > 0 %>
+  <% @curriculum.get_cur_computer_skills.each do |item| %> 
     <div class='remove_item'>
     <%= button_to({:controller => 'curriculum', :action => 'remove_computerskill', :id => item.id}, class: 'btn btn-default', aria:{label: 'Remove'}, style: "float: right;")  do  %> 
       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>

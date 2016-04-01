@@ -3,7 +3,7 @@ class ComputerskillsController < ApplicationController
   before_action :set_computerskill, only: [:show, :edit, :update, :destroy]
   
   def index
-    @computerskills = Computerskill.all
+    @computerskills = Computerskill.order("weight desc").all
   end
 
   def show
@@ -70,6 +70,6 @@ class ComputerskillsController < ApplicationController
   end
   
   def computerskill_params
-    params.require(:computerskill).permit(:name, :cstype, :level, :experience, :klang)
+    params.require(:computerskill).permit(:name, :cstype, :level, :experience, :klang, :weight)
   end
 end

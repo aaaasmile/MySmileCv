@@ -515,9 +515,9 @@ class CurrPdfBuilder
     end
     
     #computer skills
-    if @curriculum.cur_computer_skills.size > 0
+    if @curriculum.get_cur_computer_skills.size > 0
       pdf.text("<b>#{I18n.t('IKT-Kenntnisse')}</b>", :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)    
-      ed_list = @curriculum.cur_computer_skills
+      ed_list = @curriculum.get_cur_computer_skills
       ed_list.each do |ed_item|
         pdf.text("#{cm_isolatin(ed_item.name)}",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
         pdf.move_pointer(up_y)

@@ -2,7 +2,7 @@
 # Per creare questo modello ho usato il modello Cart dal libro rails2nd ed
 
 class Curriculum
-  attr_reader :cur_identity, :cur_computer_skills, :cur_education_list,
+  attr_reader :cur_identity, :cur_education_list,
       :cur_lang_skills, :cur_miscstuff_list, :cur_other_skills, :cur_workexperience_list,
       :curr_title, :curr_picture, :cur_scope, :file_curr_id
   attr_accessor :cur_we_only1empl
@@ -46,7 +46,9 @@ class Curriculum
     @file_curr_id = file_curr_id
   end
   
-  
+  def get_cur_computer_skills
+    list = @cur_computer_skills.sort{|a,b| (b.weight <=> a.weight)}
+  end
   
   ##
   # Load curriculum from yaml file
