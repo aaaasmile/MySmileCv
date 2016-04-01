@@ -18,8 +18,10 @@
 <p><label for="languageskill_level">Level</label><br/>
 <%= text_field 'languageskill', 'level'  %></p>
 
-<p><label for="languageskill_lang">Lang</label><br/>
-<%= text_field 'languageskill', 'lang'  %></p>
+<p><label for="languageskill_klang">Locale</label><br/>
+  <%= @languageskill.language.isoname %>
+  <%= hidden_field :languageskill, :klang %>
+</p>
 
   <div class="actions">
       <%= f.submit class: 'btn btn-primary' %>

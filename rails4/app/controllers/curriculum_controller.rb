@@ -463,18 +463,18 @@ class CurrPdfBuilder
     
     # Education
     if @curriculum.cur_education_list.size > 0
-      pdf.text('<b>Ausbildung</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
+      pdf.text("<b>#{I18n.t('Ausbildung')}</b>", :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)
       ed_list = @curriculum.cur_education_list
       ed_list.sort!{|a,b| (a.date_from <=> b.date_from)}
       ed_list.reverse!
       ed_list.each do |ed_item|
-        pdf.text('Datum',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+        pdf.text(I18n.t('Datum'),  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
         pdf.move_pointer(up_y)
         pdf.text("<b>#{datum_format(ed_item.date_from)} - #{datum_format(ed_item.date_to)}</b>",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
         pdf.move_pointer(inter_leave)
       
         if ed_item.title.size > 0
-          pdf.text('Bezeichnung',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+          pdf.text(I18n.t('Bezeichnung'),  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
           pdf.move_pointer(up_y)
           str_text = "#{ed_item.title}"
           str_text.concat(" (#{ed_item.level})") if ed_item.level.size > 0
@@ -483,14 +483,14 @@ class CurrPdfBuilder
         end
       
         if ed_item.skills.size > 0
-          pdf.text('Hauptfächer',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+          pdf.text(I18n.t('Hauptfächer'),  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
           pdf.move_pointer(up_y)
           pdf.text("#{cm_isolatin(ed_item.skills)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
           pdf.move_pointer(inter_leave)
         end
       
         if ed_item.organisation.size > 0
-          pdf.text('Ausbildungseinrichtung',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+          pdf.text(I18n.t('Ausbildungseinrichtung'),  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
           pdf.move_pointer(up_y)
           pdf.text("#{cm_isolatin(ed_item.organisation)}",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
           pdf.move_pointer(inter_leave)
@@ -502,7 +502,7 @@ class CurrPdfBuilder
 
     # Languages
     if @curriculum.cur_lang_skills.size > 0
-      pdf.text('<b>Sprachen</b>', :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)    
+      pdf.text("<b>#{I18n.t('Sprachen')}</b>", :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hsection, :spacing => txt_hspace)    
       ed_list = @curriculum.cur_lang_skills
       ed_list.each do |ed_item|
         pdf.text("#{cm_isolatin(ed_item.name)}",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)

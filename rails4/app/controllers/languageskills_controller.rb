@@ -12,6 +12,7 @@ class LanguageskillsController < ApplicationController
 
   def new
     @languageskill = Languageskill.new
+    set_language
   end
 
   def create
@@ -46,14 +47,14 @@ class LanguageskillsController < ApplicationController
   def set_languageskill
     @languageskill = Languageskill.find(params[:id])
   end
+
+  def set_language
+    option = Option.find_by_user_id(session[:user_id]) 
+    @languageskill.klang = option.language_id
+  end
   
   def languageskill_params
-    par = params.require(:languageskill).permit(:name, :level, :lang, :klang)
-    if par[:klang] == nil
-      option = Option.find_by_user_id(session[:user_id]) 
-      par[:klang] = option.language_id
-    end
-    return par
+    params.require(:languageskill).permit(:name, :level, :lang, :klang)
   end
 
 
