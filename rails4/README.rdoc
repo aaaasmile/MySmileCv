@@ -72,6 +72,8 @@ myuser.hashed_password = User.encrypted_password('<password>', myuser.salt)
 myuser.save
 
 == Pivotal
+Login con cf (https://github.com/cloudfoundry/cli/releases):
+cf login -a api.run.pivotal.io
 per fare un deploy su pivotal ho usato la linea di comando 
 cf push MySmileCv
 Ho messo due gems per il deploy, puma e rails_12factor.
