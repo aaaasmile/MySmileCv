@@ -530,10 +530,10 @@ class CurrPdfBuilder
     end
     
     if @curriculum.cur_other_skills.size > 0
-      pdf.text('<b>Zusätzliche Angaben</b>', :justification => :right, :right => col_r_rmargin, :font_size => 12, :spacing => txt_hspace)    
+      pdf.text("<b>#{I18n.t('Zusätzliche_Angaben')}</b>", :justification => :right, :right => col_r_rmargin, :font_size => 12, :spacing => txt_hspace)    
       #other skills - hobbies
       ed_list = @curriculum.cur_other_skills
-      pdf.text("Hobbies",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+      pdf.text("#{I18n.t('Hobbies')}",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
       strtext = ""
       count = 0
@@ -560,7 +560,7 @@ class CurrPdfBuilder
         end 
       end
       if str_drivinglicense
-        pdf.text("Führerschein",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
+        pdf.text("#{I18n.t('Führerschein')}",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
         pdf.move_pointer(up_y)
         pdf.text(str_drivinglicense,:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
         pdf.move_pointer(3)
