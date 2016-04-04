@@ -17,4 +17,7 @@
 <%= link_to(workexperiences_path, class: 'btn btn-default', aria:{label: 'Back'} ) do %>
   <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 <% end %>
+<%= button_to({:controller => 'curriculum', :action => 'curr_add_workexperience', :id => @workexperience.id}, class: 'btn btn-primary', aria:{label: 'Use'}) do %>
+   Use
+<% end %>
 

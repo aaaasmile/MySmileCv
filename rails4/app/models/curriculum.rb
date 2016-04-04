@@ -148,10 +148,10 @@ class Curriculum
         #p v
         # we have more that one activity pro employer
         # first get date, min and max
-        min_date_item = v.min{|a,b| a.from <=> b.from }
-        max_date_item = v.max{|a,b| a.to <=> b.to }
+        min_date_item = v.min{|a,b| a.date_from <=> b.date_from }
+        max_date_item = v.max{|a,b| a.date_to <=> b.date_to }
         pos = []
-        aa = v.sort{|a,b| (b.from <=> a.from)}
+        aa = v.sort{|a,b| (b.date_from <=> a.date_from)}
         aa.each do |ele|
           #p ele.from.strftime("%d.%m.%Y")
           pos << ele.position.split(',')
@@ -171,8 +171,8 @@ class Curriculum
         sector = arr_word_list(sect_arr)
         
         wenew = Workexperience.new
-        wenew.from = min_date_item.from
-        wenew.to = max_date_item.to
+        wenew.date_from = min_date_item.date_from
+        wenew.date_to = max_date_item.date_to
         wenew.position = position
         wenew.set_cumulated_activities(activities)
         wenew.sector = sector
