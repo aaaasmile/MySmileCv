@@ -12,7 +12,7 @@ class LoginController < ApplicationController
       user = User.authenticate(params[:name], params[:password])
       if user
         session[:user_id] = user.id
-        redirect_to(:controller => 'curriculum', :action => "list_cmds")
+        redirect_to(:controller => 'loadcurr', :action => "load_last")
       else
         flash.now[:notice] = "Invalid user/password combination"
       end

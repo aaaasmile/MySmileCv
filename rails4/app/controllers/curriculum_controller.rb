@@ -242,6 +242,7 @@ class CurrPdfBuilder
     author =  "Igor Sarzi Sartori"
     title = "Sarzi Sartori, Igor - Lebenslauf"
     subject = 'Lebenslauf'
+    old_locale = I18n.locale
     if info_identity
       I18n.locale = info_identity.language.isoname.downcase.to_sym
       subject = I18n.t('lebenslauf')
@@ -595,6 +596,8 @@ class CurrPdfBuilder
     pdf.stop_page_numbering(true, :current)
     
     pdf.save_as(pdf_file_name)
+    
+    I18n.locale = old_locale 
   end
 
   def datum_format(datum)

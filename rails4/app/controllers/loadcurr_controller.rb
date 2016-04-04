@@ -12,6 +12,15 @@ class LoadcurrController < ApplicationController
     end
   end
   
+  def load_last
+    @file_loaded = Filecurrsaved.last
+    if @file_loaded 
+      build_curriculum
+    else
+      redirect_to :action => :list_cmds, :controller => :curriculum
+    end
+  end
+  
   def delete_curr
     file_id = session[:curriculum]["file_curr_id"]
     item = Filecurrsaved.find_by(id: file_id)
