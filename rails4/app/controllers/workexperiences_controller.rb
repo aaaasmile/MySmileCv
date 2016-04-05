@@ -3,7 +3,12 @@ class WorkexperiencesController < ApplicationController
   before_action :set_workexperience, only: [:show, :edit, :update, :destroy]
   
   def index
-    @workexperiences = Workexperience.order("date_from desc").all
+    option = Option.find_by_user_id(session[:user_id]) 
+    if(option && option.use_only_one_language == 1)
+      @workexperiences = Workexperience.where(["klang = ?", option.language_id]).order("date_from desc")
+    else
+      @workexperiences = Workexperience.order("date_from desc").all
+    end
   end
 
   def show
