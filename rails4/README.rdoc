@@ -71,6 +71,10 @@ myuser.name = '<nome>'
 myuser.hashed_password = User.encrypted_password('<password>', myuser.salt)
 myuser.save
 
+== Server developement 
+usare il questo comando per avere l'accesso da altri pc:
+bundle exec rails s webrick  -b 172.28.2.15 -p 3001
+
 == Pivotal
 Login con cf (https://github.com/cloudfoundry/cli/releases):
 cf login -a api.run.pivotal.io
@@ -79,6 +83,8 @@ cf push MySmileCv
 Ho messo due gems per il deploy, puma e rails_12factor.
 Per lo sviluppo locale, ho usato il seguente comando per testare l'ambiente di produzione:
 bundle exec rails s webrick -e production
+La console di pivotal si trova su:
+run.pivotal.io
 
 Nel fare il deploy non mi funzionava nulla, poi ho lasciato fuori il file manifest.yml e magiacamente
 ha funzionato subito. ===> manifest.yml NON si usa!

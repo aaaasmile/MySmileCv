@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401132656) do
+ActiveRecord::Schema.define(version: 20160405162943) do
 
   create_table "computerskills", force: :cascade do |t|
     t.string  "name",       limit: 255
@@ -99,8 +99,9 @@ ActiveRecord::Schema.define(version: 20160401132656) do
   create_table "options", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "language_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "use_only_one_language"
   end
 
   create_table "otherskills", force: :cascade do |t|

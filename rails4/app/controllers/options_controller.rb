@@ -47,7 +47,7 @@ class OptionsController < ApplicationController
   end
 
   def option_params
-    params.require(:option).permit(:user_id, :language_id)
+    params.require(:option).permit(:user_id, :language_id, :use_only_one_language)
   end
 
 end
