@@ -144,7 +144,10 @@
   
   def curr_add_all_workexperience
     @curriculum = find_curriculum
-    exps = Workexperience.all
+    option = Option.find_by_user_id(session[:user_id]) 
+    exps = (option && option.use_only_one_language == 1) ?
+        Workexperience.where(["klang = ?", option.language_id]).order("date_from desc") :
+        Workexperience.order("date_from desc").all
     exps.each{|x| @curriculum.add_workexperience(x)}
     goto_list_of_cmds
   end
