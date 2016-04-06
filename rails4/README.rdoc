@@ -97,7 +97,7 @@ Su Pivotal il server usato è puma.
 Web: http://mysmilecv.cfapps.io/
 
 == PDF
-La libreria pdf-writer non va con utf8. Quindi lo copiata in rails4/lib e rinominata mypdf.
+La libreria pdf-writer non va con utf8. Quindi l'ho copiata in rails4/lib e rinominata mypdf.
 Tutti i files li ho convertiti in ascii con notepad++ e ho messo l'intestazione 
 # -*- coding: ASCII-8BIT -*-
 In cima ad ogni files in modo che le stringhe dichiarate nei vari files fossero in formato binario.
