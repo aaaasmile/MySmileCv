@@ -1,20 +1,18 @@
 
-<!-- Curriculum view -->
-<p><%= link_to('Load', {:action => 'load_curr', :controller => 'loadcurr'}, class: 'btn btn-default') %></p>
-
-<br/>
-<hr/>
 <% if @curriculum.curr_title.length == 0 %>
-<h4>Current Curriculum [New*]</h4><br/>
+<h4>Curriculum [New*]</h4><br/>
 <% else %>
   <h4>Curriculum [<%= @curriculum.curr_title%>] </h4><br/>
+<% end %>
+
+<%= link_to('Load', {:action => 'load_curr', :controller => 'loadcurr'}, class: 'btn btn-default') %>
+<% if @curriculum.curr_title.length != 0 %>
   <%= link_to('Save', {:action => 'update_curr', :controller => 'savecurr'}, class: 'btn btn-default') %>
   <%= link_to( 'Reload', {:action => 'reload_curr', :controller => 'loadcurr'}, class: 'btn btn-default') %>
   <%= link_to('delete_curr', method: :delete, class: 'btn btn-default', title: 'Delete question',  aria:{label: 'Delete'}, data: { confirm: 'Are you sure?'})  do %>
       <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
   <% end %>
 <% end %>
-
 <%= link_to( 'New', {:action => 'clear_curriculum', :controller => 'curriculum'}, method: :update, title: 'New curriculum question', class: 'btn btn-default', data: { confirm: 'Are you sure?'})  %>
 <%= link_to( 'Save as...', {:action => 'save_curr', :controller => 'savecurr'}, class: 'btn btn-default') %>
 <%= link_to( 'Create PDF', {:action => 'create_pdf'}, class: 'btn btn-default') %>
