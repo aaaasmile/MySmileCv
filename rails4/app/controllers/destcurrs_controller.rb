@@ -76,7 +76,8 @@ class DestcurrsController < ApplicationController
     if File.exist?(inserat_fname)
       send_file(inserat_fname, :filename => @destcurr.inserat_filename, :disposition => 'inline', :type => "application/pdf")
     else
-      render :show
+      flash[:warn] = 'Job offer not found'
+      redirect_to action: "show", id: params[:id]
     end
   end
   
@@ -86,7 +87,12 @@ class DestcurrsController < ApplicationController
     title_pdf += '.pdf'
     base_dir_log = File.join(Rails.root, "public/pdf")
     @pdf_file_name = File.join(base_dir_log, title_pdf)
-    send_file(@pdf_file_name, :filename => title_pdf, :disposition => 'inline', :type => "application/pdf")
+    if File.exist?(@pdf_file_name)
+      send_file(@pdf_file_name, :filename => title_pdf, :disposition => 'inline', :type => "application/pdf")
+    else
+      flash[:warn] = 'Curriculum file not found'
+      redirect_to action: "show", id: params[:id]
+    end
   end
   
   def next_item
