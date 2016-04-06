@@ -3,7 +3,12 @@ class EducationsController < ApplicationController
   before_action :set_education, only: [:show, :edit, :update, :destroy]
   
   def index
-    @educations = Education.order("date_from desc").all
+    option = Option.find_by_user_id(session[:user_id]) 
+    if(option && option.use_only_one_language == 1)
+      @educations = Education.where(["klang = ?", option.language_id]).order("date_from desc")
+    else
+      @educations = Education.order("date_from desc").all
+    end
   end
 
   def show

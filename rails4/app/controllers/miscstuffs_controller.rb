@@ -2,7 +2,12 @@ class MiscstuffsController < ApplicationController
   before_action :set_miscstuff, only: [:show, :edit, :update, :destroy]
   
   def index
-    @miscstuffs = Miscstuff.all
+    option = Option.find_by_user_id(session[:user_id]) 
+    if(option && option.use_only_one_language == 1)
+      @miscstuffs = Miscstuff.where(["klang = ?", option.language_id])
+    else
+      @miscstuffs = Miscstuff.all
+    end
   end
 
   def show

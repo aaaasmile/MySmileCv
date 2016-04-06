@@ -3,7 +3,12 @@ class ComputerskillsController < ApplicationController
   before_action :set_computerskill, only: [:show, :edit, :update, :destroy]
   
   def index
-    @computerskills = Computerskill.order("weight desc").all
+    option = Option.find_by_user_id(session[:user_id]) 
+    if(option && option.use_only_one_language == 1)
+      @computerskills = Computerskill.where(["klang = ?", option.language_id]).order("weight desc").all
+    else
+      @computerskills = Computerskill.order("weight desc").all
+    end
   end
 
   def show

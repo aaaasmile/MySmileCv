@@ -4,7 +4,12 @@ class OtherskillsController < ApplicationController
  before_action :set_otherskill, only: [:show, :edit, :update, :destroy]
   
   def index
-    @otherskills = Otherskill.all
+    option = Option.find_by_user_id(session[:user_id]) 
+    if(option && option.use_only_one_language == 1)
+      @otherskills = Otherskill.where(["klang = ?", option.language_id])
+    else
+      @otherskills = Otherskill.all
+    end
   end
 
   def show

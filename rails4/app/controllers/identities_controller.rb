@@ -3,7 +3,12 @@ class IdentitiesController < ApplicationController
   before_action :set_identity, only: [:show, :edit, :update, :destroy]
   
   def index
-    @identities = Identity.all
+    option = Option.find_by_user_id(session[:user_id]) 
+    if(option && option.use_only_one_language == 1)
+      @identities = Identity.where(["klang = ?", option.language_id])
+    else
+      @identities = Identity.all
+    end
   end
 
   def show

@@ -3,7 +3,12 @@ class LanguageskillsController < ApplicationController
   before_action :set_languageskill, only: [:show, :edit, :update, :destroy]
   
   def index
-    @languageskills = Languageskill.all
+    option = Option.find_by_user_id(session[:user_id]) 
+    if(option && option.use_only_one_language == 1)
+      @languageskills = Languageskill.where(["klang = ?", option.language_id])
+    else
+      @languageskills = Languageskill.all
+    end
   end
 
   def show
