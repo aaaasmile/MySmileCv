@@ -4,5 +4,7 @@
   <li><%= link_to 'Sign in', new_user_session_path %></li>
 <% end %>
 <% if user_signed_in? %>
-  <li>Tipo vai link</li>
+  <li><%= link_to 'Curriculum', curriculum_path %></li>
+  <li><%= link_to 'Options', options_path %></li>
+  <li><%= link_to 'Applications', destcurrs_path %></li>
 <% end %>
