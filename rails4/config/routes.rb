@@ -3,12 +3,13 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'curriculum#index'
+  root 'home#index'
 
   get 'login' => 'login#index'
+  get 'logout' => 'login#logout'
   post 'login/login_app' => 'login#login_app'
   get 'login/login_app' => 'login#login_app'
-  get 'logout' => 'login#logout'
+  get 'login/login_app' => 'high_voltage/login#login_app'
 
   get 'curriculum' => 'curriculum#list_cmds'
   get 'create_pdf' => 'curriculum#create_pdf'

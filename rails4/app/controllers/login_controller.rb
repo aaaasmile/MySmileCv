@@ -1,7 +1,5 @@
 class LoginController < ApplicationController
   
-  #Layout login is needed because we want to hide all menus
-  layout "login"
   
   def index
   end

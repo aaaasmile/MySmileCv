@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   
   #Pick a unique cookie name to distinguish our session data from others'
   #session :session_key => '_curr_rails_session_id'
-  layout "default"
+  #layout "default"
   
   # private
   def authorize
@@ -14,4 +14,6 @@ class ApplicationController < ActionController::Base
        redirect_to(:controller => "login" , :action => "login_app" )
     end
   end
+
+  
 end

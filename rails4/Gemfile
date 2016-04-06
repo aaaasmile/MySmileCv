@@ -58,5 +58,7 @@ gem 'puma', group: :production
 
 gem 'data-confirm-modal', git:'https://github.com/ifad/data-confirm-modal.git'
 
+# page path and static pages (about page)
+gem 'high_voltage'
 
 ruby '2.2.4'
