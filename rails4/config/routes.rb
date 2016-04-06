@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post 'login/login_app' => 'login#login_app'
   get 'login/login_app' => 'login#login_app'
   get 'login/login_app' => 'high_voltage/login#login_app'
+  get 'logout' => 'high_voltage/login#logout'
+  delete 'logout' => 'login#logout'
 
   get 'curriculum' => 'curriculum#list_cmds'
   get 'create_pdf' => 'curriculum#create_pdf'
