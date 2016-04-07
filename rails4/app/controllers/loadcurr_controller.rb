@@ -1,6 +1,10 @@
 class LoadcurrController < ApplicationController
   before_filter :authorize
   
+  def load_curr
+    @files_available = Filecurrsaved.where(["user_id = ?", session[:user_id]]).all
+  end
+
   def reload_curr
     id = session[:curriculum]["file_curr_id"]
     @file_loaded = Filecurrsaved.find_by(id: id)
@@ -13,10 +17,11 @@ class LoadcurrController < ApplicationController
   end
   
   def load_last
-    @file_loaded = Filecurrsaved.last
+    @file_loaded = Filecurrsaved.where(["user_id = ?", session[:user_id]]).last
     if @file_loaded 
       build_curriculum
     else
+      flash[:notice] = 'No saved curriculum found.'
       redirect_to :action => :list_cmds, :controller => :curriculum
     end
   end
@@ -24,7 +29,7 @@ class LoadcurrController < ApplicationController
   def delete_curr
     file_id = session[:curriculum]["file_curr_id"]
     item = Filecurrsaved.find_by(id: file_id)
-    if(item)
+    if(item && session[:user_id] == item.user_id)
       item.destroy
       new_curr = Curriculum.new
       session[:curriculum] = new_curr.get_info_for_session
@@ -34,6 +39,7 @@ class LoadcurrController < ApplicationController
   
   def load_title
     @file_loaded= Filecurrsaved.find(params[:file_loaded][:id])
+    @file_loaded = @file_loaded.user_id == session[:user_id] ? @file_loaded : nil
     build_curriculum
   end
 

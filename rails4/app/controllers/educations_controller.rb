@@ -3,16 +3,18 @@ class EducationsController < ApplicationController
   before_action :set_education, only: [:show, :edit, :update, :destroy]
   
   def index
-    option = Option.find_by_user_id(session[:user_id]) 
+    userid = session[:user_id]
+    option = Option.find_by_user_id(userid) 
     if(option && option.use_only_one_language == 1)
-      @educations = Education.where(["klang = ?", option.language_id]).order("date_from desc")
+      @educations = Education.where(["klang = ? and user_id = ?", option.language_id, userid]).order("date_from desc")
     else
-      @educations = Education.order("date_from desc").all
+      @educations = Education.where(["user_id = ?", userid]).order("date_from desc").all
     end
   end
 
   def show
     @education = Education.find(params[:id])
+    @education = @education.user_id == session[:user_id] ? @education : nil
   end
 
   def new

@@ -3,7 +3,7 @@
 
 <%= form_tag('/load_title') do -%>
   <p><label for="file_loaded_title">Title</label><br/>
-  <%= select('file_loaded', 'id', Filecurrsaved.all.collect{|x| [ x.curr_title, x.id ] }  )%>
+  <%= select('file_loaded', 'id', @files_available.collect{|x| [ x.curr_title, x.id ] }  )%>
 
   <div><%= submit_tag 'Load', class: 'btn btn-primary' %></div>
 <% end -%>
