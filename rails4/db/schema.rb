@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405162943) do
+ActiveRecord::Schema.define(version: 20160407091318) do
 
   create_table "computerskills", force: :cascade do |t|
     t.string  "name",       limit: 255
@@ -20,7 +20,10 @@ ActiveRecord::Schema.define(version: 20160405162943) do
     t.string  "experience", limit: 255
     t.integer "klang"
     t.integer "weight"
+    t.integer "user_id"
   end
+
+  add_index "computerskills", ["user_id"], name: "computerskills_on_user_id"
 
   create_table "destcurrs", force: :cascade do |t|
     t.text    "inserat"
@@ -37,7 +40,10 @@ ActiveRecord::Schema.define(version: 20160405162943) do
     t.string  "risultato",        limit: 255
     t.integer "kcurr_saved"
     t.string  "inserat_filename", limit: 255
+    t.integer "user_id"
   end
+
+  add_index "destcurrs", ["user_id"], name: "destcurrs_on_user_id"
 
   create_table "educations", force: :cascade do |t|
     t.date    "date_from"
@@ -47,14 +53,20 @@ ActiveRecord::Schema.define(version: 20160405162943) do
     t.string  "organisation", limit: 255
     t.string  "level",        limit: 255
     t.integer "klang"
+    t.integer "user_id"
   end
+
+  add_index "educations", ["user_id"], name: "educations_on_user_id"
 
   create_table "filecurrsaveds", force: :cascade do |t|
     t.string  "curr_title",    limit: 255
     t.string  "curr_filename", limit: 255
     t.integer "kuser"
     t.text    "content"
+    t.integer "user_id"
   end
+
+  add_index "filecurrsaveds", ["user_id"], name: "filecurrsaveds_on_user_id"
 
   create_table "identities", force: :cascade do |t|
     t.string  "firstname",   limit: 255
@@ -70,31 +82,43 @@ ActiveRecord::Schema.define(version: 20160405162943) do
     t.string  "familystate", limit: 255
     t.string  "other"
     t.string  "codice_fisc"
+    t.integer "user_id"
   end
+
+  add_index "identities", ["user_id"], name: "identities_on_user_id"
 
   create_table "identpictures", force: :cascade do |t|
     t.string  "foto_filename", limit: 255
     t.integer "kindetity"
     t.string  "content_type",  limit: 255
     t.text    "foto"
+    t.integer "user_id"
   end
+
+  add_index "identpictures", ["user_id"], name: "identpictures_on_user_id"
 
   create_table "languages", force: :cascade do |t|
     t.string "isoname", limit: 255
   end
 
   create_table "languageskills", force: :cascade do |t|
-    t.string  "name",  limit: 255
-    t.string  "level", limit: 255
+    t.string  "name",    limit: 255
+    t.string  "level",   limit: 255
     t.integer "klang"
+    t.integer "user_id"
   end
+
+  add_index "languageskills", ["user_id"], name: "languageskills_on_user_id"
 
   create_table "miscstuffs", force: :cascade do |t|
     t.text    "misc"
-    t.string  "mstype", limit: 255
+    t.string  "mstype",  limit: 255
     t.integer "klang"
     t.integer "weight"
+    t.integer "user_id"
   end
+
+  add_index "miscstuffs", ["user_id"], name: "miscstuffs_on_user_id"
 
   create_table "options", force: :cascade do |t|
     t.integer  "user_id"
@@ -106,10 +130,13 @@ ActiveRecord::Schema.define(version: 20160405162943) do
 
   create_table "otherskills", force: :cascade do |t|
     t.text    "skill"
-    t.string  "sktype", limit: 255
+    t.string  "sktype",  limit: 255
     t.integer "klang"
     t.integer "weight"
+    t.integer "user_id"
   end
+
+  add_index "otherskills", ["user_id"], name: "otherskills_on_user_id"
 
   create_table "schema_info", id: false, force: :cascade do |t|
     t.integer "version"
@@ -139,6 +166,9 @@ ActiveRecord::Schema.define(version: 20160405162943) do
     t.string  "sector",     limit: 255
     t.string  "tag",        limit: 255
     t.integer "klang"
+    t.integer "user_id"
   end
+
+  add_index "workexperiences", ["user_id"], name: "workexperiences_on_user_id"
 
 end
