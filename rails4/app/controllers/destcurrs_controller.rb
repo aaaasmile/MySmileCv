@@ -3,11 +3,12 @@ class DestcurrsController < ApplicationController
   before_action :set_destcurr, only: [:show, :edit, :update, :destroy, :view_curr_insertion]
 
   def index
-    @destcurrs = Destcurr.all
+    @destcurrs = Destcurr.where(["user_id = ?", session[:user_id]]).all
   end
 
   def show
     @destcurr = Destcurr.find(params[:id])
+    @destcurr = @destcurr.user_id == session[:user_id] ? @destcurr : nil
   end
   
   def show_next
