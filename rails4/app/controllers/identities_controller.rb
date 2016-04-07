@@ -3,11 +3,12 @@ class IdentitiesController < ApplicationController
   before_action :set_identity, only: [:show, :edit, :update, :destroy]
   
   def index
-    option = Option.find_by_user_id(session[:user_id]) 
+    userid = session[:user_id]
+    option = Option.find_by_user_id(userid) 
     if(option && option.use_only_one_language == 1)
-      @identities = Identity.where(["klang = ?", option.language_id])
+      @identities = Identity.where(["klang = ? and user_id = ?", option.language_id, userid]).all
     else
-      @identities = Identity.all
+      @identities = Identity.where(["user_id = ?", userid]).all
     end
   end
 
@@ -74,6 +75,7 @@ class IdentitiesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_identity
       @identity = Identity.find(params[:id])
+      @identity = @identity.user_id == session[:user_id] ? @identity : nil
     end
 
     def set_language
