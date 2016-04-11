@@ -26,6 +26,7 @@ class OtherskillsController < ApplicationController
   def create
     @otherskill = Otherskill.new(otherskill_params)
     @otherskill.user_id = session[:user_id]
+    @otherskill.sktype = 'Hobby' #Other skills are only hobbies
     respond_to do |format|
       if @otherskill.save
         format.html { redirect_to @otherskill,  notice: 'Otherskill was successfully created.'}

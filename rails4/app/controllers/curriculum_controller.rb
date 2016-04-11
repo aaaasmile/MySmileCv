@@ -533,8 +533,11 @@ class CurrPdfBuilder
       end
     end
     
-    if @curriculum.cur_other_skills.size > 0
+    if @curriculum.cur_other_skills.size > 0 || @curriculum.cur_miscstuff_list.size > 0
       pdf.text("<b>#{I18n.t('Zusätzliche_Angaben')}</b>", :justification => :right, :right => col_r_rmargin, :font_size => 12, :spacing => txt_hspace)    
+    end
+
+    if @curriculum.cur_other_skills.size > 0
       #other skills - hobbies
       ed_list = @curriculum.cur_other_skills
       pdf.text("#{I18n.t('Hobbies')}",  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
