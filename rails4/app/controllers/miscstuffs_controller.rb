@@ -16,6 +16,7 @@ class MiscstuffsController < ApplicationController
 
   def new
     @miscstuff = Miscstuff.new
+    @miscstuff.mstype = "miscellaneous"
     set_language
   end
   
