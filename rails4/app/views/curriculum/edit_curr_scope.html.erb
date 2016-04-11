@@ -4,3 +4,8 @@
   <div style="margin-top: 20px"><%= text_field 'curriculum', 'cur_scope', size: 40 %>
   <%= submit_tag "Change Scope", class: 'btn btn-nomargin btn-default' %></div>
 <% end -%>
+
+<br />
+<%= link_to(:back, class: 'btn btn-default', aria:{label: 'Back'}) do %>
+  <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+<% end %>

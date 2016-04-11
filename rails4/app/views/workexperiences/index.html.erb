@@ -56,6 +56,10 @@ colonna_nome =  column.human_name
 
 <br />
 
+<%= link_to(:back, class: 'btn btn-default', aria:{label: 'Back'}) do %>
+  <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+<% end %>
+
 <%= link_to(new_workexperience_path, class: 'btn btn-default', aria:{label: 'Add'}) do %>
   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 <% end %>
