@@ -13,7 +13,7 @@
 
 <!--[form:destcurr]-->
 <p><label for="destcurr_inserat">Job description</label><br/>
-<%= text_area 'destcurr', 'inserat'  %></p>
+<%= text_area 'destcurr', 'inserat', size:"50x10"  %></p>
 
 <p><label for="destcurr_inserat_filename">Descr Filename ( dir: public/inserat )</label><br/>
 <%= text_field 'destcurr', 'inserat_filename'  %></p>
@@ -28,10 +28,10 @@
 <%= text_field 'destcurr', 'contact_person'  %></p>
 
 <p><label for="destcurr_contact_company">Contact company</label><br/>
-<%= text_field 'destcurr', 'contact_company'  %></p>
+<%= text_field 'destcurr', 'contact_company', size:40  %></p>
 
 <p><label for="destcurr_contact_note">Contact note</label><br/>
-<%= text_area 'destcurr', 'contact_note'  %></p>
+<%= text_area 'destcurr', 'contact_note', size: "50x10"  %></p>
 
 <p><label for="destcurr_contact_ams">Contact from AMS ?</label><br/>
 <select id="destcurr_contact_ams" name="destcurr[contact_ams]"><option value="false">False</option><option value="true">True</option></select></p>
@@ -43,10 +43,10 @@
 <%= date_select 'destcurr', 'colloquio_at'  %></p>
 
 <p><label for="destcurr_email_motivaz">Email motivation</label><br/>
-<%= text_area 'destcurr', 'email_motivaz'  %></p>
+<%= text_area 'destcurr', 'email_motivaz', size:"50x15"  %></p>
 
 <p><label for="destcurr_note">Note</label><br/>
-<%= text_area 'destcurr', 'note'  %></p>
+<%= text_area 'destcurr', 'note', size:"60x25"  %></p>
 
 <p><label for="destcurr_risultato">Result</label><br/>
 <%= text_field 'destcurr', 'risultato'  %></p>

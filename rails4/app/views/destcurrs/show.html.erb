@@ -11,7 +11,7 @@
   
   <% if column.name == 'kcurr_saved' %>
      <b><%= 'Curriculum' %>:</b> <%= contenuto_campo %>
-     <%= link_to 'View PDF', :action => 'view_curr_pdf', :id => @destcurr %>
+     <%= link_to 'View PDF', {:action => 'view_curr_pdf', :id => @destcurr}, target: '_blank' %>
   <% elsif column.name == 'inserat_filename'
       next
      elsif column.name == 'inserat' 
@@ -19,7 +19,7 @@
      <b><%= column.human_name %>:</b> <%= contenuto_campo %></p>
      <% contenuto_campo = h @destcurr.send(:inserat_filename) %>
      <p><b><%= 'Desc file ( dir: public/inserat )' %>:</b> <%= contenuto_campo %>
-     <%= link_to 'View description', action: 'view_curr_insertion', id: @destcurr %>
+     <%= link_to 'View description', {action: 'view_curr_insertion', id: @destcurr}, target: '_blank' %>
   <%else%>
   <b><%= column.human_name %>:</b> <%= contenuto_campo %>
   <% end%>

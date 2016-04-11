@@ -6,9 +6,11 @@ class DestcurrsController < ApplicationController
     @destcurrs = Destcurr.where(["user_id = ?", session[:user_id]]).all
   end
 
+  def edit
+    @filecurrsaveds =  Filecurrsaved.where(["user_id = ?", session[:user_id]]).all
+  end
+
   def show
-    @destcurr = Destcurr.find(params[:id])
-    @destcurr = @destcurr.user_id == session[:user_id] ? @destcurr : nil
   end
   
   def show_next
@@ -34,13 +36,11 @@ class DestcurrsController < ApplicationController
   end
 
   def new
-    @filecurrsaveds =  Filecurrsaved.all
+    @filecurrsaveds =  Filecurrsaved.where(["user_id = ?", session[:user_id]]).all
     @destcurr = Destcurr.new
   end
 
-  def edit
-    @filecurrsaveds =  Filecurrsaved.all
-  end
+  
 
   def create
     @filecurrsaveds =  Filecurrsaved.all
@@ -75,7 +75,7 @@ class DestcurrsController < ApplicationController
   
   def view_curr_insertion
     inserat_fname = Rails.root.join('public', 'inserat', @destcurr.inserat_filename)
-    if File.exist?(inserat_fname)
+    if File.exist?(inserat_fname) && !File.directory?(inserat_fname)
       send_file(inserat_fname, :filename => @destcurr.inserat_filename, :disposition => 'inline', :type => "application/pdf")
     else
       flash[:warn] = 'Job offer not found'
@@ -103,6 +103,7 @@ class DestcurrsController < ApplicationController
   private
   def set_destcurr
     @destcurr = Destcurr.find(params[:id])
+    @destcurr = @destcurr.user_id == session[:user_id] ? @destcurr : nil
   end
   
   def destcurr_params
