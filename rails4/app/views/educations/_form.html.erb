@@ -19,13 +19,13 @@
   <%= date_select 'education', 'date_to', :start_year => 1971  %></p>
 
   <p><label for="education_title">Title</label><br/>
-  <%= text_field 'education', 'title'  %></p>
+  <%= text_field 'education', 'title', size: '50'  %></p>
 
   <p><label for="education_skills">Skills</label><br/>
-  <%= text_area 'education', 'skills'  %></p>
+  <%= text_area 'education', 'skills', size: "60x20"  %></p>
 
   <p><label for="education_organisation">Organisation</label><br/>
-  <%= text_field 'education', 'organisation'  %></p>
+  <%= text_field 'education', 'organisation', size: '50'  %></p>
 
   <p><label for="education_level">Level</label><br/>
   <%= text_field 'education', 'level'  %></p>
