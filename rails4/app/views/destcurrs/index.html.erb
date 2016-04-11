@@ -18,7 +18,7 @@
     <td><%=h destcurr.send('inserat') %></td>
     <td><%=h destcurr.send('contact_company') %></td>
     <% date_curr_sent =  destcurr[:curr_sent_at]
-       if  date_curr_sent.year == 2003 %> 
+       if  date_curr_sent == nil %> 
     <td>None</td>
     <% else %>
     <td><%=h destcurr.send('curr_sent_at') %></td>

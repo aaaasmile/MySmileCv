@@ -37,10 +37,10 @@
 <select id="destcurr_contact_ams" name="destcurr[contact_ams]"><option value="false">False</option><option value="true">True</option></select></p>
 
 <p><label for="destcurr_curr_sent_at">Curriculum sent at</label><br/>
-<%= date_select 'destcurr', 'curr_sent_at'  %></p>
+<%= date_select 'destcurr', 'curr_sent_at', include_blank: true  %></p>
 
 <p><label for="destcurr_colloquio_at">Meeting</label><br/>
-<%= date_select 'destcurr', 'colloquio_at'  %></p>
+<%= date_select 'destcurr', 'colloquio_at', include_blank: true  %></p>
 
 <p><label for="destcurr_email_motivaz">Email motivation</label><br/>
 <%= text_area 'destcurr', 'email_motivaz', size:"50x15"  %></p>
