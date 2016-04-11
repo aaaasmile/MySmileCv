@@ -15,7 +15,7 @@
 <% end %>
 <%= link_to( 'New', {:action => 'clear_curriculum', :controller => 'curriculum'}, method: :update, title: 'New curriculum question', class: 'btn btn-default', data: { confirm: 'Are you sure?'})  %>
 <%= link_to( 'Save as...', {:action => 'save_curr', :controller => 'savecurr'}, class: 'btn btn-default') %>
-<%= link_to( 'Create PDF', {:action => 'create_pdf'}, class: 'btn btn-default') %>
+<%= link_to( 'Create PDF', {action: 'create_pdf'}, target: '_blank', class: 'btn btn-default') %>
 
 <br/>
 
