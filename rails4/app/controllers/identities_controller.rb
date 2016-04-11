@@ -44,7 +44,7 @@ class IdentitiesController < ApplicationController
 
   def create
     @identity = Identity.new(identity_params)
-
+    @identity.user_id = session[:user_id]
     respond_to do |format|
       if @identity.save
         format.html { redirect_to @identity, notice: 'Identity was successfully created.' }

@@ -45,6 +45,7 @@ class DestcurrsController < ApplicationController
   def create
     @filecurrsaveds =  Filecurrsaved.all
     @destcurr = Destcurr.new(destcurr_params)
+    @destcurr.user_id = session[:user_id]
     respond_to do |format|
       if @destcurr.save
         format.html { redirect_to @destcurr,  notice: 'Curricula sent was successfully created.'}

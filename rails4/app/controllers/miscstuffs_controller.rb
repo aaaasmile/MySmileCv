@@ -2,16 +2,16 @@ class MiscstuffsController < ApplicationController
   before_action :set_miscstuff, only: [:show, :edit, :update, :destroy]
   
   def index
-    option = Option.find_by_user_id(session[:user_id]) 
+    userid = session[:user_id]
+    option = Option.find_by_user_id(userid) 
     if(option && option.use_only_one_language == 1)
-      @miscstuffs = Miscstuff.where(["klang = ?", option.language_id])
+      @miscstuffs = Miscstuff.where(["klang = ? and user_id = ?", option.language_id, userid]).all
     else
-      @miscstuffs = Miscstuff.all
+      @miscstuffs = Miscstuff.where(["user_id = ?", userid]).all
     end
   end
 
   def show
-    @miscstuff = Miscstuff.find(params[:id])
   end
 
   def new
@@ -36,6 +36,7 @@ class MiscstuffsController < ApplicationController
 
   def create
     @miscstuff = Miscstuff.new(miscstuff_params)
+    @miscstuff.user_id = session[:user_id]
     respond_to do |format|
       if @miscstuff.save
         format.html { redirect_to @miscstuff,  notice: 'Mis. cstuff was successfully created.'}
@@ -65,6 +66,7 @@ class MiscstuffsController < ApplicationController
   private
   def set_miscstuff
     @miscstuff = Miscstuff.find(params[:id])
+    @miscstuff = @miscstuff.user_id == session[:user_id] ? @miscstuff : nil
   end
 
   def set_language

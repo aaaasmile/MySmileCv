@@ -13,8 +13,6 @@ class ComputerskillsController < ApplicationController
   end
 
   def show
-    @computerskill = Computerskill.find(params[:id])
-    @computerskill = @computerskill.user_id == session[:user_id] ? @computerskill : nil
   end
 
   def new
@@ -40,6 +38,7 @@ class ComputerskillsController < ApplicationController
 
   def create
     @computerskill = Computerskill.new(computerskill_params)
+    @computerskill.user_id = session[:user_id]
     respond_to do |format|
       if @computerskill.save
         format.html { redirect_to @computerskill,  notice: 'Computerskill was successfully created.'}
@@ -69,6 +68,7 @@ class ComputerskillsController < ApplicationController
   private
   def set_computerskill
     @computerskill = Computerskill.find(params[:id])
+    @computerskill = @computerskill.user_id == session[:user_id] ? @computerskill : nil
   end
 
   def set_language

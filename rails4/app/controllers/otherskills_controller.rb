@@ -4,16 +4,16 @@ class OtherskillsController < ApplicationController
  before_action :set_otherskill, only: [:show, :edit, :update, :destroy]
   
   def index
-    option = Option.find_by_user_id(session[:user_id]) 
+    userid = session[:user_id]
+    option = Option.find_by_user_id(userid) 
     if(option && option.use_only_one_language == 1)
-      @otherskills = Otherskill.where(["klang = ?", option.language_id])
+      @otherskills = Otherskill.where(["klang = ? and user_id = ?", option.language_id, userid]).all
     else
-      @otherskills = Otherskill.all
+      @otherskills = Otherskill.where(["user_id = ?", userid]).all
     end
   end
 
   def show
-    @otherskill = Otherskill.find(params[:id])
   end
 
   def new
@@ -25,6 +25,7 @@ class OtherskillsController < ApplicationController
 
   def create
     @otherskill = Otherskill.new(otherskill_params)
+    @otherskill.user_id = session[:user_id]
     respond_to do |format|
       if @otherskill.save
         format.html { redirect_to @otherskill,  notice: 'Otherskill was successfully created.'}
@@ -54,6 +55,7 @@ class OtherskillsController < ApplicationController
   private
   def set_otherskill
     @otherskill = Otherskill.find(params[:id])
+    @otherskill = @otherskill.user_id == session[:user_id] ? @otherskill : nil
   end
   
   def otherskill_params

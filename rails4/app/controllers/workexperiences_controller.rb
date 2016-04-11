@@ -3,16 +3,16 @@ class WorkexperiencesController < ApplicationController
   before_action :set_workexperience, only: [:show, :edit, :update, :destroy]
   
   def index
-    option = Option.find_by_user_id(session[:user_id]) 
+    userid = session[:user_id]
+    option = Option.find_by_user_id(userid) 
     if(option && option.use_only_one_language == 1)
-      @workexperiences = Workexperience.where(["klang = ?", option.language_id]).order("date_from desc")
+      @workexperiences = Workexperience.where(["klang = ? and user_id = ?", option.language_id, userid]).order("date_from desc").all
     else
-      @workexperiences = Workexperience.order("date_from desc").all
+      @workexperiences = Workexperience.where(["user_id = ?", userid]).order("date_from desc").all
     end
   end
 
   def show
-    @workexperience = Workexperience.find(params[:id])
   end
 
   def new
@@ -42,6 +42,7 @@ class WorkexperiencesController < ApplicationController
 
   def create
     @workexperience = Workexperience.new(workexperience_params)
+    @workexperience.user_id = session[:user_id] 
     respond_to do |format|
       if @workexperience.save
         format.html { redirect_to @workexperience,  notice: 'Work experience was successfully created.'}
@@ -71,6 +72,7 @@ class WorkexperiencesController < ApplicationController
   private
   def set_workexperience
     @workexperience = Workexperience.find(params[:id])
+    @workexperience = @workexperience.user_id == session[:user_id] ? @workexperience : nil
   end
 
   def set_language

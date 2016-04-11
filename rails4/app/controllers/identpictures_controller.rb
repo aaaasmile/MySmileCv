@@ -3,11 +3,14 @@ class IdentpicturesController < ApplicationController
   before_action :set_identpicture, only: [:show, :edit, :update, :destroy]
   
   def index
-    @identpictures = Identpicture.all
+    userid = session[:user_id]
+    @identpictures = Identpicture.where(["user_id = ?", userid]).all
   end
   
-  def show
-    @identpicture = Identpicture.find(params[:id])
+  def show  
+  end
+
+  def edit
   end
   
   def picture
@@ -27,11 +30,9 @@ class IdentpicturesController < ApplicationController
     @identpicture = Identpicture.new
   end
 
-  def edit
-  end
-
   def create
     @identpicture = Identpicture.new(identpicture_params)
+    @identpicture.user_id = session[:user_id] 
     respond_to do |format|
       if @identpicture.save
         format.html { redirect_to @identpicture,  notice: 'Picture was successfully created.'}
@@ -61,6 +62,7 @@ class IdentpicturesController < ApplicationController
   private
   def set_identpicture
     @identpicture = Identpicture.find(params[:id])
+    @identpicture = @identpicture.user_id == session[:user_id] ? @identpicture : nil
   end
   
   def identpicture_params

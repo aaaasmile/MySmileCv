@@ -21,7 +21,7 @@ class SavecurrController < ApplicationController
     @filecurrsaved = Filecurrsaved.new(filecurrsaved_params)
     curr_obj = find_curriculum
     @filecurrsaved.content = YAML.dump(curr_obj.get_info_for_session)
-    @filecurrsaved.kuser = session[:user_id]
+    @filecurrsaved.user_id = session[:user_id]
     if @filecurrsaved.save
       curr_obj.set_title(@filecurrsaved.curr_title, @filecurrsaved.id)
       session[:curriculum] = curr_obj.get_info_for_session
