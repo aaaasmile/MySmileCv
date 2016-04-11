@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407091318) do
+ActiveRecord::Schema.define(version: 20160411083718) do
 
   create_table "computerskills", force: :cascade do |t|
     t.string  "name",       limit: 255
@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 20160407091318) do
   create_table "filecurrsaveds", force: :cascade do |t|
     t.string  "curr_title",    limit: 255
     t.string  "curr_filename", limit: 255
-    t.integer "kuser"
     t.text    "content"
     t.integer "user_id"
   end
