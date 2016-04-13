@@ -12,41 +12,41 @@
     </div>
   <% end %>
 
-  <p><label for="identity_firstname">Firstname</label><br/>
+  <p><label for="identity_firstname"><%= I18n.t('Firstname') %></label><br/>
   <%= text_field 'identity', 'firstname'  %></p>
 
-  <p><label for="identity_lastname">Lastname</label><br/>
+  <p><label for="identity_lastname"><%= I18n.t('Lastname') %></label><br/>
   <%= text_field 'identity', 'lastname'  %></p>
 
-  <p><label for="identity_address">Address</label><br/>
+  <p><label for="identity_address"><%= I18n.t('Address') %></label><br/>
   <%= text_field 'identity', 'address', size: 50  %></p>
 
-  <p><label for="identity_fax">Other</label><br/>
+  <p><label for="identity_fax"><%= I18n.t('Other') %></label><br/>
   <%= text_field 'identity', 'other'  %></p>
 
-  <p><label for="identity_mobile">Mobile</label><br/>
+  <p><label for="identity_mobile"><%= I18n.t('Mobile') %></label><br/>
   <%= text_field 'identity', 'mobile'  %></p>
 
-  <p><label for="identity_email">Email</label><br/>
+  <p><label for="identity_email"><%= I18n.t('Email') %></label><br/>
   <%= text_field 'identity', 'email'  %></p>
 
-  <p><label for="identity_web">Web</label><br/>
+  <p><label for="identity_web"><%= I18n.t('Web') %></label><br/>
   <%= text_field 'identity', 'web', size: 40  %></p>
 
-  <p><label for="identity_birthdate">Birthdate</label><br/>
+  <p><label for="identity_birthdate"><%= I18n.t('Birthdate') %></label><br/>
   <%= date_select 'identity', 'birthdate', :start_year => 1971  %></p>
 
-  <p><label for="identity_gender">Gender</label><br/>
+  <p><label for="identity_gender"><%= I18n.t('Gender') %></label><br/>
   <%= text_field 'identity', 'gender'  %></p>
 
-  <p><label for="identity_nationality">Nationality</label><br/>
+  <p><label for="identity_nationality"><%= I18n.t('Nationality') %></label><br/>
   <%= text_field 'identity', 'nationality'  %></p>
 
-  <p><label for="identity_familystate">Family state</label><br/>
+  <p><label for="identity_familystate"><%= I18n.t('Familystate') %></label><br/>
   <%= text_field 'identity', 'familystate'  %></p>
 
   <% if @identity.language.isoname == 'IT' -%>
-    <p><label for="identity_codice_fisc">Codice fiscale</label><br/>
+    <p><label for="identity_codice_fisc"><%= I18n.t('Codice fisc') %></label><br/>
     <%= text_field 'identity', 'codice_fisc'  %></p>
   <% end -%>
 

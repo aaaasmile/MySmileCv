@@ -47,7 +47,7 @@ class IdentitiesController < ApplicationController
     @identity.user_id = session[:user_id]
     respond_to do |format|
       if @identity.save
-        format.html { redirect_to @identity, notice: 'Identity was successfully created.' }
+        format.html { redirect_to @identity, notice: t('Identity was successfully created.') }
       else
         format.html { render :new }
       end
@@ -57,7 +57,7 @@ class IdentitiesController < ApplicationController
   def update
     respond_to do |format|
       if @identity.update(identity_params)
-        format.html { redirect_to @identity, notice: 'Identity was successfully updated.' }
+        format.html { redirect_to @identity, notice: t('Identity was successfully updated.') }
       else
         format.html { render :edit }
       end
@@ -67,7 +67,7 @@ class IdentitiesController < ApplicationController
   def destroy
     @identity.destroy
     respond_to do |format|
-      format.html { redirect_to identities_url, notice: 'Identity was successfully destroyed.' }
+      format.html { redirect_to identities_url, notice: t('Identity was successfully destroyed.') }
     end
   end
 
