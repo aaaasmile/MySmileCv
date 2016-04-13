@@ -90,6 +90,8 @@
   New Identity: 'Nuovi dati personali'
   Are you sure?: 'Sei sicuro?'
   Delete question: 'Domanda prima di cancellare'
+  Confirm: 'Conferma'
+  Cancel: 'Cancella'
 
   activerecord:
     errors:
