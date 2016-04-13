@@ -31,7 +31,7 @@
   Company: 'Azienda'
   Cur Sent: 'Inviato'
   Result: 'Risultato'
-  Curricula sent: 'Inviato'
+  Curricula sent: 'Offerte di lavoro'
   Curriculum [New*]: 'Curriculum [Nuovo*]'
   Curriculum: 'Curriculum'
   Manage Curriculum: 'Carica il curriculum'
@@ -55,7 +55,11 @@
   Technologies: 'Tecnologie'
   Miscellaneous: 'Diversi'
   Hobbies and interests: 'Hobby e interessi'
-
+  An easy way to create an Italian or German PDF Curriculum Vitae: 'Una semplice App per creare un Curriculum in formato PDF in italiano o in tedesco'
+  About: 'Informazioni su'
+  Options: 'Opzioni'
+  Applications: 'Offerte'
+  Logout: 'Esci'
 
   activerecord:
     errors:

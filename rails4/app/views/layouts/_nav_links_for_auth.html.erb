@@ -1,9 +1,9 @@
 ﻿<% if user_signed_in? %>
-  <li><%= link_to 'Curriculum', curriculum_path %></li>
-  <li><%= link_to 'Options', options_path %></li>
-  <li><%= link_to 'Applications', destcurrs_path %></li>
+  <li><%= link_to I18n.t('Curriculum'), curriculum_path %></li>
+  <li><%= link_to I18n.t('Options'), options_path %></li>
+  <li><%= link_to I18n.t('Applications'), destcurrs_path %></li>
   <li><%= link_to(destroy_user_session_path, method: 'delete' ) do %>
-    <span><%= "#{user_name_text} #{'Logout'}" %></span>
+    <span><%= "#{user_name_text} #{I18n.t('Logout')}" %></span>
     <% end %>
   </li>
 <% else %>
