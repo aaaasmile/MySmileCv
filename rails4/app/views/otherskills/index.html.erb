@@ -1,4 +1,4 @@
-<h3>Listing otherskills</h3>
+<h3>Hobbies</h3>
 
 <%= button_to({:controller => 'curriculum', :action => 'curr_add_all_otherskill'}, class: 'btn btn-primary', aria:{label: 'Add all'}) do %>
    Add All to Curriculum
@@ -30,9 +30,9 @@
         contenuto_campo = h otherskill.send(column.name)
       end
 %>
-    <td><%=contenuto_campo %></td>
+    <td data-header="<%= column.human_name %>"><%=contenuto_campo %></td>
   <% end %>
-    <td>
+    <td id="cmds">
       <div class="btn-group" role="group" aria-label="Commands">
         <%= link_to(otherskill, class: 'btn btn-default', aria:{label: 'Show'} ) do %>
           <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
@@ -54,7 +54,7 @@
 
 <br />
 
-<%= link_to(:back, class: 'btn btn-default', aria:{label: 'Back'}) do %>
+<%= link_to(curriculum_path, class: 'btn btn-default', aria:{label: 'Back'}) do %>
   <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
 <% end %>
 

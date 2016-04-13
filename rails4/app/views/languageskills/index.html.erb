@@ -32,9 +32,9 @@
         contenuto_campo = h languageskill.send(column.name)
       end
   %>
-    <td><%=contenuto_campo %></td>
+    <td data-header="<%= column.human_name %>"><%=contenuto_campo %></td>
   <% end %>
-    <td>
+    <td id="cmds">
       <div class="btn-group" role="group" aria-label="Commands">
         <%= link_to(languageskill, class: 'btn btn-default', aria:{label: 'Show'} ) do %>
           <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
@@ -56,7 +56,7 @@
 
 <br />
 
-<%= link_to(:back, class: 'btn btn-default', aria:{label: 'Back'}) do %>
+<%= link_to(curriculum_path, class: 'btn btn-default', aria:{label: 'Back'}) do %>
   <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
 <% end %>
 

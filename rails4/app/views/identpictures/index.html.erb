@@ -17,12 +17,12 @@ for identpicture in @identpictures
   <tr class="<%= class_name %>">
     <% for column in Identpicture.content_columns 
         if column.name == 'foto' %>
-    <td><img src="<%= url_for(:action => 'picture', :id => identpicture) %>" /></td>
+    <td id="image"><img src="<%= url_for(:action => 'picture', :id => identpicture) %>" /></td>
         <% else %>
-    <td><%=h identpicture.send(column.name) %></td>
+    <td data-header="<%= column.human_name %>"><%=h identpicture.send(column.name) %></td>
        <% end #endif %>
   <% end #endfor%>
-    <td>
+    <td id="cmds">
     <div class="btn-group" role="group" aria-label="Commands">
         <%= link_to(identpicture, class: 'btn btn-default', aria:{label: 'Show'} ) do %>
           <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
@@ -45,7 +45,7 @@ for identpicture in @identpictures
 
 <br />
 
-<%= link_to(:back, class: 'btn btn-default', aria:{label: 'Back'}) do %>
+<%= link_to(curriculum_path, class: 'btn btn-default', aria:{label: 'Back'}) do %>
   <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
 <% end %>
 

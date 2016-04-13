@@ -248,6 +248,17 @@ td {
 
     td:before {
         font-weight: bold;
+        content: attr(data-header) ": ";
+    }
+
+    td#cmds:before {
+        font-weight: normal;
+        content: "";
+    }
+
+    td#image:before {
+        font-weight: normal;
+        content: "";
     }
 
 
