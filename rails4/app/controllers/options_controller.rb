@@ -24,6 +24,7 @@ class OptionsController < ApplicationController
 
     respond_to do |format|
       if @option.save
+        update_locale
         format.html { redirect_to curriculum_url, notice: 'Option was successfully created.' }
       else
         format.html { render :new }
@@ -34,6 +35,7 @@ class OptionsController < ApplicationController
   def update
     respond_to do |format|
       if @option.update(option_params)
+        update_locale
         format.html { redirect_to curriculum_url, notice: 'Option was successfully updated.' }
       else
         format.html { render :edit }
@@ -44,6 +46,11 @@ class OptionsController < ApplicationController
   private
   def set_option
     @option = Option.find_by_user_id(session[:user_id]) 
+  end
+
+  def update_locale
+    language = Language.find_by_id(@option.language_id)
+    I18n.locale = language.isoname.downcase if language
   end
 
   def option_params

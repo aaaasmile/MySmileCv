@@ -11,6 +11,11 @@ class LoginController < ApplicationController
       if user
         session[:user_id] = user.id
         session[:user_name] = user.name
+        option = Option.find_by_user_id(user.id) 
+        if option
+          language = Language.find_by_id(option.language_id)
+          I18n.locale = language.isoname.downcase if language
+        end
         redirect_to(:controller => 'loadcurr', :action => "load_last")
       else
         flash.now[:error] = "Invalid user/password combination"
