@@ -92,6 +92,8 @@
   Delete question: 'Domanda prima di cancellare'
   Confirm: 'Conferma'
   Cancel: 'Cancella'
+  Delete: 'Elimina'
+  New curriculum question: 'Domanda nuovo curriculum'
 
   activerecord:
     errors:

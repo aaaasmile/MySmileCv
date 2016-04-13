@@ -42,7 +42,7 @@ for computerskill in @computerskills
         <%= link_to(copy_computerskill_path(computerskill), class: 'btn btn-default', aria:{label: 'Copy'} ) do %>
           <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
         <% end %>
-        <%= link_to(computerskill, method: :delete, class: 'btn btn-default', title: 'Delete question',  aria:{label: 'Delete'}, data: { confirm: 'Are you sure?'}) do %>
+        <%= link_to(computerskill, method: :delete, class: 'btn btn-default', title: I18n.t('Delete question'),  aria:{label: I18n.t('Delete')}, data: { confirm: I18n.t('Are you sure?'), commit: I18n.t('Confirm'), cancel: I18n.t('Cancel')}) do %>
           <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
         <% end %>
         <%= button_to({:controller => 'curriculum', :action => 'curr_add_computer_skill', :id => computerskill}, class: 'btn btn-primary', aria:{label: 'Use'}) do %>

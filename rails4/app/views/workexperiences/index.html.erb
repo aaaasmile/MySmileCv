@@ -43,7 +43,7 @@ colonna_nome =  column.human_name
         <%= link_to(copy_workexperience_path(workexperience), class: 'btn btn-default', aria:{label: 'Copy'} ) do %>
           <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
         <% end %>
-        <%= link_to(workexperience, method: :delete, class: 'btn btn-default', title: 'Delete question',  aria:{label: 'Delete'}, data: { confirm: 'Are you sure?'}) do %>
+        <%= link_to(workexperience, method: :delete, class: 'btn btn-default', title: I18n.t('Delete question'),  aria:{label: 'Delete'}, data: { confirm: I18n.t('Are you sure?'), commit: I18n.t('Confirm'), cancel: I18n.t('Cancel')}) do %>
           <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
         <% end %>
         <%= button_to({:controller => 'curriculum', :action => 'curr_add_workexperience', :id => workexperience}, class: 'btn btn-primary', aria:{label: 'Use'}) do %>
