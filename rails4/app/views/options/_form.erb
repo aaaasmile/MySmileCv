@@ -1,12 +1,12 @@
 <%= form_for(@option) do |f| %>
-  <p>User: <%= @option.user_name %></p>
+  <p><%= I18n.t('User') %>: <%= @option.user_name %></p>
   
-  <p><label for="option_language">Language</label><br/>
+  <p><label for="option_language"><%= I18n.t('Language') %></label><br/>
   <%= f.collection_select :language_id, Language.all, :id, :isoname, prompt: true %>
   <%= text_field 'option', 'user_id', type: "hidden"  %>
   </p>
 
-  <p><label for="option_loadonlylang">Use only one language</label><br/>
+  <p><label for="option_loadonlylang"><%= I18n.t('Use only one language') %></label><br/>
    <%= f.check_box :use_only_one_language %></p>
 
   <div class="actions">

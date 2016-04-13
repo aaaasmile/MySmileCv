@@ -60,6 +60,11 @@
   Options: 'Opzioni'
   Applications: 'Offerte'
   Logout: 'Esci'
+  Update options: 'Aggiorna le opzioni'
+  User: 'Utente'
+  Language: 'Lingua'
+  Use only one language: 'Utilizza solo una lingua'
+
 
   activerecord:
     errors:
@@ -207,6 +212,8 @@
       create: Crea %{model}
       submit: Invia %{model}
       update: Aggiorna %{model}
+      option:
+        update: Aggiorna
   number:
     currency:
       format:
