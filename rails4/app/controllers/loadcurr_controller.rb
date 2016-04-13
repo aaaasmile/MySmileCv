@@ -10,7 +10,7 @@ class LoadcurrController < ApplicationController
     @file_loaded = Filecurrsaved.find_by(id: id)
     if @file_loaded 
       build_curriculum
-      flash[:notice] = 'Curriculum reloaded.'
+      flash[:notice] = t'Curriculum reloaded.'
     else
       redirect_to :action => :list_cmds, :controller => :curriculum
     end
@@ -21,7 +21,7 @@ class LoadcurrController < ApplicationController
     if @file_loaded 
       build_curriculum
     else
-      flash[:notice] = 'No saved curriculum found.'
+      flash[:notice] = t'No saved curriculum found.'
       redirect_to :action => :list_cmds, :controller => :curriculum
     end
   end
@@ -49,12 +49,12 @@ class LoadcurrController < ApplicationController
     curr_model = Curriculum.new
     if @file_loaded && curr_model.load_from_yaml(@file_loaded.content)
       curr_model.set_title(@file_loaded.curr_title, @file_loaded.id)
-      flash[:notice] = 'Curriculum was successfully loaded.'
+      flash[:notice] = t'Curriculum was successfully loaded.'
     else
-      flash[:error_toast] = 'Unable to load curriculum.'
+      flash[:error_toast] = t'Unable to load curriculum.'
     end
     session[:curriculum] = curr_model.get_info_for_session
-    redirect_to :action => :list_cmds, :controller => :curriculum
+    redirect_to action: :list_cmds, controller: :curriculum
   end
   
 end

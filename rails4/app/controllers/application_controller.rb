@@ -8,14 +8,15 @@ class ApplicationController < ActionController::Base
   #session :session_key => '_curr_rails_session_id'
   
   def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
+    if params[:locale]
+      I18n.locale = params[:locale]
+    end
   end
 
   def default_url_options(options = {})
     { locale: I18n.locale }.merge options
   end
 
-  # private
   def authorize
      unless User.find_by_id(session[:user_id])
        flash[:notice] = "Please log in"
@@ -23,5 +24,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  
 end

@@ -28,6 +28,19 @@
   Zusätzliche_Angaben: 'Altre competenze'
   Hobbies: 'Interessi'
   Job: 'Lavoro'
+  Company: 'Azienda'
+  Cur Sent: 'Inviato'
+  Result: 'Risultato'
+  Curricula sent: 'Inviato'
+  Curriculum [New*]: 'Curriculum [Nuovo*]'
+  Curriculum: 'Curriculum'
+  Manage Curriculum: 'Carica il curriculum'
+  Title: 'Titolo'
+  Load: 'Apri'
+  Curriculum was successfully loaded: 'Curriculum caricato con successo.'
+  Unable to load curriculum: 'Caricamento fallito.'
+  No saved curriculum found: 'Curriculum non trovato.'
+  Curriculum reloaded: 'Curriculum ricaricato.'
 
 
   activerecord:

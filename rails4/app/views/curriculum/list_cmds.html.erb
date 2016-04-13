@@ -1,8 +1,8 @@
 
 <% if @curriculum.curr_title.length == 0 %>
-<h4>Curriculum [New*]</h4><br/>
+  <h4><%= I18n.t('Curriculum [New*]') %></h4><br/>
 <% else %>
-  <h4>Curriculum [<%= @curriculum.curr_title%>] </h4><br/>
+  <h4><%= I18n.t('Curriculum') %> [<%= @curriculum.curr_title%>] </h4><br/>
 <% end %>
 
 <%= link_to('Load', {:action => 'load_curr', :controller => 'loadcurr'}, class: 'btn btn-default') %>

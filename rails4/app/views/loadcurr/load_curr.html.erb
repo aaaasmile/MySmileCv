@@ -1,11 +1,11 @@
-<h3>Manage Curriculum</h3>
+<h3><%= I18n.t('Manage Curriculum') %></h3>
 
 
 <%= form_tag('/load_title') do -%>
-  <p><label for="file_loaded_title">Title</label><br/>
+  <p><label for="file_loaded_title"><%= I18n.t('Title') %></label><br/>
   <%= select('file_loaded', 'id', @files_available.collect{|x| [ x.curr_title, x.id ] }  )%>
 
-  <div><%= submit_tag 'Load', class: 'btn btn-primary' %></div>
+  <div><%= submit_tag t('Load'), class: 'btn btn-primary'  %></div>
 <% end -%>
 
 
