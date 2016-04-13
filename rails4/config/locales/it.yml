@@ -27,6 +27,9 @@
   Führerschein: 'Patente'
   Zusätzliche_Angaben: 'Altre competenze'
   Hobbies: 'Interessi'
+  Job: 'Lavoro'
+
+
   activerecord:
     errors:
       messages:

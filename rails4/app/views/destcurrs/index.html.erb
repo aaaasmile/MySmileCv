@@ -1,52 +1,56 @@
-<h3>Curricula sent</h3>
+<h3><%= I18n.t('Curricula sent') %></h3>
 
-<table>
-  <thead>
-  <tr>
-    <th>Job</th>
-    <th>Company</th>
-    <th>Cur Sent</th>
-    <th>Result</th>
-  </tr>
-  </thead>
-  <tbody>
-<% row_odd = false
-    for destcurr in @destcurrs 
-     class_name = row_odd == true ? 'list_line_odd' : 'list_line_even' 
-        row_odd = !row_odd %>
-  <tr class="<%= class_name %>">
-    <td><%=h destcurr.send('inserat') %></td>
-    <td><%=h destcurr.send('contact_company') %></td>
-    <% date_curr_sent =  destcurr[:curr_sent_at]
-       if  date_curr_sent == nil %> 
-    <td>None</td>
-    <% else %>
-    <td><%=h destcurr.send('curr_sent_at') %></td>
-    <% end%>
-    <td><%=h destcurr.send('risultato') %></td>
-    <td>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th><%= I18n.t('Company')  %></th>
+        <th><%= I18n.t('Job') %></th>
+        <th><%= I18n.t('Cur Sent') %></th>
+        <th><%= I18n.t('Result') %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% row_odd = false
+      for destcurr in @destcurrs
+      class_name = row_odd == true ? 'list_line_odd' : 'list_line_even'
+      row_odd = !row_odd %>
+      <tr class="<%= class_name %>">
+        <td data-header="<%= I18n.t('Company')  %>"><%=h destcurr.send('contact_company') %></td>
+        <td data-header="<%= I18n.t('Job') %>"><%=h destcurr.send('inserat') %></td>
+        <% date_curr_sent =  destcurr[:curr_sent_at]
+        if  date_curr_sent == nil %>
+          <td data-header="<%= I18n.t('Cur Sent') %>">None</td>
+        <% else %>
+          <td data-header="<%= I18n.t('Cur Sent') %>"><%=h destcurr.send('curr_sent_at') %></td>
+        <% end%>
+        <td data-header="<%= I18n.t('Result') %>"><%=h destcurr.send('risultato') %></td>
+        <td id="cmds">
 
-      <div class="btn-group" role="group" aria-label="Commands">
-        <%= link_to(destcurr, class: 'btn btn-default', aria:{label: 'Show'} ) do %>
-          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-        <% end %>
-        <%= link_to(edit_destcurr_path(destcurr), class: 'btn btn-default', aria:{label: 'Edit'} ) do %>
-          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-        <% end %>
-        <%= link_to(destcurr, method: :delete, class: 'btn btn-default', title: 'Delete question',  aria:{label: 'Delete'}, data: { confirm: 'Are you sure?'}) do %>
-          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-        <% end %>
-      </div>
+          <div class="btn-group" role="group" aria-label="Commands">
+            <%= link_to(destcurr, class: 'btn btn-default', aria:{label: 'Show'} ) do %>
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            <% end %>
+            <%= link_to(edit_destcurr_path(destcurr), class: 'btn btn-default', aria:{label: 'Edit'} ) do %>
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            <% end %>
+            <%= link_to(destcurr, method: :delete, class: 'btn btn-default', title: 'Delete question',  aria:{label: 'Delete'}, data: { confirm: 'Are you sure?'}) do %>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            <% end %>
+          </div>
 
-    </td>
-  </tr>
-<% end %>
-  </tbody>
-</table>
+        </td>
+      </tr>
+      <% end %>
+      
+    </tbody>
+  </table>
+</div>
 
 
 <br />
 
 <%= link_to(new_destcurr_path, class: 'btn btn-default', aria:{label: 'Add'}) do %>
-  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 <% end %>

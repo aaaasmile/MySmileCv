@@ -23,3 +23,8 @@ en:
   hello: "Hello world"
   lebenlauf_bold: '<b>Lebenslauf</b>'
   lebenslauf: "CV"
+  Job: 'Job'
+  Company: 'Company'
+  Cur Sent: 'Cur Sent'
+  Result: 'Result'
+  Curricula sent: 'Curricula sent'
