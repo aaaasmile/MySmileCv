@@ -25,7 +25,7 @@ class OptionsController < ApplicationController
     respond_to do |format|
       if @option.save
         update_locale
-        format.html { redirect_to curriculum_url, notice: 'Option was successfully created.' }
+        format.html { redirect_to curriculum_url, notice: t('Option was successfully created.') }
       else
         format.html { render :new }
       end
@@ -36,7 +36,7 @@ class OptionsController < ApplicationController
     respond_to do |format|
       if @option.update(option_params)
         update_locale
-        format.html { redirect_to curriculum_url, notice: 'Option was successfully updated.' }
+        format.html { redirect_to curriculum_url, notice: t('Option was successfully updated.') }
       else
         format.html { render :edit }
       end

@@ -64,6 +64,9 @@
   User: 'Utente'
   Language: 'Lingua'
   Use only one language: 'Utilizza solo una lingua'
+  Option was successfully updated: 'Opzioni salvate con successo.'
+  Option was successfully created: 'Opzioni create con successo.'
+  Change Scope: 'Cambia occupazione'
 
 
   activerecord:
@@ -209,11 +212,9 @@
     select:
       prompt: Seleziona...
     submit:
-      create: Crea %{model}
-      submit: Invia %{model}
-      update: Aggiorna %{model}
-      option:
-        update: Aggiorna
+      create: Crea
+      submit: Invia
+      update: Aggiorna
   number:
     currency:
       format:

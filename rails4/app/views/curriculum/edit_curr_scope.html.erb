@@ -2,7 +2,7 @@
 
 <%= form_tag '/create_scope' do -%>
   <div style="margin-top: 20px"><%= text_field 'curriculum', 'cur_scope', size: 40 %>
-  <%= submit_tag "Change Scope", class: 'btn btn-nomargin btn-default' %></div>
+  <%= submit_tag I18n.t("Change Scope"), class: 'btn btn-nomargin btn-default' %></div>
 <% end -%>
 
 <br />
