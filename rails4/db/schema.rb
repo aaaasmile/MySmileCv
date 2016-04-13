@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411083718) do
+ActiveRecord::Schema.define(version: 20160413074748) do
 
   create_table "computerskills", force: :cascade do |t|
     t.string  "name",       limit: 255
@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 20160411083718) do
 
   create_table "identpictures", force: :cascade do |t|
     t.string  "foto_filename", limit: 255
-    t.integer "kindetity"
     t.string  "content_type",  limit: 255
     t.text    "foto"
     t.integer "user_id"
