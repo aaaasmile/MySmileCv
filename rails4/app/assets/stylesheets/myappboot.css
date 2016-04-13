@@ -57,7 +57,6 @@
 
 table {
     border-collapse: collapse;
-    border: 2px solid #3f3c5f;
     color: #000;
     background: #fff;
     width: 100%;
@@ -78,11 +77,11 @@ td, th {
 }
 
 thead th {
-    border: 1px solid #336;
+    /*border: 1px solid #336;*/
     text-align: left;
     font-weight: bold;
-    background-color: #ffffff;
-    color: #333;
+    background-color: #85a5cc;
+    color: #fff;
 }
 
 tfoot th, tfoot td {
@@ -230,7 +229,7 @@ thead {
 }
 
 tr {
-    border: 1px solid #336;
+    border: 1px solid #d5d8c1;
     display: block;
     overflow: auto;
     padding-bottom: 0.2em;
