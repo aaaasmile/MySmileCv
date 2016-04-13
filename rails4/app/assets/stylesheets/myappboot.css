@@ -1,9 +1,8 @@
 
-#page {
+#main-page {
     margin: 0 auto;
-    padding: 3px 20px;
+    padding: 3px 20px 20px 20px;
     border: solid 1px #d5d8c1;
-    background: white;
     text-align: left;
 }
 
@@ -255,6 +254,10 @@ td {
 
 
 @media only screen and (min-width: 46.875em) {
+    #main-page {
+       max-width: 960px;
+    }
+
     thead {
         display: table-header-group;
     }
