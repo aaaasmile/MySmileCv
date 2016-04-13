@@ -45,7 +45,7 @@
        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
     <% end %>
   </div>
-  <h4>Identity</h4> 
+  <h4><%= I18n.t('Identity') %></h4> 
 </div>
 <% if @curriculum.cur_identity %>
   <p><%=@curriculum.cur_identity.info_compact %> 
@@ -62,7 +62,7 @@
        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
     <% end %>
   </div>
-  <h4>Foto</h4> 
+  <h4><%= I18n.t('Foto') %></h4> 
 </div>
 <% if @curriculum.curr_picture %>
   <p><img src="<%= url_for(:controller => 'identpictures', :action => 'picture', :id => @curriculum.curr_picture.id) %>"/> 
@@ -79,7 +79,7 @@
        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     <% end %>
   </div>
-  <h4>Work experiences</h4> 
+  <h4><%= I18n.t('Work experiences') %></h4> 
 </div>
 <% if @curriculum.cur_workexperience_list.size > 0 %>
   <%# debug(@curriculum.cur_workexperience_list) %>
@@ -105,7 +105,7 @@
        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     <% end %>
   </div>
-  <h4>Education</h4> 
+  <h4><%= I18n.t('Education') %></h4> 
 </div>
 <% if @curriculum.cur_education_list.size > 0 %>
   <% edu_list = @curriculum.cur_education_list.sort{|a,b| (b.date_from <=> a.date_from)}
@@ -130,7 +130,7 @@
        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     <% end %>
   </div>
-  <h4>Languages</h4> 
+  <h4><%= I18n.t('Languages') %></h4> 
 </div>
 <% if @curriculum.cur_lang_skills.size > 0 %>
   <% @curriculum.cur_lang_skills.each do |item| %> 
@@ -154,7 +154,7 @@
        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     <% end %>
   </div>
-  <h4>Technologies</h4> 
+  <h4><%= I18n.t('Technologies') %></h4> 
 </div>
 <% if @curriculum.get_cur_computer_skills.size > 0 %>
   <% @curriculum.get_cur_computer_skills.each do |item| %> 
@@ -178,7 +178,7 @@
        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     <% end %>
   </div>
-  <h4>Miscellaneous</h4> 
+  <h4><%= I18n.t('Miscellaneous') %></h4> 
 </div>
 <% if @curriculum.cur_miscstuff_list.size > 0 %>
   <% @curriculum.cur_miscstuff_list.each do |item| %> 
@@ -203,7 +203,7 @@
        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     <% end %>
   </div>
-  <h4>Hobbies and interests</h4> 
+  <h4><%= I18n.t('Hobbies and interests') %></h4> 
 </div>
 <% if @curriculum.cur_other_skills.size > 0 %>
   <% @curriculum.cur_other_skills.each do |item| %> 

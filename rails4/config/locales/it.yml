@@ -47,6 +47,14 @@
   Save as: 'Salva come...'
   Create PDF: 'Crea PDF'
   Scope: 'Occupazione desiderata'
+  Identity: 'Dati personali'
+  Foto: 'Foto'
+  Work experiences: 'Eperienze di lavoro'
+  Education: 'Istruzione'
+  Languages: 'Lingue conosciute'
+  Technologies: 'Tecnologie'
+  Miscellaneous: 'Diversi'
+  Hobbies and interests: 'Hobby e interessi'
 
 
   activerecord:
