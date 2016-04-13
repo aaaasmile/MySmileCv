@@ -41,6 +41,12 @@
   Unable to load curriculum: 'Caricamento fallito.'
   No saved curriculum found: 'Curriculum non trovato.'
   Curriculum reloaded: 'Curriculum ricaricato.'
+  Save: 'Salva'
+  Reload: 'Riapri'
+  New: 'Nuovo'
+  Save as: 'Salva come...'
+  Create PDF: 'Crea PDF'
+  Scope: 'Occupazione desiderata'
 
 
   activerecord:

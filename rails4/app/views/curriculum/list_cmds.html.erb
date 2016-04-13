@@ -5,17 +5,17 @@
   <h4><%= I18n.t('Curriculum') %> [<%= @curriculum.curr_title%>] </h4><br/>
 <% end %>
 
-<%= link_to('Load', {:action => 'load_curr', :controller => 'loadcurr'}, class: 'btn btn-default') %>
+<%= link_to(I18n.t('Load'), {:action => 'load_curr', :controller => 'loadcurr'}, class: 'btn btn-default') %>
 <% if @curriculum.curr_title.length != 0 %>
-  <%= link_to('Save', {:action => 'update_curr', :controller => 'savecurr'}, class: 'btn btn-default') %>
-  <%= link_to( 'Reload', {:action => 'reload_curr', :controller => 'loadcurr'}, class: 'btn btn-default') %>
+  <%= link_to(I18n.t('Save'), {:action => 'update_curr', :controller => 'savecurr'}, class: 'btn btn-default') %>
+  <%= link_to( I18n.t('Reload'), {:action => 'reload_curr', :controller => 'loadcurr'}, class: 'btn btn-default') %>
   <%= link_to('delete_curr', method: :delete, class: 'btn btn-default', title: 'Delete question',  aria:{label: 'Delete'}, data: { confirm: 'Are you sure?'})  do %>
       <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
   <% end %>
 <% end %>
-<%= link_to( 'New', {:action => 'clear_curriculum', :controller => 'curriculum'}, method: :update, title: 'New curriculum question', class: 'btn btn-default', data: { confirm: 'Are you sure?'})  %>
-<%= link_to( 'Save as...', {:action => 'save_curr', :controller => 'savecurr'}, class: 'btn btn-default') %>
-<%= link_to( 'Create PDF', {action: 'create_pdf'}, target: '_blank', class: 'btn btn-default') %>
+<%= link_to(I18n.t('New'), {:action => 'clear_curriculum', :controller => 'curriculum'}, method: :update, title: 'New curriculum question', class: 'btn btn-default', data: { confirm: 'Are you sure?'})  %>
+<%= link_to(I18n.t('Save as...'), {:action => 'save_curr', :controller => 'savecurr'}, class: 'btn btn-default') %>
+<%= link_to(I18n.t('Create PDF'), {action: 'create_pdf'}, target: '_blank', class: 'btn btn-default') %>
 
 <br/>
 
@@ -28,7 +28,7 @@
        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
     <% end %>
   </div>
-  <h4>Scope</h4> 
+  <h4><%= I18n.t('Scope') %></h4> 
 </div>
 <% if @curriculum.cur_scope %>
   <p><%=@curriculum.cur_scope %> <%= link_to('remove_scope', class: 'btn btn-default', aria:{label: 'Remove'})  do %>
