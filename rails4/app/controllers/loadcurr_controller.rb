@@ -33,6 +33,7 @@ class LoadcurrController < ApplicationController
       item.destroy
       new_curr = Curriculum.new
       session[:curriculum] = new_curr.get_info_for_session
+      flash[:notice] = t'Curriculum detroyed.'
     end
     redirect_to :action => :list_cmds, :controller => :curriculum
   end

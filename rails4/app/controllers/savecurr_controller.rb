@@ -10,9 +10,9 @@ class SavecurrController < ApplicationController
     file_curr = Filecurrsaved.find_by(id: curr_obj.file_curr_id)
     file_curr.content = YAML.dump(curr_obj.get_info_for_session)
     if file_curr.save
-      flash[:notice] = 'Curriculum saved.'
+      flash[:notice] = t'Curriculum saved.'
     else
-      flash[:notice] = 'Unable to save.'
+      flash[:notice] = t'Unable to save.'
     end
     redirect_to :action => :list_cmds, :controller => :curriculum
   end
@@ -25,9 +25,9 @@ class SavecurrController < ApplicationController
     if @filecurrsaved.save
       curr_obj.set_title(@filecurrsaved.curr_title, @filecurrsaved.id)
       session[:curriculum] = curr_obj.get_info_for_session
-      flash[:notice] = 'Curriculum was successfully saved.'
+      flash[:notice] = t'Curriculum was successfully saved.'
     else
-      flash[:notice] = 'Curriculum save failed.'
+      flash[:notice] = t'Curriculum save failed.'
     end
     redirect_to :action => :list_cmds, :controller => :curriculum
   end

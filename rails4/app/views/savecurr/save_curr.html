@@ -1,5 +1,5 @@
 
-<h3>Save curriculum</h3>
+<h3><%= I18n.t('Save curriculum') %></h3>
 
 
 <%= form_for(:filecurrsaved, url: 'create_curr') do |f| %>
@@ -15,7 +15,7 @@
     </div>
   <% end %>
 
-  <p><label for="filecurrsaved_curr_title">Title</label><br/>
+  <p><label for="filecurrsaved_curr_title"><%= I18n.t('Title') %></label><br/>
   <%= text_field 'filecurrsaved', 'curr_title'  %></p>
 
   <div class="actions">

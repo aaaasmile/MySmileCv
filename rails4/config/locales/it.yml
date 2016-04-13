@@ -94,6 +94,12 @@
   Cancel: 'Cancella'
   Delete: 'Elimina'
   New curriculum question: 'Domanda nuovo curriculum'
+  Save curriculum: 'Salva curriculum con nome'
+  Curriculum saved: 'Curriculum salvato.'
+  Unable to save: 'Impossibile salvare.'
+  Curriculum was successfully saved: 'Curriculum salvato con successo.'
+  Curriculum save failed: 'Salvataggio curriculum fallito.'
+  Curriculum detroyed: 'Curriculum eliminato.'
 
   activerecord:
     errors:
@@ -241,6 +247,9 @@
       create: Crea
       submit: Invia
       update: Aggiorna
+      filecurrsaved:
+        submit: Salva
+
   number:
     currency:
       format:
