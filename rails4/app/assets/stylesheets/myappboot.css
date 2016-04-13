@@ -276,6 +276,11 @@ td {
         display: table-row;
     }
 
+    td:before {
+        font-weight: bold;
+        content: "";
+    }
+
     th, td {
         float: none;
         display: table-cell;
