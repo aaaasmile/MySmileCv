@@ -1,7 +1,8 @@
-<h3>New identity picture</h3>
+<h3><%= I18n.t('New identity picture') %></h3>
 
 <%= render 'form' %>
 
+<br/>
 <%= link_to(identpictures_path, class: 'btn btn-default', aria:{label: 'Back'} ) do %>
   <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 <% end %>

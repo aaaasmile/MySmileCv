@@ -12,16 +12,19 @@
   <% end %>
 
 <!--[form:identpicture]-->
-<p><label for="identpicture_foto">Foto filename</label><br/>
-<div><%= @identpicture.foto_filename %></div></p>
+<% if @identpicture.foto_filename %>
+  <p><label for="identpicture_foto"><%= I18n.t('Foto filename') %></label>
+  <div><%= @identpicture.foto_filename %></div></p>
+<% end %>
 
-<p>Upload your picture:</p> 
+<p><%= I18n.t('Upload your picture') %>:</p> 
 <%= file_field('identpicture', "identpicture_picture") %>
 
 <!--[eoform:identpicture]-->
 
+<br/>
 <div class="actions">
-      <%= f.submit class: 'btn btn-primary' %>
-  </div>
+  <%= f.submit class: 'btn btn-primary' %>
+</div>
 
 <% end %>
