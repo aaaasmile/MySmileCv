@@ -27,7 +27,7 @@
     @pdf_file_name = File.join(base_dir_log, title_pdf)
     builder = CurrPdfBuilder.new(@curriculum)
     builder.build_pdf(@pdf_file_name)
-    flash[:notice] = t'PDF file  was successfully created.'
+    #flash[:notice] = t'PDF file  was successfully created.'
     send_file(@pdf_file_name, filename: title_pdf, disposition: 'inline', type: "application/pdf")
   end
   
@@ -73,8 +73,8 @@
   end
   
   def curr_add_all_education
-    @curriculum = find_curriculum
-    educations = Education.all
+    @curriculum = find_curriculum_with_option
+    educations = Education.where(["klang = ? and user_id = ?", @option.language_id, @userid]).all
     educations.each{|x| @curriculum.add_education(x)}
     goto_list_of_cmds
   end
@@ -87,8 +87,8 @@
   end
   
   def curr_add_all_computerskill
-    @curriculum = find_curriculum
-    skills = Computerskill.all
+    @curriculum = find_curriculum_with_option
+    skills = Computerskill.where(["klang = ? and user_id = ?", @option.language_id, @userid]).all
     skills.each{|x| @curriculum.add_computer_skill(x)}
     goto_list_of_cmds
   end
@@ -101,8 +101,8 @@
   end
   
   def curr_add_all_languageskill
-    @curriculum = find_curriculum
-    languages = Languageskill.all
+    @curriculum = find_curriculum_with_option
+    languages = Languageskill.where(["klang = ? and user_id = ?", @option.language_id, @userid]).all
     languages.each{|x| @curriculum.add_languageskill(x)}
     goto_list_of_cmds
   end
@@ -115,8 +115,8 @@
   end
   
   def curr_add_all_miscstuff
-    @curriculum = find_curriculum
-    stuff = Miscstuff.all
+    @curriculum = find_curriculum_with_option
+    stuff = Miscstuff.where(["klang = ? and user_id = ?", @option.language_id, @userid]).all
     stuff.each{|x| @curriculum.add_miscstuff(x)}
     goto_list_of_cmds
   end
@@ -129,8 +129,8 @@
   end
   
   def curr_add_all_otherskill
-    @curriculum = find_curriculum
-    otherskills = Otherskill.all
+    @curriculum = find_curriculum_with_option
+    otherskills = Otherskill.where(["klang = ? and user_id = ?", @option.language_id, @userid]).all
     otherskills.each{|x| @curriculum.add_otherskill(x)}
     goto_list_of_cmds
   end
@@ -143,11 +143,8 @@
   end
   
   def curr_add_all_workexperience
-    @curriculum = find_curriculum
-    option = Option.find_by_user_id(session[:user_id]) 
-    exps = (option && option.use_only_one_language == 1) ?
-        Workexperience.where(["klang = ?", option.language_id]).order("date_from desc") :
-        Workexperience.order("date_from desc").all
+    @curriculum = find_curriculum_with_option
+    exps = Workexperience.where(["klang = ? and user_id = ?", @option.language_id, @userid]).order("date_from desc")
     exps.each{|x| @curriculum.add_workexperience(x)}
     goto_list_of_cmds
   end
@@ -223,7 +220,17 @@
     session[:curriculum] ||= {}
     Curriculum.get_curriculum_from_session(session[:curriculum])
   end 
- 
+
+  def find_curriculum_with_option
+    @userid = session[:user_id]
+    @option = Option.find_by_user_id(@userid) 
+    if !@option
+      @option = Option.new
+      @option.language_id =  Language.where(['isoname = ?', 'IT']).first.id
+    end
+
+    find_curriculum
+  end
 end
 
 
