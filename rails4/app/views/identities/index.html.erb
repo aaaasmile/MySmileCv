@@ -6,6 +6,7 @@
   <table class="table">
     <thead>
       <tr>
+        <th></th>
         <%  
         for column in Identity.content_columns
           colonna_nome =  I18n.t(column.human_name)
@@ -13,7 +14,7 @@
         %>
         <th><%= colonna_nome %></th>
         <% end %>
-        <th></th>
+       
       </tr>
     </thead>
 
@@ -23,18 +24,7 @@
         class_name = row_odd == true ? 'list_line_odd' : 'list_line_even'
         row_odd = !row_odd %>
         <tr class="<%= class_name %>">
-          <% col_count = 0
-          for column in Identity.content_columns
-            contenuto_campo = ""
-            if column.name == 'klang' && identity.language
-              contenuto_campo = h identity.language.isoname
-            else
-              contenuto_campo = h identity.send(column.name)
-            end
-          %>
-          <td data-header="<%= I18n.t(column.human_name) %>"><%= contenuto_campo %></td>
-        <% end %><!-- end column -->
-        <td id="cmds">
+          <td id="cmds">
           <div class="btn-group" role="group" aria-label="Commands">
             <%= link_to(identity, class: 'btn btn-default', aria:{label: 'Show'} ) do %>
             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
@@ -53,6 +43,19 @@
             <% end %>
           </div>
         </td>
+
+          <% col_count = 0
+          for column in Identity.content_columns
+            contenuto_campo = ""
+            if column.name == 'klang' && identity.language
+              contenuto_campo = h identity.language.isoname
+            else
+              contenuto_campo = h identity.send(column.name)
+            end
+          %>
+          <td data-header="<%= I18n.t(column.human_name) %>"><%= contenuto_campo %></td>
+        <% end %><!-- end column -->
+        
       </tr>
       <% end %> <!-- end identities.each--> 
     </tbody>
