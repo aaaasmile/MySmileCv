@@ -14,7 +14,7 @@
   
   def clear_curriculum
     session[:curriculum] = nil
-    flash[:notice] = 'Curriculum empty'
+    flash[:notice] = t'Curriculum is empty'
     redirect_to :action =>  'list_cmds'
   end
   
@@ -27,7 +27,7 @@
     @pdf_file_name = File.join(base_dir_log, title_pdf)
     builder = CurrPdfBuilder.new(@curriculum)
     builder.build_pdf(@pdf_file_name)
-    flash[:notice] = 'PDF file  was successfully created.'
+    flash[:notice] = t'PDF file  was successfully created.'
     send_file(@pdf_file_name, filename: title_pdf, disposition: 'inline', type: "application/pdf")
   end
   

@@ -41,7 +41,7 @@ class ComputerskillsController < ApplicationController
     @computerskill.user_id = session[:user_id]
     respond_to do |format|
       if @computerskill.save
-        format.html { redirect_to @computerskill,  notice: 'Computerskill was successfully created.'}
+        format.html { redirect_to @computerskill,  notice: t('Technology was successfully created.')}
       else
         format.html { render :new }
       end
@@ -51,7 +51,7 @@ class ComputerskillsController < ApplicationController
   def update
     respond_to do |format|
       if @computerskill.update_attributes(computerskill_params)
-        format.html {redirect_to @computerskill, notice: 'Computerskill was successfully updated.'}
+        format.html {redirect_to @computerskill, notice: t('Technology was successfully updated.')}
       else
         format.html { render :edit }
       end
@@ -61,7 +61,7 @@ class ComputerskillsController < ApplicationController
   def destroy
     @computerskill.destroy
     respond_to do |format|
-      format.html { redirect_to computerskills_url, notice: 'Technology was successfully destroyed.' }
+      format.html { redirect_to computerskills_url, notice: t('Technology was successfully destroyed.') }
     end
   end
   

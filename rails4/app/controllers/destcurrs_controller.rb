@@ -48,7 +48,7 @@ class DestcurrsController < ApplicationController
     @destcurr.user_id = session[:user_id]
     respond_to do |format|
       if @destcurr.save
-        format.html { redirect_to @destcurr,  notice: 'Curricula sent was successfully created.'}
+        format.html { redirect_to @destcurr,  notice: t('Application was successfully created.')}
       else
         format.html { render :new }
       end
@@ -59,7 +59,7 @@ class DestcurrsController < ApplicationController
     @filecurrsaveds =  Filecurrsaved.all
     respond_to do |format|
       if @destcurr.update_attributes(destcurr_params)
-        format.html {redirect_to @destcurr, notice: 'Curricula sent was successfully updated.'}
+        format.html {redirect_to @destcurr, notice: t('Application was successfully updated.')}
       else
         format.html { render :edit }
       end
@@ -69,7 +69,7 @@ class DestcurrsController < ApplicationController
   def destroy
     @destcurr.destroy
     respond_to do |format|
-      format.html { redirect_to destcurrs_url, notice: 'Curricula sent was successfully destroyed.' }
+      format.html { redirect_to destcurrs_url, notice: t('Application was successfully destroyed.') }
     end
   end
   

@@ -40,7 +40,7 @@ class MiscstuffsController < ApplicationController
     @miscstuff.user_id = session[:user_id]
     respond_to do |format|
       if @miscstuff.save
-        format.html { redirect_to @miscstuff,  notice: 'Mis. cstuff was successfully created.'}
+        format.html { redirect_to @miscstuff,  notice: t('Miscellaneous was successfully created.')}
       else
         format.html { render :new }
       end
@@ -50,7 +50,7 @@ class MiscstuffsController < ApplicationController
   def update
     respond_to do |format|
       if @miscstuff.update_attributes(miscstuff_params)
-        format.html {redirect_to @miscstuff, notice: 'Misc. stuff was successfully updated.'}
+        format.html {redirect_to @miscstuff, notice: t('Miscellaneous was successfully updated.')}
       else
         format.html { render :edit }
       end
@@ -60,7 +60,7 @@ class MiscstuffsController < ApplicationController
   def destroy
     @miscstuff.destroy
     respond_to do |format|
-      format.html { redirect_to miscstuffs_url, notice: 'Misc. stuff was successfully destroyed.' }
+      format.html { redirect_to miscstuffs_url, notice: t('Miscellaneous was successfully destroyed.') }
     end
   end
   

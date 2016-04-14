@@ -45,7 +45,7 @@ class WorkexperiencesController < ApplicationController
     @workexperience.user_id = session[:user_id] 
     respond_to do |format|
       if @workexperience.save
-        format.html { redirect_to @workexperience,  notice: 'Work experience was successfully created.'}
+        format.html { redirect_to @workexperience,  notice: t('Work experience was successfully created.')}
       else
         format.html { render :new }
       end
@@ -55,7 +55,7 @@ class WorkexperiencesController < ApplicationController
   def update
     respond_to do |format|
       if @workexperience.update_attributes(workexperience_params)
-        format.html {redirect_to @workexperience, notice: 'Work experience was successfully updated.'}
+        format.html {redirect_to @workexperience, notice: t('Work experience was successfully updated.')}
       else
         format.html { render :edit }
       end
@@ -65,7 +65,7 @@ class WorkexperiencesController < ApplicationController
   def destroy
     @workexperience.destroy
     respond_to do |format|
-      format.html { redirect_to workexperiences_url, notice: 'Work experience was successfully destroyed.' }
+      format.html { redirect_to workexperiences_url, notice: t('Work experience was successfully destroyed.') }
     end
   end
 

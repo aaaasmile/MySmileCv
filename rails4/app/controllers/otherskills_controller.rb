@@ -29,7 +29,7 @@ class OtherskillsController < ApplicationController
     @otherskill.sktype = 'Hobby' #Other skills are only hobbies
     respond_to do |format|
       if @otherskill.save
-        format.html { redirect_to @otherskill,  notice: 'Otherskill was successfully created.'}
+        format.html { redirect_to @otherskill,  notice: t('Otherskill was successfully created.')}
       else
         format.html { render :new }
       end
@@ -39,7 +39,7 @@ class OtherskillsController < ApplicationController
   def update
     respond_to do |format|
       if @otherskill.update_attributes(otherskill_params)
-        format.html {redirect_to @otherskill, notice: 'Otherskill was successfully updated.'}
+        format.html {redirect_to @otherskill, notice: t('Otherskill was successfully updated.')}
       else
         format.html { render :edit }
       end
@@ -49,7 +49,7 @@ class OtherskillsController < ApplicationController
   def destroy
     @otherskill.destroy
     respond_to do |format|
-      format.html { redirect_to otherskills_url, notice: 'Technology was successfully destroyed.' }
+      format.html { redirect_to otherskills_url, notice: t('Otherskill was successfully destroyed.') }
     end
   end
   

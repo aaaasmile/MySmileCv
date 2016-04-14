@@ -28,7 +28,7 @@ class LanguageskillsController < ApplicationController
     @languageskill.user_id = session[:user_id]
     respond_to do |format|
       if @languageskill.save
-        format.html { redirect_to @languageskill,  notice: 'Language skill was successfully created.'}
+        format.html { redirect_to @languageskill,  notice: t('Language was successfully created.')}
       else
         format.html { render :new }
       end
@@ -38,7 +38,7 @@ class LanguageskillsController < ApplicationController
   def update
     respond_to do |format|
       if @languageskill.update_attributes(languageskill_params)
-        format.html {redirect_to @languageskill, notice: 'Language skill was successfully updated.'}
+        format.html {redirect_to @languageskill, notice: t('Language was successfully updated.')}
       else
         format.html { render :edit }
       end
@@ -48,7 +48,7 @@ class LanguageskillsController < ApplicationController
   def destroy
     @languageskill.destroy
     respond_to do |format|
-      format.html { redirect_to languageskills_url, notice: 'Technology was successfully destroyed.' }
+      format.html { redirect_to languageskills_url, notice: t('Language was successfully destroyed.')}
     end
   end
   

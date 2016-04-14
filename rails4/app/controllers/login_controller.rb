@@ -18,7 +18,7 @@ class LoginController < ApplicationController
         end
         redirect_to(:controller => 'loadcurr', :action => "load_last")
       else
-        flash.now[:error] = "Invalid user/password combination"
+        flash.now[:error] = t"Invalid user/password combination"
       end
     end
   end
