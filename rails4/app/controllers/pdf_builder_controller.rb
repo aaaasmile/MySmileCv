@@ -250,7 +250,6 @@ class PdfBuilderController < ApplicationController
           pdf.text(I18n.t('Bezeichnung'),  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
           pdf.move_pointer(up_y)
           str_text = "#{ed_item.title}"
-          str_text.concat(" (#{ed_item.level})") if ed_item.level.size > 0
           pdf.text(cm_isolatin(str_text),:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
           pdf.move_pointer(inter_leave)
         end

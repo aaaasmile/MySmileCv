@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413074748) do
+ActiveRecord::Schema.define(version: 20160415073950) do
 
   create_table "computerskills", force: :cascade do |t|
     t.string  "name",       limit: 255
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20160413074748) do
     t.string  "title",        limit: 255
     t.text    "skills"
     t.string  "organisation", limit: 255
-    t.string  "level",        limit: 255
     t.integer "klang"
     t.integer "user_id"
   end

@@ -34,8 +34,7 @@ class EducationsController < ApplicationController
     @education.title = education_src.title
     @education.skills = education_src.skills
     @education.organisation = education_src.organisation
-    @education.level = education_src.level
-
+    
     set_language
 
     render :edit
@@ -81,6 +80,6 @@ class EducationsController < ApplicationController
   end
   
   def education_params
-    params.require(:education).permit(:date_from, :date_to, :title, :skills, :organisation, :level, :klang)
+    params.require(:education).permit(:date_from, :date_to, :title, :skills, :organisation, :klang)
   end
 end

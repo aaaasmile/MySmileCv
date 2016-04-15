@@ -27,9 +27,6 @@
   <p><label for="education_organisation">Organisation</label><br/>
   <%= text_field 'education', 'organisation', size: '50'  %></p>
 
-  <p><label for="education_level">Level</label><br/>
-  <%= text_field 'education', 'level'  %></p>
-
   <p><label for="education_klang">Locale</label><br/>
     <%= @education.language.isoname %>
     <%= hidden_field :education, :klang %>
