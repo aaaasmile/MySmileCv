@@ -12,22 +12,22 @@
   <% end %>
 
   <!--[form:education]-->
-  <p><label for="education_from">From</label><br/>
+  <p><label for="education_from"><%= I18n.t('Date from') %></label><br/>
   <%= date_select 'education', 'date_from', :start_year => 1971 %></p>
 
-  <p><label for="education_to">To</label><br/>
+  <p><label for="education_to"><%= I18n.t('Date to') %></label><br/>
   <%= date_select 'education', 'date_to', :start_year => 1971  %></p>
 
-  <p><label for="education_title">Title</label><br/>
+  <p><label for="education_title"><%= I18n.t('Title') %></label><br/>
   <%= text_field 'education', 'title', size: '50'  %></p>
 
-  <p><label for="education_skills">Skills</label><br/>
+  <p><label for="education_skills"><%= I18n.t('Skills') %></label><br/>
   <%= text_area 'education', 'skills', size: "60x20"  %></p>
 
-  <p><label for="education_organisation">Organisation</label><br/>
+  <p><label for="education_organisation"><%= I18n.t('Organisation') %></label><br/>
   <%= text_field 'education', 'organisation', size: '50'  %></p>
 
-  <p><label for="education_klang">Locale</label><br/>
+  <p><label for="education_klang"><%= I18n.t('Klang') %></label><br/>
     <%= @education.language.isoname %>
     <%= hidden_field :education, :klang %>
   </p>

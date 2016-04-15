@@ -1,7 +1,7 @@
-<h3>Educations</h3>
+<h3><%= I18n.t('Educations') %></h3>
 
 <%= button_to({:controller => 'curriculum', :action => 'curr_add_all_education'}, class: 'btn btn-primary', aria:{label: 'Add all'}) do %>
-   Add All to Curriculum
+   <%= I18n.t('Add all to Curriculum') %>
 <% end %>
 <br />
 <table>
@@ -11,7 +11,7 @@
       colonna_nome =  column.human_name
       colonna_nome = 'Lang' if column.human_name == 'Klang'
       %>
-      <th><%= colonna_nome %></th>
+      <th><%= I18n.t(colonna_nome) %></th>
       <% end %>
       <th></th>
     </tr>
@@ -30,7 +30,7 @@
       contenuto_campo = h education.send(column.name)
       end %>
 
-      <td data-header="<%= column.human_name %>"><%=contenuto_campo %></td>
+      <td data-header="<%= I18n.t(column.human_name) %>"><%=contenuto_campo %></td>
       <% end %>
       <td id="cmds">
         <div class="btn-group" role="group" aria-label="Commands">
@@ -47,7 +47,7 @@
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
           <% end %>
           <%= button_to({:controller => 'curriculum', :action => 'curr_add_education', :id => education}, class: 'btn btn-primary', aria:{label: 'Use'}) do %>
-          Use
+            <%= I18n.t('Use') %>
           <% end %>
         </div>
     </tr>

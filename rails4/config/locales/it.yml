@@ -108,9 +108,9 @@
   Application was successfully created: 'Opportunità di lavoro creata con successo.'
   Application was successfully updated: 'Opportunità di lavoro aggiornata con successo.'
   Application was successfully destroyed: 'Opportunità di lavoro eliminata con successo.'
-  Education was successfully created: 'Formazione creata con successo.'
-  Education was successfully updated: 'Formazione aggiornata con successo.'
-  Education was successfully destroyed: 'Formazione eliminata con successo.'
+  Education was successfully created: 'Istruzione creata con successo.'
+  Education was successfully updated: 'Istruzione aggiornata con successo.'
+  Education was successfully destroyed: 'Istruzione eliminata con successo.'
   Picture was successfully created: 'Immagine creata con successo.'
   Picture was successfully updated: 'Immagine aggiornata con successo.'
   Picture was successfully destroyed: 'Immagine eliminata con successo.'
@@ -144,6 +144,12 @@
   Tag: 'Tag'
   Editing workexperience: 'Cambia esperienza di lavoro'
   New workexperience: 'Nuova esperienza di lavoro'
+  Educations: 'Istruzione'
+  Skills: 'Materia'
+  Organisation: 'Istituzione'
+  Editing education: 'Cambia istruzione'
+  New education: 'Nuova istruzione'
+  Copy education: 'Copia come nuova istruzione'
 
   activerecord:
     errors:

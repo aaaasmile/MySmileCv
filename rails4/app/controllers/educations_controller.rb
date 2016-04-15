@@ -23,6 +23,7 @@ class EducationsController < ApplicationController
   end
 
   def edit
+    @edit_title = t'Editing education'
   end
 
   def copy
@@ -36,7 +37,7 @@ class EducationsController < ApplicationController
     @education.organisation = education_src.organisation
     
     set_language
-
+    @edit_title = t'Copy education'
     render :edit
   end
 
