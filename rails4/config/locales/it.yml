@@ -133,6 +133,17 @@
   Change picture: 'Cambia immagine'
   Upload your picture: 'Carica la tua foto'
   New identity picture: 'Nuova foto'
+  Work experiences: 'Esperienze lavorative'
+  Add all to Curriculum: 'Tutti nel Curriculum'
+  Date from: 'Dal'
+  Date to: 'Fino a'
+  Position: 'Posizione'
+  Activities: 'Attività'
+  Employer: 'Datore'
+  Sector: 'Settore'
+  Tag: 'Tag'
+  Editing workexperience: 'Cambia esperienza di lavoro'
+  New workexperience: 'Nuova esperienza di lavoro'
 
   activerecord:
     errors:
