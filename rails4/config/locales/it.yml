@@ -143,6 +143,7 @@
   Sector: 'Settore'
   Tag: 'Tag'
   Editing workexperience: 'Cambia esperienza di lavoro'
+  Copy workexperience: 'Copia come nuova esperienza di lavoro'
   New workexperience: 'Nuova esperienza di lavoro'
   Educations: 'Istruzione'
   Skills: 'Materia'
@@ -150,6 +151,7 @@
   Editing education: 'Cambia istruzione'
   New education: 'Nuova istruzione'
   Copy education: 'Copia come nuova istruzione'
+  Copy identity: 'Copia come nuovi dati'
 
   activerecord:
     errors:

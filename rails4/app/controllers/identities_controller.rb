@@ -21,6 +21,7 @@ class IdentitiesController < ApplicationController
   end
 
   def edit
+    @edit_title = t'Editing identity'
   end
 
   def copy
@@ -39,6 +40,7 @@ class IdentitiesController < ApplicationController
     @identity.mobile = identity_src.mobile
     set_language
 
+    @edit_title = t'Copy identity'
     render :edit
   end
 

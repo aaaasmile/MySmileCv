@@ -21,6 +21,7 @@ class WorkexperiencesController < ApplicationController
   end
 
   def edit
+    @edit_title = t'Editing workexperience'
   end
 
   def copy
@@ -36,7 +37,7 @@ class WorkexperiencesController < ApplicationController
     @workexperience.tag = workexperience_src.tag
 
     set_language
-
+    @edit_title = t'Copy workexperience'
     render :edit
   end
 

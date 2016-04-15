@@ -137,6 +137,7 @@ en:
   Sector: 'Sector'
   Tag: 'Tag'
   Editing workexperience: 'Editing workexperience'
+  Copy workexperience: 'Copy workexperience'
   New workexperience: 'New workexperience'
   Educations: 'Educations'
   Skills: 'Skills'
@@ -144,3 +145,4 @@ en:
   Editing education: 'Editing education'
   New education: 'New education'
   Copy education: 'Copy education'
+  Copy identity: 'Copy identity'
