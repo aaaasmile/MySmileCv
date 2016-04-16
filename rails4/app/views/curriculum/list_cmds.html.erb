@@ -15,7 +15,7 @@
 <% end %>
 <%= link_to(I18n.t('New'), {action: 'clear_curriculum', controller: 'curriculum'}, method: :update, class: 'btn btn-default',  title: I18n.t('New curriculum question'),  aria:{label: I18n.t('Delete')}, data: { confirm: I18n.t('Are you sure?'), commit: I18n.t('Confirm'), cancel: I18n.t('Cancel')}) %>
 <%= link_to(I18n.t('Save as...'), {action: 'save_curr', controller: 'savecurr'}, class: 'btn btn-default') %>
-<%= link_to(I18n.t('Create PDF'), {action: 'create_pdf'}, target: '_blank', class: 'btn btn-default') %>
+<%= link_to(I18n.t('Create PDF'), {action: 'create_pdf'},  class: 'btn btn-default') %>
 
 <br/>
 
