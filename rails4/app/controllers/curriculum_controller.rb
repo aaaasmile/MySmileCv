@@ -27,8 +27,13 @@
     @pdf_file_name = File.join(base_dir_log, title_pdf)
     builder = PdfBuilderController.new(@curriculum)
     builder.build_pdf(@pdf_file_name)
-    #flash[:notice] = t'PDF file  was successfully created.'
-    send_file(@pdf_file_name, filename: title_pdf, disposition: 'inline', type: "application/pdf")
+    flash[:notice] = t'PDF file  was successfully created.'
+    #send_file(@pdf_file_name, filename: title_pdf, disposition: 'inline', type: "application/pdf")
+    dispos = "inline"
+    dispos = "attachment" if params[:mobile]
+    File.open(@pdf_file_name, 'r') do |f|
+      send_data f.read.force_encoding('BINARY'), :filename => title_pdf, :type => "application/pdf", :disposition => dispos
+    end
   end
   
   def save_extra_options
