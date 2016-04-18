@@ -158,6 +158,12 @@
   Editing language skill: 'Cambia lingua conosciuta'
   Locale: 'Cultura locale'
   New language skill: 'Nuova lingua conosciuta'
+  Technologies: 'Tecnologie'
+  Cstype: 'Tipo'
+  Experience: 'Esperienza'
+  Weight: 'Peso'
+  Editing technology: 'Cambia tecnologia'
+  New technology: 'Nuova tecnologia'
 
   activerecord:
     errors:

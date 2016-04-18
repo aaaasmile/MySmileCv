@@ -12,22 +12,19 @@
   <% end %>
 
   <!--[form:computerskill]-->
-  <p><label for="computerskill_name">Name</label><br/>
+  <p><label for="computerskill_name"><%= I18n.t('Name') %></label><br/>
   <%= text_field 'computerskill', 'name'  %></p>
 
-  <!--<p><label for="computerskill_level">Level</label><br/>
-  <%= text_field 'computerskill', 'level'  %></p>-->
-
-  <p><label for="computerskill_experience">Experience</label><br/>
+  <p><label for="computerskill_experience"><%= I18n.t('Experience') %></label><br/>
   <%= text_field 'computerskill', 'experience', size: 50  %></p>
 
   <!--<p><label for="computerskill_cstype">Type</label><br/>
   <%= text_field 'computerskill', 'cstype'  %></p>-->
 
-  <p><label for="computerskill_weight">Weight</label><br/>
+  <p><label for="computerskill_weight"><%= I18n.t('Weight') %></label><br/>
   <%= text_field 'computerskill', 'weight'  %></p>
 
-  <p><label for="computerskill_klang">Locale</label><br/>
+  <p><label for="computerskill_klang"><%= I18n.t('Locale') %></label><br/>
     <%= @computerskill.language.isoname %>
     <%= hidden_field :computerskill, :klang %>
   </p>
