@@ -152,6 +152,12 @@
   New education: 'Nuova istruzione'
   Copy education: 'Copia come nuova istruzione'
   Copy identity: 'Copia come nuovi dati'
+  Language skills: 'Lingue conosciute'
+  Name: 'Nome'
+  Level: 'Livello'
+  Editing language skill: 'Cambia lingua conosciuta'
+  Locale: 'Cultura locale'
+  New language skill: 'Nuova lingua conosciuta'
 
   activerecord:
     errors:

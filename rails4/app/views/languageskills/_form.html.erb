@@ -12,13 +12,13 @@
   <% end %>
 
 <!--[form:languageskill]-->
-<p><label for="languageskill_name">Name</label><br/>
+<p><label for="languageskill_name"><%= I18n.t('Name') %></label><br/>
 <%= text_field 'languageskill', 'name'  %></p>
 
-<p><label for="languageskill_level">Level</label><br/>
+<p><label for="languageskill_level"><%= I18n.t('Level') %></label><br/>
 <%= text_field 'languageskill', 'level'  %></p>
 
-<p><label for="languageskill_klang">Locale</label><br/>
+<p><label for="languageskill_klang"><%= I18n.t('Locale') %></label><br/>
   <%= @languageskill.language.isoname %>
   <%= hidden_field :languageskill, :klang %>
 </p>
