@@ -164,6 +164,14 @@
   Weight: 'Peso'
   Editing technology: 'Cambia tecnologia'
   New technology: 'Nuova tecnologia'
+  Miscellaneous stuff: 'Diversi'
+  Misc: 'Dettaglio'
+  Mstype: 'Tipo'
+  miscellaneous: 'diversi'
+  drivinglicense: 'patente'
+  Editing miscellaneous stuff: 'Cambia diversi'
+  Driving license: 'Patente'
+  New miscellaneous stuff: 'Nuovo diverse aggiunte'
 
   activerecord:
     errors:

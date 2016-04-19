@@ -12,16 +12,16 @@
   <% end %>
 
 <!--[form:miscstuff]-->
-<p><label for="miscstuff_misc">Misc</label><br/>
+<p><label for="miscstuff_misc"><%= I18n.t('Misc') %></label><br/>
 <%= text_area 'miscstuff', 'misc', size:"60x20"  %></p>
 
 <!--<p><label for="miscstuff_mstype">Type</label><br/>
 <%= text_field 'miscstuff', 'mstype'  %></p>-->
 <p>
   <%= f.radio_button(:mstype, "miscellaneous") %>
-  <%= f.label(:mstype_generic, "Miscellaneous") %>
+  <%= f.label(:mstype_generic, I18n.t("Miscellaneous")) %>
   <%= f.radio_button(:mstype, "drivinglicense") %>
-  <%= f.label(:mstype_driving, "Driving license") %>
+  <%= f.label(:mstype_driving, I18n.t("Driving license")) %>
 </p>
 
 <p><label for="miscstuff_klang">Locale</label><br/>

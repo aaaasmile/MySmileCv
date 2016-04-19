@@ -107,3 +107,12 @@ Altra particolarità per quanto riguarda gli spazi, nel file writer.rb si trova:
 char = char[0] unless @fonts[font].c[char]
 Ma da ruby 1.9.3 char[0] non produce nulla e quindi occorre chiamare la funzione ord:
 char = char.respond_to?(:ord) ? char.ord : char[0]
+
+== Heroku
+Funziona solo con postgresql
+heroku create --region eu
+
+#heroku create
+#heroku labs:enable websockets
+git push heroku master
+heroku open

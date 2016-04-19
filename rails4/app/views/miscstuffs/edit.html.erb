@@ -1,7 +1,8 @@
-<h3>Editing miscellaneous stuff</h3>
+<h3><%= I18n.t('Editing miscellaneous stuff') %></h3>
 
 <%= render 'form' %>
 
+<br/>
 <%= link_to(@miscstuff, class: 'btn btn-default btnt20', aria:{label: 'Show'} ) do %>
   <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 <% end %>
