@@ -76,6 +76,6 @@ class MiscstuffsController < ApplicationController
   end
   
   def miscstuff_params
-    params.require(:miscstuff).permit(:misc, :mstype, :klang)
+    params.require(:miscstuff).permit(:misc, :mstype, :weight, :klang)
   end
 end

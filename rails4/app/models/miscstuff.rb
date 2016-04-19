@@ -8,4 +8,8 @@ class Miscstuff < ActiveRecord::Base
     "#{misc},#{mstype}"
   end
   
+  def get_always_weight
+    self.weight != nil ? self.weight : 0
+  end
+
 end

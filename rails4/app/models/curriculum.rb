@@ -93,7 +93,7 @@ class Curriculum
     fill_arr_withmodel(@curr_all_info[:computer_skills], :add_computer_skill, Computerskill)
     fill_arr_withmodel(@curr_all_info[:education_list], :add_education, Education )
     fill_arr_withmodel(@curr_all_info[:lang_skills], :add_languageskill, Languageskill)
-    fill_arr_withmodel(@curr_all_info[:miscstuff_list], :add_miscstuff, Miscstuff)
+    fill_arr_withmodel(@curr_all_info[:miscstuff_list], :add_miscstuff, Miscstuff, sort_on_weight = true)
     fill_arr_withmodel(@curr_all_info[:other_skills], :add_otherskill, Otherskill, sort_on_weight = true )
     fill_arr_withmodel(@curr_all_info[:workexperience_list], :add_workexperience, Workexperience)
 

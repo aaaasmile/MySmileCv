@@ -31,6 +31,9 @@
   <%= hidden_field :miscstuff, :klang %>
 </p>
 
+<p><label for="miscstuff_weight"><%= I18n.t('Weight') %></label><br/>
+<%= text_field 'miscstuff', 'weight'  %></p>
+
 
 <div class="actions">
       <%= f.submit class: 'btn btn-primary' %>
