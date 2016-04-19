@@ -19,13 +19,17 @@
 <%= date_select 'workexperience', 'date_to', :start_year => 1971  %></p>
 
 <p><label for="workexperience_position"><%= I18n.t('Position') %></label><br/>
-<%= text_field 'workexperience', 'position', size: 50  %></p>
+<%= text_field 'workexperience', 'position' %></p>
 
 <p><label for="workexperience_activities"><%= I18n.t('Activities') %></label><br/>
-<%= text_area 'workexperience', 'activities', size: "60x20"  %></p>
+<div class="fivelines">
+  <%= text_area 'workexperience', 'activities', size: "60x20"  %>
+</div></p>
 
 <p><label for="workexperience_employer"><%= I18n.t('Employer') %></label><br/>
-<%= text_area 'workexperience', 'employer', size: "50x5"  %></p>
+<div class="threelines">
+  <%= text_area 'workexperience', 'employer', size: "50x5"  %>
+</div></p>
 
 <p><label for="workexperience_sector"><%= I18n.t('Sector') %></label><br/>
 <%= text_field 'workexperience', 'sector'  %></p>

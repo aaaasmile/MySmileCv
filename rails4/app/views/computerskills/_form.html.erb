@@ -16,7 +16,8 @@
   <%= text_field 'computerskill', 'name'  %></p>
 
   <p><label for="computerskill_experience"><%= I18n.t('Experience') %></label><br/>
-  <%= text_field 'computerskill', 'experience', size: 50  %></p>
+  <div class="twolines">
+  <%= text_area 'computerskill', 'experience'  %></div></p>
 
   <!--<p><label for="computerskill_cstype">Type</label><br/>
   <%= text_field 'computerskill', 'cstype'  %></p>-->
