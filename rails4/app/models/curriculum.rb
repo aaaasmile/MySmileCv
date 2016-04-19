@@ -47,7 +47,7 @@ class Curriculum
   end
   
   def get_cur_computer_skills
-    list = @cur_computer_skills.sort{|a,b| (b.weight <=> a.weight)}
+    list = @cur_computer_skills.sort{|a,b| (b.get_always_weight <=> a.get_always_weight)}
   end
   
   ##
@@ -94,22 +94,23 @@ class Curriculum
     fill_arr_withmodel(@curr_all_info[:education_list], :add_education, Education )
     fill_arr_withmodel(@curr_all_info[:lang_skills], :add_languageskill, Languageskill)
     fill_arr_withmodel(@curr_all_info[:miscstuff_list], :add_miscstuff, Miscstuff)
-    fill_arr_withmodel(@curr_all_info[:other_skills], :add_otherskill, Otherskill )
+    fill_arr_withmodel(@curr_all_info[:other_skills], :add_otherskill, Otherskill, sort_on_weight = true )
     fill_arr_withmodel(@curr_all_info[:workexperience_list], :add_workexperience, Workexperience)
 
   end
   
   ##
   # Fill an array using arr_ids input of model model_name
-  # model_name: model name, e.g Computeskill
+  # model_classname: model name, e.g Computeskill
   # arr_ids: array of ids, e.g. [1,2]
   # add_fn_target: method used to add each single item, e.g add_otherskill
-  def fill_arr_withmodel(arr_ids, add_fn_target, model_name)
+  def fill_arr_withmodel(arr_ids, add_fn_target, model_classname, sort_on_weight = false)
     #p 'fill_arr_withmodel'
     #p arr_ids
     if arr_ids
-      tmp = model_name.find(arr_ids)
+      tmp = model_classname.find(arr_ids)
       if tmp
+        tmp.sort!{|a,b| (b.get_always_weight <=> a.get_always_weight)} if sort_on_weight
         tmp.each do |item|
           send add_fn_target, item
         end
