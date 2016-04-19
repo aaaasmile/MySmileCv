@@ -12,11 +12,14 @@
   <% end %>
 
 <!--[form:otherskill]-->
-<p><label for="otherskill_skill">Skill</label><br/>
+<p><label for="otherskill_skill"><%= I18n.t('Skill') %></label><br/>
 <%= text_area 'otherskill', 'skill', size: "50x10"  %></p>
 
 <!--<p><label for="otherskill_skill">Type</label><br/>
 <%= text_field 'otherskill', 'sktype'  %></p>-->
+
+<p><label for="otherskill_weight"><%= I18n.t('Weight') %></label><br/>
+<%= text_field 'otherskill', 'weight'  %></p>
 
 
 <div class="actions">

@@ -60,7 +60,7 @@ class OtherskillsController < ApplicationController
   end
   
   def otherskill_params
-    par = params.require(:otherskill).permit(:skill, :sktype, :klang)
+    par = params.require(:otherskill).permit(:skill, :sktype, :weight, :klang)
     if par[:klang] == nil
       option = Option.find_by_user_id(session[:user_id]) 
       par[:klang] = option.language_id

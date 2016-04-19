@@ -172,6 +172,11 @@
   Editing miscellaneous stuff: 'Cambia diversi'
   Driving license: 'Patente'
   New miscellaneous stuff: 'Nuovo diverse aggiunte'
+  Hobbies: 'Hobby e interessi'
+  Skill: 'Dettaglio'
+  Sktype: 'Tipo'
+  Editing other skill: 'Cambia hobby'
+  New hobby: 'Nuovo hobby'
 
   activerecord:
     errors:
