@@ -12,11 +12,15 @@
   <% end %>
 
 <!--[form:workexperience]-->
-<p><label for="workexperience_from"><%= I18n.t('Date from') %></label><br/>
+<p><label for="workexperience_date_from"><%= I18n.t('Date from') %></label><br/>
 <%= date_select 'workexperience', 'date_from', :start_year => 1971  %></p>
 
-<p><label for="workexperience_to"><%= I18n.t('Date to') %></label><br/>
+<p><label for="workexperience_date_to"><%= I18n.t('Date to') %></label><br/>
 <%= date_select 'workexperience', 'date_to', :start_year => 1971  %></p>
+
+<p><label for="workexperience_is_date_to_now"><%= I18n.t('Is current occupation') %></label><br/>
+<%= f.check_box :is_date_to_now %></p>
+
 
 <p><label for="workexperience_position"><%= I18n.t('Position') %></label><br/>
 <%= text_field 'workexperience', 'position' %></p>

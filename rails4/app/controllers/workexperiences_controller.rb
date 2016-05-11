@@ -35,6 +35,7 @@ class WorkexperiencesController < ApplicationController
     @workexperience.employer = workexperience_src.employer
     @workexperience.sector = workexperience_src.sector
     @workexperience.tag = workexperience_src.tag
+    @workexperience.is_date_to_now = workexperience_src.is_date_to_now
 
     set_language
     @edit_title = t'Copy workexperience'
@@ -82,6 +83,6 @@ class WorkexperiencesController < ApplicationController
   end
   
   def workexperience_params
-    params.require(:workexperience).permit(:date_from, :date_to, :position, :activities, :employer, :sector, :tag, :klang)
+    params.require(:workexperience).permit(:date_from, :date_to, :position, :activities, :employer, :sector, :tag, :klang, :is_date_to_now)
   end
 end

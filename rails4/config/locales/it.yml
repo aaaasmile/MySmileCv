@@ -177,6 +177,7 @@
   Sktype: 'Tipo'
   Editing other skill: 'Cambia hobby'
   New hobby: 'Nuovo hobby'
+  Is current occupation: 'Occupazione corrente'
 
   activerecord:
     errors:

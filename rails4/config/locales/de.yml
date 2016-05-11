@@ -138,7 +138,7 @@
   Add all to Curriculum: 'Alle ins Lebenslauf'
   Date from: 'Datum von'
   Date to: 'Datum zum'
-  Position: 'Stelle'
+  Position: 'Funktion'
   Activities: 'Aktivitäten'
   Employer: 'Arbeitgeber'
   Sector: 'Branche'
@@ -177,6 +177,7 @@
   Skill: 'Skill'
   Editing other skill: 'Editing other skill'
   New hobby: 'New hobby'
+  Is current occupation: 'Derzeitiger Beschäftigung'
 
 
   activerecord:

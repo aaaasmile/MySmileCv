@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415073950) do
+ActiveRecord::Schema.define(version: 20160511152430) do
 
   create_table "computerskills", force: :cascade do |t|
     t.string  "name",       limit: 255
@@ -157,13 +157,14 @@ ActiveRecord::Schema.define(version: 20160415073950) do
   create_table "workexperiences", force: :cascade do |t|
     t.date    "date_from"
     t.date    "date_to"
-    t.string  "position",   limit: 255
+    t.string  "position",       limit: 255
     t.text    "activities"
     t.text    "employer"
-    t.string  "sector",     limit: 255
-    t.string  "tag",        limit: 255
+    t.string  "sector",         limit: 255
+    t.string  "tag",            limit: 255
     t.integer "klang"
     t.integer "user_id"
+    t.boolean "is_date_to_now",             default: false
   end
 
   add_index "workexperiences", ["user_id"], name: "workexperiences_on_user_id"
