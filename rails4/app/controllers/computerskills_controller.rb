@@ -30,6 +30,7 @@ class ComputerskillsController < ApplicationController
     @computerskill.cstype = computerskill_src.cstype
     @computerskill.level = computerskill_src.level
     @computerskill.experience = computerskill_src.experience
+    @computerskill.weight = computerskill_src.weight
 
     set_language
 

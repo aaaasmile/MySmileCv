@@ -20,8 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  lebenlauf_bold: '<b>Lebenslauf</b>'
+  lebenlauf_bold: '<b>Curriculum Vitae</b>'
   lebenslauf: "CV"
   Job: 'Job'
   Company: 'Company'
@@ -48,6 +47,7 @@ en:
   Languages: 'Languages'
   Technologies: 'Technologies'
   Miscellaneous: 'Miscellaneous'
+  Hobbies and interests: 'Hobbies and interests'
   An easy way to create an Italian or German PDF Curriculum Vitae: 'An easy way to create an Italian or German PDF Curriculum Vitae'
   About: 'About'
   Options: 'Options'
@@ -71,7 +71,7 @@ en:
   Birthdate: 'Birthdate'
   Gender: 'Gender'
   Nationality: 'Nationality'
-  Familystate: 'Familystate'
+  Familystate: 'Family status'
   Other: 'Other'
   Codice fisc: 'Tax code'
   Lang: 'Language'
