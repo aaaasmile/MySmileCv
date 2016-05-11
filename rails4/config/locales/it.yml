@@ -178,6 +178,7 @@
   Editing other skill: 'Cambia hobby'
   New hobby: 'Nuovo hobby'
   Is current occupation: 'Occupazione corrente'
+  until now: 'a tutt oggi'
 
   activerecord:
     errors:

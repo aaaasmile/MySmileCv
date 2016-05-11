@@ -152,7 +152,13 @@ class Curriculum
         min_date_item = v.min{|a,b| a.date_from <=> b.date_from }
         max_date_item = v.max{|a,b| a.date_to <=> b.date_to }
         pos = []
-        aa = v.sort{|a,b| (b.date_from <=> a.date_from)}
+        aa = v.sort do |a,b| 
+          if b.is_date_to_now
+            1
+          else
+            b.date_from <=> a.date_from
+          end
+        end
         aa.each do |ele|
           #p ele.from.strftime("%d.%m.%Y")
           pos << ele.position.split(',')
@@ -174,6 +180,7 @@ class Curriculum
         wenew = Workexperience.new
         wenew.date_from = min_date_item.date_from
         wenew.date_to = max_date_item.date_to
+        wenew.is_date_to_now = max_date_item.is_date_to_now
         wenew.position = position
         wenew.set_cumulated_activities(activities)
         wenew.sector = sector

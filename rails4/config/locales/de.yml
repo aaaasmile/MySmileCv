@@ -178,7 +178,7 @@
   Editing other skill: 'Editing other skill'
   New hobby: 'New hobby'
   Is current occupation: 'Derzeitiger Beschäftigung'
-
+  until now: 'bis Heute'
 
   activerecord:
     errors:

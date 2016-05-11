@@ -192,7 +192,9 @@ class PdfBuilderController < ApplicationController
     we_list.each do |we_item|
       pdf.text(I18n.t('Datum'),  {:justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space})
       pdf.move_pointer(up_y)
-      pdf.text("<b>#{datum_format(we_item.date_from)} - #{datum_format(we_item.date_to)}</b>",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
+      date_to_text = datum_format(we_item.date_to)
+      date_to_text = I18n.t('until now') if we_item.is_date_to_now
+      pdf.text("<b>#{datum_format(we_item.date_from)} - #{date_to_text}</b>",:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
       pdf.move_pointer(inter_leave)
       
       pdf.text(I18n.t('Beruf_oder_Funktion'),  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)

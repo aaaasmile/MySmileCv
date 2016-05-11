@@ -91,7 +91,13 @@
 </div>
 <% if @curriculum.cur_workexperience_list.size > 0 %>
   <%# debug(@curriculum.cur_workexperience_list) %>
-  <% work_exp_list = @curriculum.cur_workexperience_list.sort{|a,b| (b.date_from <=> a.date_from)}
+  <% work_exp_list = @curriculum.cur_workexperience_list.sort{ |a,b|
+        if b.is_date_to_now
+          1
+        else
+          b.date_from <=> a.date_from
+        end
+   }
     work_exp_list.each do |item| %> 
     <div class='remove_item'>
       <%= link_to({:controller => 'workexperiences', :action => 'edit', :id => item.id}, class: 'btn btn-default', aria:{label: 'Edit'}, style: "float: right;")  do  %> 
