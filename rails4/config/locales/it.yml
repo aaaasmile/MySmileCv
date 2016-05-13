@@ -179,6 +179,7 @@
   New hobby: 'Nuovo hobby'
   Is current occupation: 'Occupazione corrente'
   until now: 'a tutt oggi'
+  Pdf file not found: 'Pdf file non trovato'
 
   activerecord:
     errors:

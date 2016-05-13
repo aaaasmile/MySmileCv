@@ -1,4 +1,4 @@
-<%= form_for(@destcurr) do |f| %>
+<%= form_for(@destcurr, html:{multipart: true}) do |f| %>
   <% if @destcurr.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@destcurr.errors.count, "error") %> prohibited this item from being saved:</h2>
@@ -15,8 +15,8 @@
 <p><label for="destcurr_inserat">Job description</label><br/>
 <%= text_area 'destcurr', 'inserat', size:"50x10"  %></p>
 
-<p><label for="destcurr_inserat_filename">Descr Filename ( dir: public/inserat )</label><br/>
-<%= text_field 'destcurr', 'inserat_filename'  %></p>
+<p><label for="destcurr_pdf_jobinsertion">Job insertion Pdf</label><br/>
+<%= file_field('destcurr', "destcurr_pdf_jobinsertion") %>
 
 <p><label for="destcurr_contact_email">Contact email</label><br/>
 <%= text_field 'destcurr', 'contact_email'  %></p>

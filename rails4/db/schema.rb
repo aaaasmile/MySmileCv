@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511152430) do
+ActiveRecord::Schema.define(version: 20160513103629) do
 
   create_table "computerskills", force: :cascade do |t|
     t.string  "name",       limit: 255
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 20160511152430) do
     t.integer "kcurr_saved"
     t.string  "inserat_filename", limit: 255
     t.integer "user_id"
+    t.text    "pdf_jobinsertion"
+    t.text    "pdf_cv"
   end
 
   add_index "destcurrs", ["user_id"], name: "destcurrs_on_user_id"

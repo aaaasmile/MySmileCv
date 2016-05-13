@@ -12,35 +12,11 @@ class DestcurrsController < ApplicationController
 
   def show
   end
-  
-  def show_next
-    id_next = params[:id].to_i + 1
-    begin
-      @destcurr = Destcurr.find(id_next)
-      render :action => 'show'
-    rescue
-      list
-      render :action => 'list'
-    end
-  end
-  
-  def show_prev
-    id_prev = params[:id].to_i - 1
-    begin
-      @destcurr = Destcurr.find( id_prev )
-      render :action => 'show'
-    rescue
-      list
-      render :action => 'list'
-    end
-  end
 
   def new
     @filecurrsaveds =  Filecurrsaved.where(["user_id = ?", session[:user_id]]).all
     @destcurr = Destcurr.new
   end
-
-  
 
   def create
     @filecurrsaveds =  Filecurrsaved.all
@@ -74,33 +50,28 @@ class DestcurrsController < ApplicationController
   end
   
   def view_curr_insertion
-    inserat_fname = Rails.root.join('public', 'inserat', @destcurr.inserat_filename)
-    if File.exist?(inserat_fname) && !File.directory?(inserat_fname)
-      send_file(inserat_fname, :filename => @destcurr.inserat_filename, :disposition => 'inline', :type => "application/pdf")
-    else
-      flash[:warn] = 'Job offer not found'
-      redirect_to action: "show", id: params[:id]
-    end
+    send_pdf_data(:pdf_jobinsertion)
   end
   
   def view_curr_pdf
-    @destcurr = Destcurr.find(params[:id])
-    title_pdf = @destcurr.filecurrsaved.curr_title
-    title_pdf += '.pdf'
-    base_dir_log = File.join(Rails.root, "public/pdf")
-    @pdf_file_name = File.join(base_dir_log, title_pdf)
-    if File.exist?(@pdf_file_name)
-      send_file(@pdf_file_name, :filename => title_pdf, :disposition => 'inline', :type => "application/pdf")
+    send_pdf_data(:pdf_cv)
+  end
+ 
+  private
+
+  def send_pdf_data(field_name)
+    ascii_data = @destcurr.send(field_name)
+    if ascii_data
+      send_data( Base64.decode64(ascii_data),
+          :filename => "#{field_name}",
+          :type => "application/pdf",
+          :disposition => "inline" )
     else
-      flash[:warn] = 'Curriculum file not found'
+      flash[:warn] = t('Pdf file not found')
       redirect_to action: "show", id: params[:id]
     end
   end
-  
-  def next_item
-  end
 
-  private
   def set_destcurr
     @destcurr = Destcurr.find(params[:id])
     @destcurr = @destcurr.user_id == session[:user_id] ? @destcurr : nil
@@ -109,7 +80,7 @@ class DestcurrsController < ApplicationController
   def destcurr_params
     par = params.require(:destcurr).permit(:inserat, :contact_email, :contact_web, :contact_person, 
       :contact_company, :contact_note, :contact_ams, :curr_sent_at, :colloquio_at, :email_motivaz, :note, 
-      :risultato, :kcurr_saved, :inserat_filename)
+      :risultato, :destcurr_pdf_jobinsertion, :destcurr_pdf_cv)
     
     return par
   end
