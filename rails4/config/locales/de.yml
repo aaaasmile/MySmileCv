@@ -3,7 +3,7 @@
   lebenslauf: "Lebenslauf"
   lebenslauf_von: "Lebenslauf von"
   created_with: "erstellt mit MySmileCv"
-  nachnamen_vorname: 'Nachnamen/Vorname'
+  nachnamen_vorname: 'Nachname, Vorname'
   Adresse: 'Adresse'
   Angaben_zur_Person: 'Angaben zur Person'
   Telefon: 'Telefon'
@@ -19,7 +19,7 @@
   Tätigkeitsbereich_Branche: 'Tätigkeitsbereich/Branche'
   Ausbildung: 'Ausbildung'
   Bezeichnung: 'Bezeichnung'
-  Hauptfächer: 'Hauptfächer'
+  Hauptfächer: ' '
   Ausbildungseinrichtung: 'Ausbildungseinrichtung'
   Sprachen: 'Sprachen'
   IKT-Kenntnisse: 'IKT-Kenntnisse'
@@ -178,7 +178,7 @@
   Editing other skill: 'Editing other skill'
   New hobby: 'New hobby'
   Is current occupation: 'Derzeitiger Beschäftigung'
-  until now: 'bis Heute'
+  until now: 'bis heute'
   Pdf file not found: 'Pdf file not found'
 
   activerecord:
