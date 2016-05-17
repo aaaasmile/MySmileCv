@@ -180,6 +180,8 @@
   Is current occupation: 'Occupazione corrente'
   until now: 'a tutt oggi'
   Pdf file not found: 'Pdf file non trovato'
+  Insertion filename: 'Insertion filename'
+  Curriculum filename: 'Curriculum filename'
 
   activerecord:
     errors:

@@ -15,6 +15,10 @@
 <p><label for="destcurr_job_descr">Job description</label><br/>
 <%= text_area 'destcurr', 'job_descr', size:"50x10"  %></p>
 
+<% if @destcurr.inserat_filename %>
+  <p><label for="inserat_filename"><%= I18n.t('Insertion filename') %></label>
+  <div><%= @destcurr.inserat_filename %></div></p>
+<% end %>
 <p><label for="destcurr_pdf_jobinsertion">Job insertion Pdf</label><br/>
 <%= file_field('destcurr', "destcurr_pdf_jobinsertion") %></p>
 
@@ -51,13 +55,19 @@
 <p><label for="destcurr_risultato">Result</label><br/>
 <%= text_field 'destcurr', 'risultato'  %></p>
 
+<% if @destcurr.pdf_cv_filename %>
+  <p><label for="pdf_cv_filename"><%= I18n.t('Curriculum filename') %></label>
+  <div><%= @destcurr.pdf_cv_filename %></div></p>
+<% end %>
+
 <p><label for="destcurr_pdf_cv">Curriculum Pdf</label><br/>
 <%= file_field('destcurr', "destcurr_pdf_cv") %></p>
+
 <!--[eoform:destcurr]-->
 
 <div class="actions">
-      <%= f.submit class: 'btn btn-primary' %>
-  </div>
+    <%= f.submit class: 'btn btn-primary' %>
+</div>
 
 <% end %>
 

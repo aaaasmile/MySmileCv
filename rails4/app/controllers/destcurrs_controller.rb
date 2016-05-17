@@ -1,6 +1,6 @@
 class DestcurrsController < ApplicationController
   before_filter :authorize
-  before_action :set_destcurr, only: [:show, :edit, :update, :destroy, :view_curr_insertion]
+  before_action :set_destcurr, only: [:show, :edit, :update, :destroy, :view_curr_insertion, :view_curr_pdf]
 
   def index
     @destcurrs = Destcurr.where(["user_id = ?", session[:user_id]]).all
