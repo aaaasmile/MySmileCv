@@ -1,19 +1,17 @@
 <% for column in Destcurr.content_columns 
-      contenuto_campo = h @destcurr.send(column.name)
+      
 %>
 <p>
   
-  <% if column.name == 'kcurr_saved' %>
-     <b><%= 'Curriculum' %>:</b> <%= contenuto_campo %>
-     <%= link_to 'View PDF', {:action => 'view_curr_pdf', :id => @destcurr}, target: '_blank' %>
-  <% elsif column.name == 'inserat_filename'
-      next
-     elsif column.name == 'inserat' 
-  %>
+  <% if column.name == 'pdf_cv' %>
+     <b><%= column.human_name %></b>:
+     <%= link_to 'View', {:action => 'view_curr_pdf', :id => @destcurr}, target: '_blank' %>
+  <% elsif column.name == 'pdf_jobinsertion'%>
      <b><%= column.human_name %></b>:
      <%= link_to 'View', {action: 'view_curr_insertion', id: @destcurr}, target: '_blank' %></p>
-  <%elsif column.name != 'pdf_jobinsertion' &&  column.name != 'pdf_cv' %>
-  <b><%= column.human_name %>:</b> <%= contenuto_campo %>
+  <%elsif column.name != 'pdf_jobinsertion' &&  column.name != 'pdf_cv' 
+      contenuto_campo = h @destcurr.send(column.name) %>
+      <b><%= column.human_name %>:</b> <%= contenuto_campo %>
   <% end%>
 </p>
 <% end %>

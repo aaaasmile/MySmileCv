@@ -29,11 +29,11 @@
   Hobbies: 'Hobbies'
 
   lebenslauf: "Lebenslauf"
-  Job: 'Job'
+  Job: 'Job Beschreibung'
   Company: 'Firma'
-  Cur Sent: 'Gesendete'
+  Cur Sent: 'Gesendet'
   Result: 'Ergebnis'
-  Curricula sent: 'Lebenslauf gesendete'
+  Curricula sent: 'Gesendete Lebenslauf'
   Manage Curriculum: 'Verwalte Lebenslauf'
   Title: 'Titel'
   Load: 'Laden'

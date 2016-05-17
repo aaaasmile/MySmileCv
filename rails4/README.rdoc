@@ -62,6 +62,8 @@ Creare una migrazione
 rails g migration AddDateRefToWorkexperience
 Per eseguirla:
 rake db:migrate
+Per cancellarla:
+rake db:rollback
 
 == Nuovo utente
 rails console

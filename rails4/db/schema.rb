@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513103629) do
+ActiveRecord::Schema.define(version: 20160517091718) do
 
   create_table "computerskills", force: :cascade do |t|
     t.string  "name",       limit: 255
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20160513103629) do
   add_index "computerskills", ["user_id"], name: "computerskills_on_user_id"
 
   create_table "destcurrs", force: :cascade do |t|
-    t.text    "inserat"
+    t.text    "job_descr"
     t.string  "contact_email",    limit: 255
     t.string  "contact_web",      limit: 255
     t.string  "contact_person",   limit: 255
@@ -38,11 +38,11 @@ ActiveRecord::Schema.define(version: 20160513103629) do
     t.text    "email_motivaz"
     t.text    "note"
     t.string  "risultato",        limit: 255
-    t.integer "kcurr_saved"
     t.string  "inserat_filename", limit: 255
     t.integer "user_id"
     t.text    "pdf_jobinsertion"
     t.text    "pdf_cv"
+    t.string  "pdf_cv_filename"
   end
 
   add_index "destcurrs", ["user_id"], name: "destcurrs_on_user_id"

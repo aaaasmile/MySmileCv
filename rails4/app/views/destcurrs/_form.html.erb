@@ -12,11 +12,11 @@
   <% end %>
 
 <!--[form:destcurr]-->
-<p><label for="destcurr_inserat">Job description</label><br/>
-<%= text_area 'destcurr', 'inserat', size:"50x10"  %></p>
+<p><label for="destcurr_job_descr">Job description</label><br/>
+<%= text_area 'destcurr', 'job_descr', size:"50x10"  %></p>
 
 <p><label for="destcurr_pdf_jobinsertion">Job insertion Pdf</label><br/>
-<%= file_field('destcurr', "destcurr_pdf_jobinsertion") %>
+<%= file_field('destcurr', "destcurr_pdf_jobinsertion") %></p>
 
 <p><label for="destcurr_contact_email">Contact email</label><br/>
 <%= text_field 'destcurr', 'contact_email'  %></p>
@@ -51,9 +51,8 @@
 <p><label for="destcurr_risultato">Result</label><br/>
 <%= text_field 'destcurr', 'risultato'  %></p>
 
-<p><label for="destcurr_kcurr_saved">Curriculum</label><br/>
-<%= collection_select(:destcurr, :kcurr_saved, @filecurrsaveds, :id, :curr_title)%>
-</p>
+<p><label for="destcurr_pdf_cv">Curriculum Pdf</label><br/>
+<%= file_field('destcurr', "destcurr_pdf_cv") %></p>
 <!--[eoform:destcurr]-->
 
 <div class="actions">

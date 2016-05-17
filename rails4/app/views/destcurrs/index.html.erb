@@ -18,7 +18,7 @@
       row_odd = !row_odd %>
       <tr class="<%= class_name %>">
         <td data-header="<%= I18n.t('Company')  %>"><%=h destcurr.send('contact_company') %></td>
-        <td data-header="<%= I18n.t('Job') %>"><%=h destcurr.send('inserat') %></td>
+        <td data-header="<%= I18n.t('Job') %>"><%=h destcurr.send('job_descr') %></td>
         <% date_curr_sent =  destcurr[:curr_sent_at]
         if  date_curr_sent == nil %>
           <td data-header="<%= I18n.t('Cur Sent') %>">None</td>
