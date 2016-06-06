@@ -173,9 +173,9 @@ class PdfBuilderController < ApplicationController
     # foto
     if @curriculum.curr_picture
       img_stream = Base64.decode64(@curriculum.curr_picture.foto)
-      x_foto = 460
+      x_foto = 430
       y_foto = 680
-      pdf.add_image(img_stream, x_foto, y_foto, 80)
+      pdf.add_image(img_stream, x_foto, y_foto, 120)
     end
 
     #pdf.stop_page_numbering(true, :current)
