@@ -78,9 +78,9 @@ class DestcurrsController < ApplicationController
   end
   
   def destcurr_params
-    par = params.require(:destcurr).permit(:inserat, :contact_email, :contact_web, :contact_person, 
+    par = params.require(:destcurr).permit(:job_descr, :contact_email, :contact_web, :contact_person, 
       :contact_company, :contact_note, :contact_ams, :curr_sent_at, :colloquio_at, :email_motivaz, :note, 
-      :risultato, :destcurr_pdf_jobinsertion, :destcurr_pdf_cv)
+      :risultato, :inserat_filename, :user_id, :pdf_jobinsertion, :pdf_cv, :pdf_cv_filename, :destcurr_pdf_jobinsertion, :destcurr_pdf_cv)
     
     return par
   end
