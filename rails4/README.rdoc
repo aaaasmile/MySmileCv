@@ -25,6 +25,13 @@ Sviluppato con 2.1.7
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
 
+== Start server
+Usare il comando:
+bundle exec rails s -p 3001
+Sotto windows il server puma non va, allora:
+setruby224
+bundle exec rails s webrick -p 3001
+
 == Passaggio dalla versione 1.2.3
 Da rails 1.2.3 a rails 4.2.6 è cambiato molto e non so quanto valga la pena riusare i files.
 Ora si usa bundle, ruby 2.1.7 o superiore.

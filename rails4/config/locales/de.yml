@@ -33,7 +33,7 @@
   Company: 'Firma'
   Cur Sent: 'Gesendet'
   Result: 'Ergebnis'
-  Curricula sent: 'Gesendete Lebenslauf'
+  Curricula sent: 'Gesendete Lebensläufe'
   Manage Curriculum: 'Verwalte Lebenslauf'
   Title: 'Titel'
   Load: 'Laden'
@@ -182,6 +182,22 @@
   Pdf file not found: 'Pdf file not found'
   Insertion filename: 'Insertion filename'
   Curriculum filename: 'Curriculum filename'
+  
+  Job description: 'Job description'
+  Job insertion Pdf: 'Job insertion Pdf'
+  Editing application: 'Editing application'
+  Contact email: 'Contact email'
+  Contact web: 'Contact web'
+  Contact person: 'Contact person'
+  Contact company: 'Contact company'
+  Contact note: 'Contact note'
+  Contact from AMS ?: 'Contact from AMS ?'
+  Curriculum sent at: 'Curriculum sent at'
+  Meeting: 'Meeting'
+  Email motivation: 'Email motivation'
+  Note: 'Note'
+  Result: 'Result'
+  Curriculum Pdf: 'Curriculum Pdf'
 
   activerecord:
     errors:
@@ -328,9 +344,9 @@
     select:
       prompt: Bitte wählen
     submit:
-      create: "%{model} erstellen"
-      submit: "%{model} speichern"
-      update: "%{model} aktualisieren"
+      create: "Erstellen"
+      submit: "Speichern"
+      update: "Aktualisieren"
   number:
     currency:
       format:

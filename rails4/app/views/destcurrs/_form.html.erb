@@ -12,47 +12,47 @@
   <% end %>
 
 <!--[form:destcurr]-->
-<p><label for="destcurr_job_descr">Job description</label><br/>
+<p><label for="destcurr_job_descr"><%= I18n.t('Job description') %></label><br/>
 <%= text_area 'destcurr', 'job_descr', size:"50x10"  %></p>
 
 <% if @destcurr.inserat_filename %>
   <p><label for="inserat_filename"><%= I18n.t('Insertion filename') %></label>
   <div><%= @destcurr.inserat_filename %></div></p>
 <% end %>
-<p><label for="destcurr_pdf_jobinsertion">Job insertion Pdf</label><br/>
+<p><label for="destcurr_pdf_jobinsertion"><%= I18n.t('Job insertion Pdf') %></label><br/>
 <%= file_field('destcurr', "destcurr_pdf_jobinsertion") %></p>
 
-<p><label for="destcurr_contact_email">Contact email</label><br/>
+<p><label for="destcurr_contact_email"><%= I18n.t('Contact email') %></label><br/>
 <%= text_field 'destcurr', 'contact_email'  %></p>
 
-<p><label for="destcurr_contact_web">Contact web</label><br/>
+<p><label for="destcurr_contact_web"><%= I18n.t('Contact web') %></label><br/>
 <%= text_field 'destcurr', 'contact_web'  %></p>
 
-<p><label for="destcurr_contact_person">Contact person</label><br/>
+<p><label for="destcurr_contact_person"><%= I18n.t('Contact person') %></label><br/>
 <%= text_field 'destcurr', 'contact_person'  %></p>
 
-<p><label for="destcurr_contact_company">Contact company</label><br/>
+<p><label for="destcurr_contact_company"><%= I18n.t('Contact company') %></label><br/>
 <%= text_field 'destcurr', 'contact_company', size:40  %></p>
 
-<p><label for="destcurr_contact_note">Contact note</label><br/>
+<p><label for="destcurr_contact_note"><%= I18n.t('Contact note') %></label><br/>
 <%= text_area 'destcurr', 'contact_note', size: "50x10"  %></p>
 
-<p><label for="destcurr_contact_ams">Contact from AMS ?</label><br/>
+<p><label for="destcurr_contact_ams"><%= I18n.t('Contact from AMS ?') %></label><br/>
 <select id="destcurr_contact_ams" name="destcurr[contact_ams]"><option value="false">False</option><option value="true">True</option></select></p>
 
-<p><label for="destcurr_curr_sent_at">Curriculum sent at</label><br/>
+<p><label for="destcurr_curr_sent_at"><%= I18n.t('Curriculum sent at') %></label><br/>
 <%= date_select 'destcurr', 'curr_sent_at', include_blank: true  %></p>
 
-<p><label for="destcurr_colloquio_at">Meeting</label><br/>
+<p><label for="destcurr_colloquio_at"><%= I18n.t('Meeting') %></label><br/>
 <%= date_select 'destcurr', 'colloquio_at', include_blank: true  %></p>
 
-<p><label for="destcurr_email_motivaz">Email motivation</label><br/>
+<p><label for="destcurr_email_motivaz"><%= I18n.t('Email motivation') %></label><br/>
 <%= text_area 'destcurr', 'email_motivaz', size:"50x15"  %></p>
 
-<p><label for="destcurr_note">Note</label><br/>
+<p><label for="destcurr_note"><%= I18n.t('Note') %></label><br/>
 <%= text_area 'destcurr', 'note', size:"60x25"  %></p>
 
-<p><label for="destcurr_risultato">Result</label><br/>
+<p><label for="destcurr_risultato"><%= I18n.t('Result') %></label><br/>
 <%= text_field 'destcurr', 'risultato'  %></p>
 
 <% if @destcurr.pdf_cv_filename %>
@@ -60,7 +60,7 @@
   <div><%= @destcurr.pdf_cv_filename %></div></p>
 <% end %>
 
-<p><label for="destcurr_pdf_cv">Curriculum Pdf</label><br/>
+<p><label for="destcurr_pdf_cv"><%= I18n.t('Curriculum Pdf') %></label><br/>
 <%= file_field('destcurr', "destcurr_pdf_cv") %></p>
 
 <!--[eoform:destcurr]-->
