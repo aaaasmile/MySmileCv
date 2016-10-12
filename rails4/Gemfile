@@ -48,7 +48,7 @@ gem 'autoprefixer-rails', '~> 6.3.3.1'
 gem 'rails_12factor', '~> 0.0.3', group: :production
 gem 'puma', '~> 3.2.0', group: :production
 
-gem 'data-confirm-modal', '~> 1.1.0', git:'https://github.com/ifad/data-confirm-modal.git'
+gem 'data-confirm-modal', '~> 1.2.0', git:'https://github.com/ifad/data-confirm-modal.git'
 
 # page path and static pages (about page)
 #gem 'high_voltage', '~> 2.4.0'
