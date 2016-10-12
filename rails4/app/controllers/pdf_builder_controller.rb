@@ -118,7 +118,10 @@ class PdfBuilderController < ApplicationController
     
       pdf.text('E-mail/Web',  :justification => :right, :right => col_r_rmargin, :font_size => fnt_size_hfield, :spacing => txt_space)
       pdf.move_pointer(up_y)
-      str_tmp = "<c:alink uri=\"mailto:#{info_identity.email}\">#{info_identity.email}</c:alink>, <i>Web</i>: <c:alink uri=\"http://#{info_identity.web}\">#{info_identity.web}</c:alink>"
+      str_tmp = "<c:alink uri=\"mailto:#{info_identity.email}\">#{info_identity.email}</c:alink>"
+      if info_identity.web != ''
+        str_tmp = "<c:alink uri=\"mailto:#{info_identity.email}\">#{info_identity.email}</c:alink>, <i>Web</i>: <c:alink uri=\"http://#{info_identity.web}\">#{info_identity.web}</c:alink>"
+      end
       add_each_tostring_inst(str_tmp)
       pdf.text(str_tmp,:justification => :left, :left => left_part_data, :font_size => fnt_size_hfield,  :spacing => txt_space )
     
