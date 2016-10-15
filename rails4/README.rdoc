@@ -125,3 +125,17 @@ heroku create --region eu
 #heroku labs:enable websockets
 git push heroku master
 heroku open
+
+Con la bash linux di windows10 ho installato il tool heroku.
+L'esempio di sinatra sono riuscito a lanciarlo, ma l'applicazione MySmileCV/rails4 no.
+Seguendo l'esempion del depoy di una applicazione ruby, il comando
+heroku create 
+dovrebbe essere sufficiente per avere un entry nel comando git remote.
+Però non è stato il caso, allora l'ho inserito manualmente con:
+git remote add heroku https://git.heroku.com/pacific-tundra-68768.git
+dopo aver controllato dalla dashboard di heroku il nome della repository git.
+Però poi il comando git push heroku master
+fallisce.
+La dashboard dice di usare:
+heroku git:remote -a pacific-tundra-68768
+Ma il risultato è lo stesso.
