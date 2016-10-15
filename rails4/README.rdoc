@@ -139,3 +139,11 @@ fallisce.
 La dashboard dice di usare:
 heroku git:remote -a pacific-tundra-68768
 Ma il risultato è lo stesso.
+** Il problema è che viene usato git per fare l'upload dei sorgenti. Quindi tutti i files
+necessari devono essere sotto git, come per esempio Gemfile.lock che non lo è.
+La struttura attuale su github di MySmileCv non può essere utilizzata su Heroku,
+ma va messa solo la directory rails4 sotto git, per esempio copiandola in una dir tmp
+ed usare git init e git add .
+Se controlli il tab deploy nella dasboard dell'applicazione, ci sono tutte le istruzioni dettagliate.
+Il problema è che viene usato sqlite e Heroku supporta solo postgres, quindi MySmileCv può
+andare su Heroku.
