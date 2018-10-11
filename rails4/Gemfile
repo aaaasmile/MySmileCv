@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.8'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.11'
 # Use SCSS for stylesheets
@@ -46,12 +46,12 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'autoprefixer-rails', '~> 6.3.3.1'
 
 gem 'rails_12factor', '~> 0.0.3', group: :production
-gem 'puma', '~> 3.2.0', group: :production
+gem 'puma', group: :production
 
-gem 'data-confirm-modal', '~> 1.2.0', git:'https://github.com/ifad/data-confirm-modal.git'
+gem 'data-confirm-modal', git:'https://github.com/ifad/data-confirm-modal.git'
 
 # page path and static pages (about page)
 #gem 'high_voltage', '~> 2.4.0'
 gem "browser", '~> 2.0.3'
 
-ruby '2.2.4'
+#ruby '2.2.4'
